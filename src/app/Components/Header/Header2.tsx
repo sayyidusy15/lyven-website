@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
-import Nav from './Nav';
+import NavBar from './NavBar';
 import Link from 'next/link';
 import Image from 'next/image';
 export default function Header2({ variant }  : any ) {
@@ -31,7 +31,7 @@ export default function Header2({ variant }  : any ) {
   return (
     <div>
     <header
-      className={`cs_site_header header_style_2 header_style_2_1 cs_style_1 header_sticky_style1 ${
+      className={`cs_site_header header_style_2 header_style_2_0 cs_style_1 header_sticky_style1 ${
         variant ? variant : ''
       } cs_sticky_header cs_site_header_full_width ${
         mobileToggle ? 'cs_mobile_toggle_active' : ''
@@ -42,7 +42,7 @@ export default function Header2({ variant }  : any ) {
           <div className="cs_main_header_in">
             <div className="cs_main_header_left">
             <Link className="cs_site_branding" href="/">
-                <Image src="/assets/img/logo_2.svg" alt="img" width={186} height={40}   />
+            <Image src="/assets/img/logo.svg" alt="img" width={212} height={38}   />
               </Link>
               </div>
               <div className="cs_main_header_center">
@@ -57,7 +57,7 @@ export default function Header2({ variant }  : any ) {
                   >
                     <span></span>
                   </span>
-                  <Nav setMobileToggle={setMobileToggle} />
+                  <NavBar setMobileToggle={setMobileToggle} />
                 </div>
             </div>
             <div className="cs_main_header_right">

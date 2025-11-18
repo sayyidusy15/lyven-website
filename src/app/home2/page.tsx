@@ -1,5 +1,6 @@
 import React from 'react';
 import HeroBanner2 from '../Components/HeroBanner/HeroBanner2';
+import HeroBanner1 from '../Components/HeroBanner/HeroBanner1';
 import Brand2 from '../Components/Brand/Brand2';
 import HowWeDo2 from '../Components/HowWeDo/HowWeDo2';
 import Services2 from '../Components/Services/Services2';
@@ -10,13 +11,16 @@ import Testimonial2 from '../Components/Testimonial/Testimonial2';
 import Faq1 from '../Components/Faq/Faq1';
 import Contact2 from '../Components/Contact/Contact2';
 import Blog2 from '../Components/Blog/Blog2';
+import HeroBanner4 from '../Components/HeroBanner/HeroBanner4';
 
 const page = () => {
     return (
         <div>
-            <HeroBanner2></HeroBanner2>
+            {/* <HeroBanner1></HeroBanner1> */}
+            <HeroBanner4></HeroBanner4>
             <Brand2></Brand2>
             <HowWeDo2></HowWeDo2>
+            {/* <HowWeDo2></HowWeDo2> */}
             <Services2></Services2>
             <Project2></Project2>
             <Pricing1></Pricing1>
