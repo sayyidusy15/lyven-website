@@ -8,6 +8,7 @@ export default function Header2({ variant }  : any ) {
   const [isSticky, setIsSticky] = useState<string>("");
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
 
+  
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
@@ -30,6 +31,7 @@ export default function Header2({ variant }  : any ) {
 
   return (
     <div>
+    
     <header
       className={`cs_site_header header_style_2 header_style_2_0 cs_style_1 header_sticky_style1 ${
         variant ? variant : ''
@@ -42,7 +44,7 @@ export default function Header2({ variant }  : any ) {
           <div className="cs_main_header_in">
             <div className="cs_main_header_left">
             <Link className="cs_site_branding" href="/">
-            <Image src="/assets/img/logo.svg" alt="img" width={212} height={38}   />
+            <Image src="/assets/img/logo-lyven-primary.svg" alt="img" width={212} height={38}   />
               </Link>
               </div>
               <div className="cs_main_header_center">

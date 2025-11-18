@@ -8818,12 +8818,14 @@ label {
 .header_style_3.cs-gescout_show{
   background-color: #fff;
 }
+/* nav bar ketika di scroll */
 .header_sticky_style1.cs-gescout_sticky{
-  background-color: #064135;
+  /* background-color: #064135; */
+  background-color: #ffffffff;
 }
 
 .header_sticky_style1.cs-gescout_sticky .cs_nav .cs_nav_list>li>a{
-  color: #fff;
+  color: #000000ff;
 }
 
 
