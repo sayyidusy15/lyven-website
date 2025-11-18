@@ -1917,6 +1917,22 @@ label {
           transform: translate(-50%, -50%) scale(1);
 }
 
+
+/* badge */
+.partner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #0f172a;                     /* teks hitam gelap */
+  border: 1px solid #2B6CF6;          /* outline biru */
+  border-radius: 9999px;              /* full rounded */
+  padding: 6px 12px;
+  box-shadow: 0 6px 18px rgba(43,108,246,0.12); /* shadow lembut, sesuaikan opacity */
+  font-size: 14px;
+}
+.partner-badge svg { color: #F6B21D; } /* star color */
+
 /* ------------ */
 .cs_player_btn {
   position: relative;
