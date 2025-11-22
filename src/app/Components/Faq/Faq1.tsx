@@ -14,6 +14,8 @@ const Faq1 = () => {
         {title:'Design should enrich our day?', content:'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio. Mauris et mollis quam. Nullam fringilla erat id ante commodo sodales.'},
       ]; 
 
+      
+
       const accordionContentRef = useRef(null);
       const [openItemIndex, setOpenItemIndex] = useState(-1);
       const [firstItemOpen, setFirstItemOpen] = useState(true);

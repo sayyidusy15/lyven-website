@@ -4,40 +4,12 @@ import Link from "next/link";
 import React from "react";
 
 const Feature = ({ children }: { children: React.ReactNode }) => (
-  <div className="d-flex align-items-center gap-3">
-    <span
-      className="cs_check_circle cs_center cs_radius_50"
-      aria-hidden="true"
-      style={{
-        width: 28,
-        height: 28,
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#2B6CF6",
-        color: "#fff",
-        borderRadius: "50%",
-      }}
-    >
-      <svg
-        width="12"
-        height="10"
-        viewBox="0 0 12 10"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden
-      >
-        <path
-          d="M10.6667 1L4.33333 8L1.33333 4.66667"
-          stroke="white"
-          strokeWidth="1.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+  <li className="col-6 d-flex align-items-center gap-3 ">
+    <span className="cs_list-header_icon cs_center">
+      <i className="bi bi-check-lg"></i>
     </span>
-    <span>{children}</span>
-  </div>
+    <span className="cs_list-header_text mb-3">{children}</span>
+  </li>
 );
 
 const Herobanner4 = () => {
@@ -75,23 +47,14 @@ const Herobanner4 = () => {
                 Hingga E-Commerce. Gratis Domain, Hosting dan Maintenance
                 Selamanya
               </p>
-
+              
               {/* features - two column grid */}
-              <div className="row cs_mb_32">
-                <div className="col-6">
-                  <Feature>Desain modern</Feature>
-                </div>
-                <div className="col-6">
-                  <Feature>Free domain &amp; hosting</Feature>
-                </div>
-                <div className="col-6 mt-3">
-                  <Feature>SEO-ready &amp; cepat diakses</Feature>
-                </div>
-                <div className="col-6 mt-3">
-                  <Feature>Support &amp; maintenance rutin</Feature>
-                </div>
-              </div>
-
+              <ul className="cs_list-header cs_style_1 cs_medium cs_heading_color cs_mp_0 row mb-4">
+                <Feature>Desain Modern &amp; responsive</Feature>
+                <Feature>Free domain &amp; hosting</Feature>
+                <Feature>SEO-ready &amp; cepat diakses</Feature>
+                <Feature>Support &amp; maintenance</Feature>
+              </ul>
               <div className="d-flex gap-3">
                 <Link
                   href="/"
@@ -110,6 +73,7 @@ const Herobanner4 = () => {
               </div>
             </div>
           </div>
+          
           <div className="col-lg-6">
             <div className="cs_visual_panel" aria-hidden="true">
               <div className="cs_visual_gradient"></div>
@@ -122,10 +86,12 @@ const Herobanner4 = () => {
                   className="cs_visual_image"
                   priority
                 />
+                
               </div>
             </div>
           </div>
         </div>
+        
       </div>
     </section>
   );
