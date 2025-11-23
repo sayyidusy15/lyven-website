@@ -7214,7 +7214,7 @@ label {
   display: -ms-flexbox;
   display: flex;
   gap: 30px;
-  padding-left: 55px;
+  /* padding-left: 55px; */
 }
 @media (max-width: 991px) {
   .cs_working_thumbnail_wrapper {
@@ -9403,4 +9403,115 @@ label {
   .cs_hero.cs_style_1 .cs_hero_thumbnail > img {
       object-fit: cover;
   }
+}
+
+/*--------------------------------------------------------------
+Portfolio Showcase - Updated UI
+----------------------------------------------------------------*/
+.cs_portfolio_section {
+  background: #f6f7fb;
+}
+
+.cs_portfolio_header h2 {
+  color: var(--heading-color);
+}
+
+.cs_portfolio_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Sedikit lebih lebar */
+  gap: 30px;
+}
+
+.cs_portfolio_card {
+  background: var(--white-color);
+  border: 1px solid #ffffff; /* Border awal putih agar bersih */
+  border-radius: 24px; /* Radius lebih besar sesuai gambar */
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(18, 39, 67, 0.03); /* Shadow halus */
+  transition: all 0.35s ease;
+}
+
+.cs_portfolio_card:hover {
+  box-shadow: 0 20px 50px rgba(18, 39, 67, 0.08);
+  transform: translateY(-5px);
+}
+
+.cs_portfolio_image {
+  width: 100%;
+  height: 350px; /* Tinggi proporsional */
+  overflow: hidden;
+  background: #f0f2f5;
+  margin: 12px 12px 0 12px; /* Memberikan padding di sekitar gambar seperti di desain */
+  border-radius: 20px; /* Radius gambar */
+  width: calc(100% - 24px); /* Kompensasi margin */
+  position: relative;
+}
+
+.cs_portfolio_img {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cs_portfolio_card:hover .cs_portfolio_img {
+  transform: scale(1.05);
+}
+
+.cs_portfolio_content {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Jarak antar elemen vertikal */
+}
+
+/* Bagian Logo Brand (MRT/NBS/dll) */
+.cs_brand_logo_container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  height: 30px; /* Menjaga tinggi area logo konsisten */
+}
+
+/* Bagian Judul Project */
+.cs_project_title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827; /* Warna hitam pekat */
+  margin: 0;
+}
+
+/* Bagian Bawah: Kategori & Ikon Tech */
+/* Bagian Bawah: Kategori & Ikon Tech */
+.cs_card_footer {
+  display: flex;
+  justify-content: space-between; /* Kategori di kiri, Ikon di kanan */
+  align-items: center;
+  margin-top: 6px; /* Sedikit menambah jarak dari judul */
+}
+
+.cs_category_text {
+  color: #6b7280; /* Warna abu-abu medium */
+  font-size: 12px; /* UBAH DISINI: Mengecilkan font dari 14px menjadi 12px */
+  font-weight: 500;
+  letter-spacing: -0.02em; /* Sedikit merapatkan huruf agar terlihat compact */
+}
+
+.cs_tech_stack_row {
+  display: flex;
+  gap: 6px; /* UBAH DISINI: Jarak antar ikon dikecilkan dari 8px jadi 6px */
+  align-items: center;
+}
+
+.cs_tech_icon {
+  width: 26px;  
+  height: 26px; 
+  object-fit: contain;
+  opacity: 0.7; /* Membuat ikon sedikit lebih pudar (opsional, sesuai selera) */
+  transition: all 0.3s;
+}
+
+.cs_portfolio_card:hover .cs_tech_icon {
+  opacity: 1; /* Saat di-hover ikon menjadi jelas */
 }

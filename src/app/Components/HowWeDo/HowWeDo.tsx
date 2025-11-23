@@ -19,6 +19,26 @@ const HowWeDo = () => {
         </div>
         <div className="cs_height_60 cs_height_lg_50"></div>
         <div className="row cs_gap_y_40 cs_tab_reverse align-items-center position-relative z-1">
+          <div className="col-lg-7">
+            <div className="cs_working_thumbnail_wrapper cs_center position-relative">
+              <div className="cs_working_thumbnail position-relative wow fadeInDown">
+                <Image src="/assets/img/working_img_1.jpg" alt="img" width={275} height={369}   />
+                <span className="cs_comment">
+                  <Image src="/assets/img/icons/comment.svg" alt="img" width={46} height={33}   />
+                </span>
+              </div>
+              <div className="cs_working_thumbnail position-relative wow fadeInUp">
+                <Image src="/assets/img/working_img_2.jpg" alt="img" width={279} height={369}   />
+                <span className="cs_like">
+                  <Image src="/assets/img/icons/like.svg" alt="img" width={40} height={39}   />
+                </span>
+                <span className="cs_wheel_shape position-absolute">
+                  <Image src="/assets/img/wheel_1.svg" alt="img" width={121} height={116}   />
+                </span>
+              </div>
+              <Image src="/assets/img/favicon_2.svg" alt="img" width={123} height={123}   />
+            </div>
+          </div>
           <div className="col-lg-5">
             <div className="cs_iconbox_wrapper wow fadeInLeft">
               <div className="cs_iconbox cs_style_1">
@@ -50,26 +70,7 @@ const HowWeDo = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-7">
-            <div className="cs_working_thumbnail_wrapper cs_center position-relative">
-              <div className="cs_working_thumbnail position-relative wow fadeInDown">
-                <Image src="/assets/img/working_img_1.jpg" alt="img" width={275} height={369}   />
-                <span className="cs_comment">
-                  <Image src="/assets/img/icons/comment.svg" alt="img" width={46} height={33}   />
-                </span>
-              </div>
-              <div className="cs_working_thumbnail position-relative wow fadeInUp">
-                <Image src="/assets/img/working_img_2.jpg" alt="img" width={279} height={369}   />
-                <span className="cs_like">
-                  <Image src="/assets/img/icons/like.svg" alt="img" width={40} height={39}   />
-                </span>
-                <span className="cs_wheel_shape position-absolute">
-                  <Image src="/assets/img/wheel_1.svg" alt="img" width={121} height={116}   />
-                </span>
-              </div>
-              <Image src="/assets/img/favicon_2.svg" alt="img" width={123} height={123}   />
-            </div>
-          </div>
+          
         </div>
         <div className="cs_blob_1 position-absolute">
           <Image src="/assets/img/mission_shape_1.svg" alt="img" width={449} height={1274}   />
