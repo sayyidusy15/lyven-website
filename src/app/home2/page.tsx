@@ -20,8 +20,8 @@ const page = () => {
             {/* <HeroBanner1></HeroBanner1> */}
             <Herobanner4></Herobanner4>
             <Brand2></Brand2>
+            <HowWeDo></HowWeDo>
             <PortfolioShowcase></PortfolioShowcase>
-            {/* <HowWeDo></HowWeDo> */}
             {/* <HowWeDo2></HowWeDo2>
             <Services2></Services2>
             <Project2></Project2>

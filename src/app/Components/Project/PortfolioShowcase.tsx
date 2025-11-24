@@ -101,7 +101,7 @@ const PortfolioShowcase = () => {
 
         {/* Grid Section */}
         <div className="cs_portfolio_grid">
-          {portfolioItems.map((item, index) => (
+           {portfolioItems.map((item, index) => (
             <Link href={item.link} key={index} className="cs_portfolio_card">
               
               {/* 1. Gambar Utama */}
