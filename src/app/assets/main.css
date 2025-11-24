@@ -9621,3 +9621,71 @@ Portfolio Showcase - Updated UI
     color: #007BFF; /* Warna teks kategori aktif */
     font-weight: 700;
 }
+
+/* --- Style Khusus Gambar Detail Portfolio --- */
+
+.cs_detail_img_card {
+  background: #ffffff;
+  /* Border tipis agar terlihat rapi */
+  border: 1px solid #eef0f5; 
+  /* Radius besar sama seperti CardPortfolio */
+  border-radius: 24px; 
+  /* Padding ini yang menciptakan efek "Frame Putih" di sekeliling gambar */
+  padding: 12px; 
+  /* Shadow halus */
+  box-shadow: 0 10px 30px rgba(18, 39, 67, 0.03); 
+  
+  width: 100%;
+
+  /* transisi shadow agar shadow juga halus saat hover */
+  transition: box-shadow 0.3s ease;
+}
+
+/* Efek Hover pada Frame (Shadow makin tebal dikit) */
+.cs_detail_img_card:hover {
+  box-shadow: 0 20px 50px rgba(18, 39, 67, 0.08);
+}
+
+.cs_detail_img_inner {
+  /* Radius gambar sedikit lebih kecil dari containernya agar estetik */
+  border-radius: 20px; 
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  /* Opsional: memastikan background abu-abu saat loading */
+  background-color: #f0f2f5; 
+
+  /* PENTING: Agar saat di-zoom, gambar tidak keluar dari radius (tetap rounded) */
+  overflow: hidden;
+}
+
+/* --- Style Breadcrumb --- */
+.cs_breadcrumb_link {
+  color: #6b7280; /* Warna abu-abu */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.cs_breadcrumb_link:hover {
+  color: #007BFF; /* Ganti dengan warna UTAMA brand kamu (var(--blue-color)) */
+  text-decoration: underline;
+}
+
+.cs_mx_5 {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #9ca3af; /* Warna separator */
+}
+
+/* --- Target Gambar Next.js di dalamnya --- */
+.cs_detail_img_inner img {
+  /* PENTING: Animasi transisi yang halus (0.5 detik) */
+  transition: transform 0.5s ease; 
+  display: block; /* Mencegah gap kecil di bawah gambar */
+}
+
+/* --- TRIGGER ANIMASI --- */
+/* Saat card putih di-hover, maka gambar di dalamnya akan nge-zoom */
+.cs_detail_img_card:hover .cs_detail_img_inner img {
+  transform: scale(1.05); /* Zoom in sebesar 5% (angka aman, tidak terlalu lebay) */
+}

@@ -25,7 +25,7 @@ export const portfolioData: PortfolioItem[] = [
       { name: 'Tech 2', logo: '/assets/img/tech_portfolio2.jpg' },
       { name: 'Tech 3', logo: '/assets/img/tech_portfolio4.jpg' },
     ],
-    link: '/project/project-details',
+    link: '/portfolio-details',
   },
   {
     image: '/assets/img/project_3.jpg',
@@ -36,7 +36,7 @@ export const portfolioData: PortfolioItem[] = [
       { name: 'Tech 1', logo: '/assets/img/tech_portfolio1.jpg' },
       { name: 'Tech 2', logo: '/assets/img/tech_portfolio2.jpg' },
     ],
-    link: '/project/project-details',
+    link: '/portfolio-details',
   },
   {
     image: '/assets/img/project_2.jpg',
@@ -47,7 +47,7 @@ export const portfolioData: PortfolioItem[] = [
       { name: 'Tech 1', logo: '/assets/img/tech_portfolio1.jpg' },
       { name: 'Tech 2', logo: '/assets/img/tech_portfolio2.jpg' },
     ],
-    link: '/project/project-details',
+    link: '/portfolio-details',
   },
   {
     image: '/assets/img/project_2.jpg',
@@ -58,7 +58,7 @@ export const portfolioData: PortfolioItem[] = [
       { name: 'Tech 1', logo: '/assets/img/tech_portfolio1.jpg' },
       { name: 'Tech 2', logo: '/assets/img/tech_portfolio2.jpg' },
     ],
-    link: '/project/project-details',
+    link: '/portfolio-details',
   },
   {
     image: '/assets/img/project_2.jpg',
@@ -69,7 +69,7 @@ export const portfolioData: PortfolioItem[] = [
       { name: 'Tech 1', logo: '/assets/img/tech_portfolio1.jpg' },
       { name: 'Tech 2', logo: '/assets/img/tech_portfolio2.jpg' },
     ],
-    link: '/project/project-details',
+    link: '/portfolio-details',
   },
   {
     image: '/assets/img/project_2.jpg',
@@ -80,7 +80,7 @@ export const portfolioData: PortfolioItem[] = [
       { name: 'Tech 1', logo: '/assets/img/tech_portfolio1.jpg' },
       { name: 'Tech 2', logo: '/assets/img/tech_portfolio2.jpg' },
     ],
-    link: '/project/project-details',
+    link: '/portfolio-details',
   },
   {
     image: '/assets/img/project_2.jpg',
@@ -91,7 +91,7 @@ export const portfolioData: PortfolioItem[] = [
       { name: 'Tech 1', logo: '/assets/img/tech_portfolio1.jpg' },
       { name: 'Tech 2', logo: '/assets/img/tech_portfolio2.jpg' },
     ],
-    link: '/project/project-details',
+    link: '/portfolio-details',
   },
   {
     image: '/assets/img/project_2.jpg',
@@ -102,7 +102,7 @@ export const portfolioData: PortfolioItem[] = [
       { name: 'Tech 1', logo: '/assets/img/tech_portfolio1.jpg' },
       { name: 'Tech 2', logo: '/assets/img/tech_portfolio2.jpg' },
     ],
-    link: '/project/project-details',
+    link: '/portfolio-details',
   },
   {
     image: '/assets/img/project_2.jpg',
@@ -113,7 +113,7 @@ export const portfolioData: PortfolioItem[] = [
       { name: 'Tech 1', logo: '/assets/img/tech_portfolio1.jpg' },
       { name: 'Tech 2', logo: '/assets/img/tech_portfolio2.jpg' },
     ],
-    link: '/project/project-details',
+    link: '/portfolio-details',
   },
   // ... Tambahkan data lainnya di sini ...
 ];
