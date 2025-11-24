@@ -14,13 +14,13 @@ const public_sans = Public_Sans({
 export const metadata = {
   title: {
     absolute: '',
-    default: 'Digitom - Digital Agency React NextJS Template',
-    template: '%s | Digitom - Digital Agency React NextJS Template',
+    default: 'Lyven Digital Agency',
+    template: '%s | Lyven Digital Agency',
   },
-  description: 'Digitom - Digital Agency React NextJS Template',
+  description: 'Lyven Digital Agency',
   openGraph: {
-    title: 'Digitom - Digital Agency React NextJS Template',
-    description: 'Digitom - Digital Agency React NextJS Template',
+    title: 'Lyven Digital Agency',
+    description: 'Lyven Digital Agency',
   },
 };
 

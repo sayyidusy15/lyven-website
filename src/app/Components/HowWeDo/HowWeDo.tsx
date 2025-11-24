@@ -8,9 +8,9 @@ const HowWeDo = () => {
       <div className="container">
         <div className="cs_section_heading cs_style_1 cs_type_1 align-items-center">
           <div className="cs_section_heading_left">
-            <p className="cs_section_subtitle cs_fs-18 cs_semibold cs_accent_color cs_mb_20 wow fadeInDown">
+            {/* <p className="cs_section_subtitle cs_fs-18 cs_semibold cs_accent_color cs_mb_20 wow fadeInDown">
               How We Do<span className="cs_shape_right"></span>
-            </p>
+            </p> */}
             <h2 className="cs_fs_48 mb-0 wow fadeInUp">Crafting Creative Solutions <br/> for Modern Brands</h2>
           </div>
           <div className="cs_section_heading_right wow fadeInRight">

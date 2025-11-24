@@ -77,8 +77,6 @@ const portfolioItems = [
     link: '/project/project-details',
   },
   
-
-  
 ];
 
 const PortfolioShowcase = () => {
@@ -90,7 +88,7 @@ const PortfolioShowcase = () => {
         <div className="cs_portfolio_header d-flex align-items-start justify-content-between flex-wrap gap-3 mb-5">
           <div>
             <h2 className="cs_fs_48 mb-2">We build ONLY what customers love</h2>
-            <p className="cs_section_heading_text mb-0">
+            <p className="cs_section_heading_text mb-0 cs_fs_18">
               Beautifully designed, passionately engineered, and incredibly reliable
             </p>
           </div>
