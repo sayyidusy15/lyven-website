@@ -1,12 +1,15 @@
 import React from 'react';
-import Image from 'next/image'; // Masih butuh Image untuk icon panah pagination jika tidak pakai <i>
+import Image from 'next/image';
 import CardPortfolio from '../Card/CardPortfolio';
 // Sesuaikan path import ini
 import { portfolioData } from '../../../data/portfolioData';
 
-
-
 const PortfolioList = () => {
+  
+  // LOGIC: Ambil hanya 6 data pertama
+  // slice(0, 6) artinya mulai dari index 0, ambil sampai sebelum index 6
+  const visibleItems = portfolioData.slice(0, 6);
+
   return (
     <section>
       <div className="cs_height_120 cs_height_lg_80"></div>
@@ -35,8 +38,8 @@ const PortfolioList = () => {
             
             {/* Grid Container */}
             <div className="cs_portfolio_list_grid">
-              {/* Mapping Data Langsung */}
-              {portfolioData.map((item, index) => (
+              {/* Mapping dari variable visibleItems, bukan portfolioData langsung */}
+              {visibleItems.map((item, index) => (
                 <CardPortfolio key={index} {...item} />
               ))}
             </div>

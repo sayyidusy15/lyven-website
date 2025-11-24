@@ -5,38 +5,12 @@ import CardPortfolio from '../Card/CardPortfolio';
 import { portfolioData } from '../../../data/portfolioData'
 
 
-// Data Dummy
-const portfolioItems = [
-  {
-    image: '/assets/img/project_1.jpg',
-    companyLogo: '/assets/img/brand_1.svg',
-    title: 'IndiTV Home',
-    categories: ['E-Commerce', 'Website', 'Finance'],
-    technologies: [
-      { name: 'tech1', logo: '/assets/img/tech_portfolio1.jpg' },
-      { name: 'tech2', logo: '/assets/img/tech_portfolio2.jpg' },
-      { name: 'tech3', logo: '/assets/img/tech_portfolio4.jpg' },
-    ],
-    link: '/project/project-details',
-  },
-  // ... item lainnya (Saya singkat agar tidak kepanjangan)
-  {
-      image: '/assets/img/project_1.jpg',
-      companyLogo: '/assets/img/brand_1.svg',
-      title: 'IndiTV Home',
-      categories: ['E-Commerce', 'Website', 'Finance'],
-      technologies: [
-        { name: 'tech1', logo: '/assets/img/tech_portfolio1.jpg' },
-      ],
-      link: '/project/project-details',
-    },
-    
-];
+
 
 const PortfolioShowcase = () => {
   // Misalnya di Home cuma mau tampilkan 3 item pertama saja:
   // const featuredItems = portfolioData.slice(0, 3); 
-  const featuredItems = portfolioData;
+  const featuredItems = portfolioData.slice(0,6);
   // Atau kalau mau tampilkan semua, pakai portfolioData langsung.
   return (
     <section className="cs_portfolio_section">
