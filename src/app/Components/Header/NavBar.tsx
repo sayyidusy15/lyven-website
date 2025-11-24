@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import DropDown from './DropDown';
 
-export default function Nav({ setMobileToggle }) {
+export default function NavBar({ setMobileToggle }) {
   return (
     <ul className="cs_nav_list fw-medium">
       <li className="menu-item-has-children">

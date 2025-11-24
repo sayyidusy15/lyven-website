@@ -8853,8 +8853,9 @@ label {
   .cs-gescout_sticky .cs_main_header{
     padding-top: 0;
   }
+  /* ukuran navbar padding */
   .main-page-area3 .cs_main_header {
-    padding: 0px 90px 0px 140px;
+    padding: 0px 140px 0px 140px;
   }
   .main-page-area3 .cs_top_header {
     padding: 0px 124px 0px 170px;
@@ -9130,9 +9131,10 @@ label {
   position: relative;
 }
 .cs_main_header {
+  /* ukuran navbar padding */
   position: relative;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 140px;
+  padding-right: 140px;
 }
 
 .cs_site_header.cs_style_1 .cs_main_header .container {

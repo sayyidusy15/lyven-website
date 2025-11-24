@@ -7,7 +7,6 @@ export default function Header2({ variant }  : any ) {
   const [mobileToggle, setMobileToggle] = useState(false);
   const [isSticky, setIsSticky] = useState<string>("");
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
-
   
   useEffect(() => {
     const handleScroll = () => {
