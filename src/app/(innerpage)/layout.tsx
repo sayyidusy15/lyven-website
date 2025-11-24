@@ -8,7 +8,7 @@ const DefalultLayout = ({ children }) => {
         <div className='main-page-area'>
             <Header2></Header2>
             {children}
-            <Footer1></Footer1>
+            {/* <Footer1></Footer1> */}
         </div>
     );
 };
