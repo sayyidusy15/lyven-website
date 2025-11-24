@@ -12,7 +12,7 @@ const Feature = ({ children }: { children: React.ReactNode }) => (
   </li>
 );
 
-const Herobanner4 = () => {
+const HeroBanner4 = () => {
   return (
     <section className="cs_hero cs_style_4" aria-label="Mobile developer hero">
       <div className="container">
@@ -97,4 +97,4 @@ const Herobanner4 = () => {
   );
 };
 
-export default Herobanner4;
+export default HeroBanner4;
