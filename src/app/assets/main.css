@@ -3980,6 +3980,7 @@ label {
   padding: 11px 25px;
   border-radius: 8px;
 }
+
 .cs_sidebar.cs_style_1 .cs_service_category_list li:not(:last-child) {
   margin-bottom: 15px;
 }
@@ -9531,4 +9532,76 @@ Portfolio Showcase - Updated UI
 
 .cs_portfolio_card:hover .cs_tech_icon {
   opacity: 1; /* Saat di-hover ikon menjadi jelas */
+}
+
+/* =========================================
+   PORTFOLIO LIST PAGE STYLES
+   ========================================= */
+
+/* 1. Layout Grid 2 Kolom untuk Halaman List */
+.cs_portfolio_list_grid {
+  display: grid;
+  /* Membuat 2 kolom dengan lebar seimbang */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 30px; /* Jarak antar card */
+}
+
+/* Responsive: 1 Kolom di HP */
+@media (max-width: 575px) {
+  .cs_portfolio_list_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 2. Styling Pagination (View Pager 1-5) */
+.cs_pagination_box {
+  display: flex;
+  justify-content: center; /* Posisi di tengah */
+  width: 100%;
+  margin-top: 40px;
+}
+
+.cs_pagination {
+  display: flex;
+  gap: 10px; /* Jarak antar tombol angka */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cs_pagination_item {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%; /* Membuat tombol bulat */
+  border: 1px solid #E5E9F2;
+  background-color: #fff;
+  color: #556070;
+  font-weight: 600;
+  text-decoration: none;
+  
+  /* Flexbox untuk menengahkan angka/icon */
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  
+  transition: all 0.3s ease;
+}
+
+/* Hover & Active State */
+.cs_pagination_item:hover,
+.cs_pagination_item.active {
+  background-color: #007BFF; /* Ganti kode warna ini sesuai warna utama tema kamu */
+  color: #fff;
+  border-color: #007BFF;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.cs_pagination_item i {
+    font-size: 18px; /* Ukuran panah */
+}
+
+/* 3. Style Active untuk Sidebar Categories */
+.cs_service_category_list li.active a {
+    color: #007BFF; /* Warna teks kategori aktif */
+    font-weight: 700;
 }
