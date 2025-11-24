@@ -3980,6 +3980,22 @@ label {
   padding: 11px 25px;
   border-radius: 8px;
 }
+/*--------------------------------------------------------------
+  UPDATE SIDEBAR AGAR STICKY
+----------------------------------------------------------------*/
+
+.cs_sidebar.cs_style_1 {
+  /* Agar sidebar menempel saat discroll */
+  position: -webkit-sticky; /* Untuk support browser Safari */
+  position: sticky;
+  
+  /* Jarak dari atap browser saat menempel */
+  /* Sesuaikan angka 120px ini dengan tinggi Navbar/Header websitemu agar tidak tertutup */
+  top: 120px; 
+  
+  /* Opsional: memastikan dia di atas elemen lain jika ada tumpukan */
+  z-index: 2; 
+}
 
 .cs_sidebar.cs_style_1 .cs_service_category_list li:not(:last-child) {
   margin-bottom: 15px;
