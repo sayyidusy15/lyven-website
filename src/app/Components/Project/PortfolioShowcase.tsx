@@ -92,7 +92,7 @@ const PortfolioShowcase = () => {
               Beautifully designed, passionately engineered, and incredibly reliable
             </p>
           </div>
-          <Link href="/project" className="cs_btn cs_style_1 cs_fs_16 cs_bold text-uppercase">
+          <Link href="/portfolio-list" className="cs_btn cs_style_1 cs_fs_16 cs_bold text-uppercase">
             <span>See more portfolio</span>
           </Link>
         </div>
