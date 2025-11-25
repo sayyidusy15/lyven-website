@@ -9677,6 +9677,8 @@ Portfolio Showcase - Updated UI
   color: #9ca3af; /* Warna separator */
 }
 
+
+
 /* --- Target Gambar Next.js di dalamnya --- */
 .cs_detail_img_inner img {
   /* PENTING: Animasi transisi yang halus (0.5 detik) */
@@ -9688,4 +9690,188 @@ Portfolio Showcase - Updated UI
 /* Saat card putih di-hover, maka gambar di dalamnya akan nge-zoom */
 .cs_detail_img_card:hover .cs_detail_img_inner img {
   transform: scale(1.05); /* Zoom in sebesar 5% (angka aman, tidak terlalu lebay) */
+}
+
+
+/* =========================================
+   Pricing di landing page
+   ========================================= */
+
+/*--------------------------------------------------------------
+  PRICING BOX - CLEAN STYLE
+----------------------------------------------------------------*/
+
+.cs_pricing_box {
+  background: #fff;
+  border: 1px solid #EAEAEA; /* Border abu-abu halus */
+  border-radius: 16px;       /* Sudut membulat */
+  padding: 32px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Style untuk Kartu Populer (Border BIRU) */
+.cs_pricing_box.active {
+  border: 1px solid var(--blue-color); /* Ubah jadi Biru */
+  box-shadow: 0 10px 40px rgba(0, 123, 255, 0.08); /* Shadow kebiruan */
+}
+
+/* 1. Header Row */
+.cs_pricing_header_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.cs_pricing_name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--heading-color);
+  margin: 0;
+}
+
+/* Badge Most Popular (Nuansa Biru Muda) */
+.cs_popular_badge {
+  background-color: #E6F0FF; /* Biru sangat muda */
+  color: var(--blue-color);  /* Teks Biru */
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+/* 2. Price Row */
+.cs_pricing_price_row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.cs_price_value {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--heading-color);
+  line-height: 1;
+}
+
+.cs_price_duration {
+  font-size: 15px;
+  color: #666;
+  font-weight: 400;
+}
+
+/* 3. Description */
+.cs_pricing_desc {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 30px;
+  min-height: 48px; /* Agar tinggi kartu sejajar jika teks pendek */
+}
+
+/* 4. Button Styles */
+.cs_pricing_btn_wrapper {
+  margin-bottom: 30px;
+}
+
+.cs_pricing_btn_2 {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Button Outline (Untuk kartu biasa) */
+.cs_pricing_btn_2.btn-outline {
+  background: transparent;
+  border: 1px solid #DDD;
+  color: var(--heading-color);
+}
+.cs_pricing_btn_2.btn-outline:hover {
+  border-color: var(--heading-color);
+  background: #f9f9f9;
+}
+
+/* Button Solid (Untuk kartu Active) */
+.cs_pricing_btn_2.btn-solid {
+  background: var(--heading-color); /* Hitam atau warna gelap utama */
+  border: 1px solid var(--heading-color);
+  color: #fff;
+}
+.cs_pricing_btn_2.btn-solid:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* 5. Divider & Features */
+.cs_pricing_divider {
+  height: 1px;
+  background-color: #EAEAEA;
+  margin-bottom: 24px;
+}
+
+.cs_pricing_feature_list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.cs_pricing_feature_list li {
+  display: flex;
+  align-items: flex-start; /* Supaya icon tetap di atas kalau teks panjang */
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 15px;
+  color: var(--body-color);
+}
+
+.cs_check_icon {
+  flex-shrink: 0; /* Icon jangan mengecil */
+  margin-top: 3px;
+}
+
+/* --- Floating Arrow Text (Hiasan Panah Merah) --- */
+.cs_floating_arrow_text {
+  position: absolute;
+  top: -45px;
+  right: 20px;
+  font-family: 'Caveat', cursive, sans-serif; /* Kalau ada font tulisan tangan */
+  color: var(--accent-color);
+  font-size: 18px;
+  font-weight: 600;
+  transform: rotate(-5deg);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cs_arrow_icon {
+  font-size: 24px;
+  line-height: 1;
+  transform: rotate(90deg) scaleX(-1); /* Memutar panah melengkung */
+  display: block;
+  margin-bottom: -5px;
+  margin-left: -30px;
+}
+
+/* --- Tag Diskon pada Tab --- */
+.cs_discount_tag {
+  background: #E6F8F3;
+  color: #00A67E;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin-left: 8px;
+  text-transform: uppercase;
 }
