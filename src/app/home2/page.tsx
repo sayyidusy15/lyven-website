@@ -14,6 +14,7 @@ import About1 from '../Components/About/About1';
 import HowWeDo from '../Components/HowWeDo/HowWeDo';
 import PortfolioShowcase from '../Components/Project/PortfolioShowcase';
 import Testimonial1 from '../Components/Testimonial/Testimonial1';
+import Pricing2 from '../Components/Pricing/Pricing2';
 
 const page = () => {
     return (
@@ -23,7 +24,8 @@ const page = () => {
             <Brand2></Brand2>
             <HowWeDo></HowWeDo>
             <PortfolioShowcase></PortfolioShowcase>
-            <Testimonial1></Testimonial1>
+            {/* <Testimonial1></Testimonial1> */}
+            <Pricing2></Pricing2>
             {/* <HowWeDo2></HowWeDo2>
             <Services2></Services2>
             <Project2></Project2>

@@ -94,6 +94,9 @@ const Pricing2 = () => {
                 </div>
               </div>
             </div>
+
+            {/* PERTAHUN */}
+            
             <div className={`cs_tab ${isActive === 'yearly' ? 'active' : ''}`} id="yearly">
               <div className="row cs_row_gap_30 cs_gap_y_30">
                 <div className="col-lg-4">
