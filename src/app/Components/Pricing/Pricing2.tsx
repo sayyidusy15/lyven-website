@@ -1,10 +1,14 @@
 "use client"
 import React, { useState } from 'react';
 import PricingCard2 from '../Card/PricingCard2';
+import PricingTable from './PricingTable';
 
 const Pricing2 = () => {
 
      const [isActive, setIsActive] = useState('monthly');
+
+     // STATE BARU: Untuk toggle tabel detail
+     const [showDetail, setShowDetail] = useState(false);
 
     return (
         <section className="cs_tabs position-relative">
@@ -38,8 +42,8 @@ const Pricing2 = () => {
                 <div className="col-lg-4 wow fadeInDown">
                     <PricingCard2
                         name="Basic"
-                        price="$49"
-                        duration="per user/month"
+                        price="Rp1.500.000"
+                        duration="/month"
                         description="For small business looking to collaborate with a complete CRM."
                         featurelist={[
                             "Core CRM Features",
@@ -63,8 +67,8 @@ const Pricing2 = () => {
                     <PricingCard2
                         isPopular={true} // Trigger style merah/active
                         name="Pro+"
-                        price="$89"
-                        duration="per user/month"
+                        price="Rp2.500.000"
+                        duration="/month"
                         description="For sophisticated teams who need automations and reports."
                         featurelist={[
                             "Advanced reports",
@@ -80,8 +84,8 @@ const Pricing2 = () => {
                 <div className="col-lg-4 wow fadeInDown" data-wow-delay="400ms">
                     <PricingCard2
                         name="Enterprise"
-                        price="$159"
-                        duration="per user/month"
+                        price="Rp2.500.000"
+                        duration="/month"
                         description="For large teams that need to manage access and ensure data quality."
                         featurelist={[
                             "Custom roles",
@@ -105,8 +109,8 @@ const Pricing2 = () => {
                  <div className="col-lg-4">
                     <PricingCard2
                         name="Basic"
-                        price="$39" // Harga diskon
-                        duration="per user/month"
+                        price="Rp4.500.000" // Harga diskon
+                        duration="/month"
                         description="For small business looking to collaborate with a complete CRM."
                         featurelist={[ "Core CRM Features", "Mail merge", "Shared pipelines" ]}
                         btnname="Add to Edge"
@@ -123,8 +127,8 @@ const Pricing2 = () => {
                     <PricingCard2
                         isPopular={true}
                         name="Pro+"
-                        price="$69" // Harga diskon
-                        duration="per user/month"
+                        price="Rp2.500.000" // Harga diskon
+                        duration="/month"
                         description="For sophisticated teams who need automations and reports."
                         featurelist={[ "Advanced reports", "Integrations & automations", "AI Co-Pilot" ]}
                         btnname="Add to Edge"
@@ -136,8 +140,8 @@ const Pricing2 = () => {
                 <div className="col-lg-4">
                     <PricingCard2
                         name="Enterprise"
-                        price="$129" // Harga diskon
-                        duration="per user/month"
+                        price="Rp2.500.000" // Harga diskon
+                        duration="/month"
                         description="For large teams that need to manage access and ensure data quality."
                         featurelist={[ "Custom roles", "Data validation", "Dedicated support + CEO line" ]}
                         btnname="Contact Us"
@@ -148,9 +152,34 @@ const Pricing2 = () => {
 
               </div>
             </div>
-
           </div>
         </div>
+
+      
+
+      {/* --- AREA TABEL DETAIL (CONDITIONAL RENDERING) --- */}
+      {/* --- WRAPPER ANIMASI SMOOTH --- */}
+      {/* Kuncinya di sini: Class 'open' akan memicu animasi CSS */}
+      <div className={`cs_pricing_accordion_wrapper ${showDetail ? 'open' : ''}`}>
+        <div className="cs_pricing_accordion_inner">
+           {/* Tambahkan padding top sedikit agar tidak mepet saat terbuka */}
+           <div className="container cs_pt_40"> 
+               <PricingTable />
+           </div>
+        </div>
+      </div>
+
+      {/* --- TOMBOL LIHAT DETAIL (TOGGLE) --- */}
+      <div className="container text-center cs_mt_60 pt-5">
+        <button 
+          onClick={() => setShowDetail(!showDetail)}
+          className="cs_btn_simple_toggle"
+        >
+          {showDetail ? 'Sembunyikan Perbandingan' : 'Lihat Detail Lengkap'}
+          <i className={`bi ${showDetail ? 'bi-chevron-up' : 'bi-chevron-down'} cs_ms_10`}></i>
+        </button>
+      </div>
+
         <div className="cs_height_120 cs_height_lg_80"></div>
       </section>
     );
