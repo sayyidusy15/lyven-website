@@ -43,7 +43,7 @@ const Faq1 = () => {
 
   return (
     <section className="position-relative overflow-hidden">
-      <div className="cs_height_60 cs_height_lg_80"></div>
+      <div className="cs_height_120 cs_height_lg_80"></div>
       <div className="container">
         
         {/* HEADER SECTION (Tengah) */}
