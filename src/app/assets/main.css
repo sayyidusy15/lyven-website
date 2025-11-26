@@ -9229,6 +9229,8 @@ label {
   height: 100px;
 }
 
+
+
 .cs_site_header.header_style_2.cs_style_1.cs-gescout_sticky .container::before {
   opacity: 1;
 }
@@ -10230,3 +10232,73 @@ Portfolio Showcase - Updated UI
     text-align: left !important; /* Paksa deskripsi rata kiri di HP */
   }
 }
+
+/* ============================================
+   FIX HEADER 2 MOBILE VIEW (LOGO KIRI - HAMBURGER KANAN)
+   ============================================ */
+
+@media only screen and (max-width: 1199px) {
+  
+  /* 1. ATUR KONTAINER UTAMA (Flexbox) */
+  /* Memastikan elemen di dalamnya tersebar ke kiri dan kanan */
+  .header_style_2 .cs_main_header_in {
+    display: flex !important;
+    justify-content: space-between !important; /* Logo di Kiri, Sisa di Kanan */
+    align-items: center !important;
+    flex-wrap: nowrap !important; /* Jangan biarkan turun baris */
+    width: 100% !important;
+  }
+
+  /* 2. LOGO (KIRI) */
+  /* Pastikan ukurannya pas dan tidak mengecil */
+  .header_style_2 .cs_main_header_left {
+    flex-shrink: 0 !important;
+    width: auto !important;
+    margin-right: 0 !important; /* Reset margin */
+  }
+  
+  /* Ukuran gambar logo di mobile */
+  .header_style_2 .cs_site_branding img {
+    width: 130px !important;
+    height: auto !important;
+    max-width: none !important;
+  }
+
+  /* 3. AREA TENGAH / MENU (KANAN) */
+  /* Ini bagian kuncinya: Kita ubah posisi dari absolute (tengah) menjadi static (mengalir) */
+  .header_style_2 .cs_main_header_center {
+    position: static !important;   /* Matikan posisi tengah absolute */
+    transform: none !important;    /* Matikan transform translate */
+    width: auto !important;
+    max-width: none !important;
+    display: flex !important;
+    flex-grow: 1 !important;       /* Ambil sisa ruang kosong */
+    justify-content: flex-end !important; /* Dorong isinya (hamburger) ke KANAN MENTOK */
+    align-items: center !important;
+  }
+
+  /* 4. TOMBOL HAMBURGER */
+  /* Pastikan tombol terlihat dan posisinya mengikuti parent (cs_main_header_center) */
+  .header_style_2 .cs-munu_toggle {
+    display: block !important;
+    position: relative !important; /* Ubah jadi relative agar tidak melayang sembarangan */
+    top: auto !important;
+    right: auto !important;
+    margin: 0 !important;          /* Reset margin bawaan */
+    margin-left: 20px !important;  /* Beri jarak sedikit dari elemen lain */
+  }
+
+  /* 5. SEMBUNYIKAN TOMBOL DESKTOP (KANAN) */
+  /* Tombol 'Lets Talk' tidak perlu di mobile */
+  .header_style_2 .cs_main_header_right {
+    display: none !important;
+  }
+}
+
+/* Penyesuaian untuk HP Layar Kecil */
+@media only screen and (max-width: 400px) {
+  .header_style_2 .cs_site_branding img {
+    width: 110px !important;
+  }
+}
+
