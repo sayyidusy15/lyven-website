@@ -10104,128 +10104,129 @@ Portfolio Showcase - Updated UI
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
 /*--------------------------------------------------------------
-  SERVICE CATEGORY SECTION
+  SERVICE CATEGORY - CLEAN CARD STYLE
 ----------------------------------------------------------------*/
 
-/* Badge di atas judul */
-.cs_section_badge {
-  display: inline-block;
-  padding: 6px 16px;
-  border: 1px solid var(--heading-color);
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--heading-color);
-}
-
-/* Deskripsi Header */
-.cs_section_desc {
-  color: #666;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-/* --- CARD UTAMA (Gradient Background) --- */
-.cs_service_category_card {
-  /* Menggunakan gradient mirip gambar (Ungu ke Biru Gelap) */
-  background: linear-gradient(100deg, #2563EB 0%, #103296 100%);
-
-  /* Jika ingin konsisten dengan warna biru tema kamu, pakai ini: */
-  /* background: var(--blue-color); */
-  
-  padding: 45px;
-  width: 100%;
+/* Style Kartu Per Kategori */
+.cs_service_group_card {
+  background: #ffffff;
+  border: 1px solid #EAEAEA; /* Border abu-abu tipis */
+  padding: 40px 30px;
+  height: 100%;
+  transition: all 0.3s ease;
   position: relative;
-  overflow: hidden; /* Agar rapi */
+  overflow: hidden;
 }
 
-/* List Item Style */
-.cs_sc_list {
+/* Hover Effect pada Kartu */
+.cs_service_group_card:hover {
+  border-color: var(--blue-color); /* Border jadi biru */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05); /* Shadow halus */
+  transform: translateY(-5px); /* Naik sedikit */
+}
+
+/* Icon Bulat di atas judul */
+.cs_sg_icon_box {
+  width: 50px;
+  height: 50px;
+  background-color: #F0F5FF; /* Biru sangat muda */
+  color: var(--blue-color);
+  font-size: 24px;
+  border-radius: 50%; /* Lingkaran */
+  transition: all 0.3s ease;
+}
+
+.cs_service_group_card:hover .cs_sg_icon_box {
+  background-color: var(--blue-color);
+  color: #ffffff;
+}
+
+/* List Style */
+.cs_sg_list {
   list-style: none;
 }
 
-.cs_sc_link {
+.cs_sg_link {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Garis pemisah transparan */
-  color: var(--white-color);
+  padding: 14px 0;
+  border-bottom: 1px solid #F0F0F0;
+  color: var(--body-color); /* Warna teks abu gelap */
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
-/* Hover Effect */
-.cs_sc_link:hover {
-  color: var(--white-color);
-  padding-left: 10px; /* Efek geser sedikit saat hover */
-  border-bottom-color: rgba(255, 255, 255, 0.6);
+.cs_sg_list li:last-child .cs_sg_link {
+  border-bottom: none; /* Hilangkan garis di item terakhir */
 }
 
-.cs_sc_label {
+/* Hover pada Link List */
+.cs_sg_link:hover {
+  color: var(--blue-color);
+  padding-left: 5px;
+}
+
+.cs_sg_label {
   font-size: 16px;
   font-weight: 500;
-  opacity: 0.9;
 }
 
-.cs_sc_icon {
-  font-size: 14px;
-  opacity: 0.7;
-  transform: rotate(0deg);
-  transition: transform 0.3s ease;
+.cs_sg_arrow {
+  font-size: 18px;
+  opacity: 0; /* Sembunyikan panah saat normal */
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  color: var(--blue-color);
 }
 
-.cs_sc_link:hover .cs_sc_icon {
-  transform: rotate(45deg); /* Panah muter saat hover */
+/* Munculkan panah saat link di-hover */
+.cs_sg_link:hover .cs_sg_arrow {
   opacity: 1;
+  transform: translateX(0);
 }
 
-/* Judul Kolom (Web Profil, Booking, dll) */
-.cs_sc_title {
-  position: relative;
-  padding-bottom: 15px;
-}
+/* Responsive adjustment */
+/* --- RESPONSIVE SERVICE CATEGORY --- */
 
-/* Pastikan text tetap putih agar kontras */
-.cs_sc_title, 
-.cs_sc_link {
-  color: #ffffff;
-}
-
-/* Garis pemisah list dibuat lebih halus transparan */
-.cs_sc_link {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
-.cs_sc_link:hover {
-  border-bottom-color: rgba(255, 255, 255, 0.5);
-}
-
-/* --- RESPONSIVE --- */
 @media (max-width: 991px) {
-  .cs_service_category_card {
-    padding: 40px 30px;
+  /* 1. Memberikan Jarak Antar Kartu di Mobile */
+  .cs_service_group_card {
+    /* Menambah jarak vertikal antar kartu saat mode tumpuk */
+    margin-bottom: 30px; 
+    
+    /* Mengurangi padding agar konten lebih muat di layar kecil */
+    padding: 30px 20px; 
   }
   
-  /* Reset text alignment di mobile */
-  .cs_mobile_text_left {
-    text-align: left !important;
-    margin-top: 15px;
+  /* Hilangkan margin pada kartu paling terakhir agar tidak ada ruang kosong berlebih di bawah */
+  .col-lg-4:last-child .cs_service_group_card {
+    margin-bottom: 0;
   }
 
-  .cs_sc_column {
-    margin-bottom: 30px;
+  /* 2. Menyesuaikan Judul Section agar tidak terlalu besar di HP */
+  .cs_section_heading .cs_fs_48 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  
+  /* 3. Menyesuaikan Icon Kartu */
+  .cs_sg_icon_box {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+  
+  /* 4. Menyesuaikan Judul Kartu */
+  .cs_service_group_card h3.cs_fs_24 {
+    font-size: 20px;
   }
 }
 
+/* Tambahan untuk layar HP sangat kecil */
 @media (max-width: 575px) {
-  .cs_service_category_card {
-    padding: 30px 20px;
-  }
-  
-  .cs_fs_48 {
-    font-size: 32px; /* Kecilkan judul di HP */
+  .cs_section_desc {
+    text-align: left !important; /* Paksa deskripsi rata kiri di HP */
   }
 }
