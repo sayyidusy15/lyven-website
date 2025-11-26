@@ -26,13 +26,14 @@ const page = () => {
             <PortfolioShowcase></PortfolioShowcase>
             {/* <Testimonial1></Testimonial1> */}
             <Pricing2></Pricing2>
+            <Faq1></Faq1>
             {/* <HowWeDo2></HowWeDo2>
             <Services2></Services2>
             <Project2></Project2>
             <Pricing1></Pricing1>
             <Awards></Awards>
             <Testimonial1></Testimonial1>
-            <Faq1></Faq1>
+            
             <Contact2></Contact2>
             <Blog2></Blog2> */}
         </div>

@@ -1,111 +1,117 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
-import loadBackgroudImages from '../Common/loadBackgroudImages';
-import VideoModal from '../VideoModal/VideoModal';
-import Image from 'next/image';
+// import loadBackgroudImages from '../Common/loadBackgroudImages';
+// import VideoModal from '../VideoModal/VideoModal';
+// import Image from 'next/image';
 
 const Faq1 = () => {
 
-    const faqContent = [
-        {title:'Bring their individual experience and creative?', content:'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio. Mauris et mollis quam. Nullam fringilla erat id ante commodo sodales.'},
-        {title:'Human centered design to challenges?', content:'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio. Mauris et mollis quam. Nullam fringilla erat id ante commodo sodales.'},
-        {title:'What type of company is measured?', content:'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio. Mauris et mollis quam. Nullam fringilla erat id ante commodo sodales.'},
-        {title:'Developing core web applications?', content:'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio. Mauris et mollis quam. Nullam fringilla erat id ante commodo sodales.'},
-        {title:'Design should enrich our day?', content:'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio. Mauris et mollis quam. Nullam fringilla erat id ante commodo sodales.'},
-      ]; 
+  // DATA DUMMY: Dibuat jadi 8 item agar pas 4 kiri - 4 kanan
+  const faqContent = [
+    { title: 'How do I start a project with you?', content: 'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.' },
+    { title: 'What is your design process?', content: 'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.' },
+    { title: 'Do you provide website maintenance?', content: 'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.' },
+    { title: 'Can you help with SEO optimization?', content: 'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.' },
+    // --- Batas Kolom Kiri ---
+    { title: 'What is the estimated timeline?', content: 'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.' },
+    { title: 'Do you offer custom development?', content: 'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.' },
+    { title: 'What are your payment terms?', content: 'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.' },
+    { title: 'Is hosting included in the package?', content: 'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.' },
+  ];
 
-      
+  const [openItemIndex, setOpenItemIndex] = useState(-1);
+  const [firstItemOpen, setFirstItemOpen] = useState(true);
 
-      const accordionContentRef = useRef(null);
-      const [openItemIndex, setOpenItemIndex] = useState(-1);
-      const [firstItemOpen, setFirstItemOpen] = useState(true);
-    
-      const handleItemClick = index => {
-        if (index === openItemIndex) {
-          setOpenItemIndex(-1);
-        } else {
-          setOpenItemIndex(index);
-        }
-      };
-      useEffect(() => {
-        if (firstItemOpen) {
-          setOpenItemIndex(0);
-          setFirstItemOpen(false);
-        }
-      }, [firstItemOpen]);
+  const handleItemClick = index => {
+    if (index === openItemIndex) {
+      setOpenItemIndex(-1);
+    } else {
+      setOpenItemIndex(index);
+    }
+  };
 
-          useEffect(() => {
-              loadBackgroudImages();
-          }, []);
-      
-    const [iframeSrc, setIframeSrc] = useState('about:blank');
-    const [toggle, setToggle] = useState(false);
-  
-    const handelClick = () => {
-      setIframeSrc("https://www.youtube.com/embed/HC-tgFdIcB0");
-      setToggle(!toggle);
-    };
-    const handelClose = () => {
-      setIframeSrc('about:blank');
-      setToggle(!toggle);
-    };   
+  useEffect(() => {
+    if (firstItemOpen) {
+      setOpenItemIndex(0); // Item pertama (kiri atas) terbuka default
+      setFirstItemOpen(false);
+    }
+  }, [firstItemOpen]);
 
-    return (
-        <section className="position-relative overflow-hidden">
-        <div className="cs_height_120 cs_height_lg_80"></div>
-        <div className="container">
-          <div className="row cs_gap_y_30 position-relative z-1">
-            <div className="col-lg-5">
-              <div className="cs_faq_header">
-                <div className="cs_section_heading cs_style_1">
-                  <p className="cs_section_subtitle cs_fs-18 cs_semibold cs_accent_color cs_mb_20 wow fadeInDown">
-                    FAQ<span className="cs_shape_right"></span>
-                  </p>
-                  <h2 className="cs_fs_48 mb-0 wow fadeInUp">Frequently Asked Questions</h2>
-                </div>
-                <div className="cs_height_51 cs_height_lg_50"></div>
-                <div className="cs_video_block cs_style_2 cs_center cs_bg_filed cs_radius_20 position-relative wow fadeInDown" data-background="/assets/img/video_bg_3.jpg">
-                  <a onClick={handelClick} aria-label="Play video button" className="cs_player_btn cs_video_open cs_center cs_radius_50">
-                  <span className="cs_player_btn_icon cs_center cs_blue_color"><span></span></span>
-                  </a>
-                </div>
-              </div>
+  // Membagi data menjadi 2 bagian
+  const leftColumnData = faqContent.slice(0, 4);
+  const rightColumnData = faqContent.slice(4, 8);
+
+  return (
+    <section className="position-relative overflow-hidden">
+      <div className="cs_height_60 cs_height_lg_80"></div>
+      <div className="container">
+        
+        {/* HEADER SECTION (Tengah) */}
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            <div className="cs_section_heading cs_style_1 text-center cs_mb_50">
+             
+              <h2 className="cs_fs_48 mb-3 wow fadeInUp">Frequently Asked Questions</h2>
+              <p className="cs_section_desc cs_fs_18 mb-0 text-muted wow fadeInUp" data-wow-delay="0.2s">
+                Temukan jawaban atas pertanyaan yang sering diajukan mengenai layanan kami.
+              </p>
             </div>
-            <div className="col-lg-7">
-              <div className="cs_accordians">
+          </div>
+        </div>
 
-              {faqContent.map((item, index) => (
-                <div key={index} className={`cs_accordian cs_style_1 ${index === openItemIndex ? "active" : "" }`} >
+        {/* FAQ CONTENT 2 KOLOM */}
+        <div className="row cs_row_gap_30">
+          
+          {/* KOLOM KIRI (Item 1-4) */}
+          <div className="col-lg-6">
+            <div className="cs_accordians cs_style_1">
+              {leftColumnData.map((item, index) => (
+                <div key={index} className={`cs_accordian cs_style_1 ${index === openItemIndex ? "active" : ""}`}>
                   <div onClick={() => handleItemClick(index)} className="cs_accordian_head position-relative">
                     <h2 className="cs_accordian_title cs_fs_20 cs_semibold mb-0">{item.title}</h2>
-                    <span className="cs_accordian_toggler cs_heading_color position-absolute"><i className="bi bi-chevron-double-right"></i></span>
+                    <span className="cs_accordian_toggler cs_heading_color position-absolute">
+                      <i className="bi bi-chevron-double-right"></i>
+                    </span>
                   </div>
-                  <div ref={accordionContentRef} className="cs_accordian_body">
+                  <div className="cs_accordian_body">
                     <p>{item.content}</p>
                   </div>
                 </div>
-                ))}
-
-              </div>
+              ))}
             </div>
           </div>
-          <div className="cs_faq_shape_1 position-absolute">
-            <Image src="/assets/img/faq_shape_1.svg" alt="img" width={381} height={1044}   />
+
+          {/* KOLOM KANAN (Item 5-8) */}
+          <div className="col-lg-6">
+            <div className="cs_accordians cs_style_1">
+              {rightColumnData.map((item, index) => {
+                // KOREKSI INDEX: Index di map ini mulai dari 0 lagi.
+                // Kita harus tambah 4 agar sesuai dengan index global (4,5,6,7)
+                const realIndex = index + 4; 
+                
+                return (
+                  <div key={realIndex} className={`cs_accordian cs_style_1 ${realIndex === openItemIndex ? "active" : ""}`}>
+                    <div onClick={() => handleItemClick(realIndex)} className="cs_accordian_head position-relative">
+                      <h2 className="cs_accordian_title cs_fs_20 cs_semibold mb-0">{item.title}</h2>
+                      <span className="cs_accordian_toggler cs_heading_color position-absolute">
+                        <i className="bi bi-chevron-double-right"></i>
+                      </span>
+                    </div>
+                    <div className="cs_accordian_body">
+                      <p>{item.content}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
-          <div className="cs_faq_shape_2 position-absolute">
-            <Image src="/assets/img/faq_shape_2.svg" alt="img" width={71} height={48}   />
-          </div>
+
         </div>
-        <div className="cs_height_120 cs_height_lg_80"></div>
 
-        <VideoModal
-            isTrue={toggle}
-            iframeSrc={iframeSrc}
-            handelClose={handelClose}        
-        ></VideoModal>
-
-      </section>
-    );
+      </div>
+      <div className="cs_height_120 cs_height_lg_80"></div>
+    </section>
+  );
 };
 
 export default Faq1;

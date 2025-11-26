@@ -2822,8 +2822,32 @@ label {
 }
 
 .cs_accordians {
-  padding-left: 10px;
+  /* padding-left: 10px; */
+  padding-left :0;
 }
+
+/* Jika ingin deskripsi paragraf punya max-width agar lebih rapi saat di mobile */
+.cs_section_desc {
+  max-width: 600px;
+  margin: 0 auto; /* Center block */
+}
+
+/* --------- HOVER ---------- */
+/* Transisi halus agar perubahan warna tidak kaget */
+.cs_accordian.cs_style_1 .cs_accordian_title {
+  transition: color 0.3s ease;
+}
+
+/* Saat mouse hover di atas box accordion, judul berubah biru */
+.cs_accordian.cs_style_1:hover .cs_accordian_title {
+  color: var(--blue-color); /* Pastikan variabel ini ada, atau ganti kode hex biru */
+}
+
+/* Opsional: Ubah juga warna icon panah saat hover biar serasi */
+.cs_accordian.cs_style_1:hover .cs_accordian_toggler {
+  color: var(--blue-color);
+}
+/* --------- HOVER ---------- */
 
 .cs_faq_header {
   padding-right: 28px;
