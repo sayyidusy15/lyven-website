@@ -9339,6 +9339,8 @@ label {
   padding-left: 15px;
   padding-right: 15px;
 }
+
+
 .circle-border-area{
   border: 4px solid #6a47ed;
   border-radius: 50px;
@@ -10304,5 +10306,170 @@ Portfolio Showcase - Updated UI
   .header_style_2 .cs_site_branding img {
     width: 110px !important;
   }
+}
+
+/* ============================================
+   TESTIMONI CARD
+   ============================================ */
+
+
+.marquee-container:hover .marquee-row {
+  animation-play-state: paused !important;
+}
+
+.marquee-container .card {
+  margin-top: 10 !important;
+  margin-bottom: 10 !important;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.testimoni-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 50px 0;
+  background: linear-gradient(
+    180deg,
+    rgba(221, 233, 248, 1) 0%,
+    rgb(241, 246, 253) 100%
+  );
+}
+
+/* MERUBAH STYLE PADA BRAND  */
+
+/* .cs_horizontal_slider_wrapper {
+  position: relative;
+  overflow: hidden;
+
+  -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      black 15%,
+      black 85%,
+      transparent 100%
+    ),
+
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+      );
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+} */
+
+.marquee-row {
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  min-width: max-content;
+}
+
+/* Row 1 — ping pong kiri <-> kanan */
+
+.marquee-left {
+  animation-name: pingpongRow1;
+  animation-direction: alternate;
+}
+
+/* Row 2 — ping pong kanan <-> kiri */
+
+.marquee-right {
+  animation-name: pingpongRow2;
+  animation-direction: alternate-reverse;
+}
+
+/* Row 1 bergerak 0 → -50% → 0 (bolak-balik) */
+
+@keyframes pingpongRow1 {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-20%);
+  }
+}
+
+/* Row 2 bergerak -50% → 0 → -50% (bolak-balik) */
+
+@keyframes pingpongRow2 {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.title-testimoni {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 54px;
+  
+  color: var(--white);
+}
+
+.sub-title-testimoni {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 27px;
+  text-align: center;
+  color: var(--white);
+  
+}
+
+.title-label {
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 30px;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--heading-color);
+  border: #000 solid 1px;
+  border-radius: 20px;
+  padding: 5px 15px;
+}
+
+.title-label .span {
+  border: #000 solid 1px;
+  border-radius: 20px;
+  padding: 5px 15px;
+}
+
+.col-title {
+  text-align: start;
+  font-size: 22px;
+  font-weight: 800;
+  color: #6b7280;
+}
+
+.col-rating {
+  text-align: end;
+}
+
+.col-message {
+  text-align: justify;
+  font-size: 14px;
+  font-weight: 600;
+  color: #bebebe;
+  opacity: 70%;
+}
+
+.col-sender {
+  text-align: start;
+}
+
+.message-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* jumlah baris */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 

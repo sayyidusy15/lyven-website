@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-key */
+
 "use client";
 import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabaseClient";
@@ -29,15 +31,18 @@ export default function TestimonialCard() {
   return (
     <>
     <div className="testimoni-wrapper">
-      <div className="title-label">
-        <span>WHAT OUR CLIENTS SAY</span>
+      {/* --- BAGIAN HEADER / JUDUL --- */}
+      <div className="container mb-5">
+        <div className="text-center" style={{ maxWidth: "800px", margin: "0 auto" }}>
+          {/* Heading Utama */}
+         <h2 className="cs_fs_32 mb-3 wow fadeInUp">Bagaimana pendapat klien kami?</h2>
+          <p className="cs_section_desc cs_fs_16 mb-0 text-muted wow fadeInUp" data-wow-delay="0.2s">
+          Temukan jawaban atas pertanyaan yang sering diajukan mengenai layanan kami.
+          </p>
+
+        </div>
       </div>
-      <div className="title-testimoni">
-        <span>TESTIMONI JUJUR DARI</span>      
-      </div>
-      <div className="sub-title-testimoni">
-        <span>PELANGGAN LYVEN</span>       
-      </div>
+      
       <div className="overflow-hidden marquee-container">
         <div className="d-flex marquee-row marquee-left">
           {marqueeRow1.map((t, index) => (

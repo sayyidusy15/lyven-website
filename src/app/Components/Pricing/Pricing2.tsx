@@ -18,7 +18,7 @@ const Pricing2 = () => {
           {/* HEADER SECTION */}
           <div className="cs_section_heading cs_style_1 cs_type_1 align-items-center ">
            
-            <h2 className="cs_fs_48 cs_mb_28 text-capitalize wow fadeInUp">We’ve Offered the best <br/> pricing for you</h2>
+            <h2 className="cs_fs_32 cs_mb_28 text-capitalize wow fadeInUp">We’ve Offered the best <br/> pricing for you</h2>
              {/* TOGGLE BUTTON (Monthly/Yearly) */}
              <ul className="cs_tab_links cs_style_1 cs_fs_14 cs_mp_0 justify-content-center">
                 <li className={` ${isActive === 'monthly' ? 'active' : ''}`} onClick={() => setIsActive('monthly')} >
