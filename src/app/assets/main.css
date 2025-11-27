@@ -1765,6 +1765,10 @@ hr {
   background-color: #F1EAFF;
 }
 
+.cs_blue_bg_3 {
+  background-color: #709AFA;
+}
+
 .cs_accent_bg {
   background-color: var(--accent-color);
 }

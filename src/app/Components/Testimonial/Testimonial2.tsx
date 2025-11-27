@@ -71,18 +71,7 @@ const Testimonial2 = () => {
         <div className="cs_testimonial cs_style_2">
           <div className="container">
             <div className="row">
-              <div className="col-lg-4">
-                <div className="cs_testimonial_thumbnail cs_center position-relative wow fadeInLeft">
-                  <Image src="/assets/img/testimonial_img.png" alt="img" width={355} height={612}   />
-                  <div className="cs_testimonial_shape_2 position-absolute">
-                    <Image src="/assets/img/leaves_shape.svg" alt="img" width={120} height={90}   />
-                  </div>
-                  <div className="cs_testimonial_shape_3 position-absolute">
-                    <Image src="/assets/img/message_shape.svg" alt="img" width={116} height={89}   />
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-8">
+              <div className="col-lg-12">
                 <div className="cs_height_80 cs_height_lg_80"></div>
                 <div className="cs_slider cs_style_2 cs_slider_gap_30 position-relative">
                   <div className="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0" data-variable-width="0" data-xs-slides="1" data-sm-slides="1" data-md-slides="1" data-lg-slides="1" data-add-slides="1" data-slides-per-view="responsive">
@@ -131,6 +120,33 @@ const Testimonial2 = () => {
                   </div>
                 </div>
                 <div className="cs_height_80 cs_height_lg_80"></div>
+              </div>
+              
+            </div>
+
+            <div className="row">
+              <div className="col-lg-5">
+                    <div className="card mb-3 shadow-sm">
+                      <div className="card-body text-center">
+                        {/* Rating Stars */}
+                        <div className="mb-2">
+                          <span className="text-warning fs-5">★</span>
+                          <span className="text-warning fs-5">★</span>
+                          <span className="text-warning fs-5">★</span>
+                          <span className="text-warning fs-5">★</span>
+                          <span className="text-warning fs-5">★</span>
+                        </div>
+                        <blockquote className="blockquote mb-0">
+                          <p>
+                            "Lyven has transformed our online presence with their innovative
+                            solutions and dedicated support."
+                          </p>
+                          <footer className="blockquote-footer">
+                            John Doe, <cite title="Source Title">CEO of TechCorp</cite>
+                          </footer>
+                        </blockquote>
+                      </div>
+                    </div>
               </div>
             </div>
           </div>
