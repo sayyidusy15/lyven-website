@@ -14,6 +14,8 @@ import About1 from '../Components/About/About1';
 import HowWeDo from '../Components/HowWeDo/HowWeDo';
 import PortfolioShowcase from '../Components/Project/PortfolioShowcase';
 import Testimonial1 from '../Components/Testimonial/Testimonial1';
+import Marquee from '../Components/Marquee/Marquee';
+import TestimonialCard from '../Components/Testimonial/TestimonialCard';
 
 const page = () => {
     return (
@@ -23,7 +25,8 @@ const page = () => {
             <Brand2></Brand2>
             <HowWeDo></HowWeDo>
             <PortfolioShowcase></PortfolioShowcase>
-            <Testimonial1></Testimonial1>
+            <TestimonialCard />
+            <Marquee></Marquee>
             {/* <HowWeDo2></HowWeDo2>
             <Services2></Services2>
             <Project2></Project2>

@@ -1765,6 +1765,10 @@ hr {
   background-color: #F1EAFF;
 }
 
+.cs_blue_bg_3 {
+  background-color: #709AFA;
+}
+
 .cs_accent_bg {
   background-color: var(--accent-color);
 }
@@ -9688,4 +9692,141 @@ Portfolio Showcase - Updated UI
 /* Saat card putih di-hover, maka gambar di dalamnya akan nge-zoom */
 .cs_detail_img_card:hover .cs_detail_img_inner img {
   transform: scale(1.05); /* Zoom in sebesar 5% (angka aman, tidak terlalu lebay) */
+}
+
+
+/* TESTIMONI CARD */
+.marquee-container:hover .marquee-row {
+  animation-play-state: paused !important;
+} 
+
+.marquee-container .card {
+  margin-top: 10 !important;
+  margin-bottom: 10 !important;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+
+.testimoni-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 50px 0;
+  background: linear-gradient(180deg, rgb(193, 215, 246) 0%, rgb(241, 246, 253) 100%);
+}
+
+.cs_horizontal_slider_wrapper {
+  position: relative;
+  overflow: hidden;
+  /* Horizontal fade (kiri–kanan) */
+  -webkit-mask-image:
+    linear-gradient(90deg,
+      transparent 0%,
+      black 15%,
+      black 85%,
+      transparent 100%
+    ),
+    /* Vertical fade (atas–bawah) */
+    linear-gradient(180deg,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    );
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+}
+.marquee-row {
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  min-width: max-content;
+}
+/* Row 1 — ping pong kiri <-> kanan */
+.marquee-left {
+  animation-name: pingpongRow1;
+  animation-direction: alternate;
+}
+/* Row 2 — ping pong kanan <-> kiri */
+.marquee-right {
+  animation-name: pingpongRow2;
+  animation-direction: alternate-reverse;
+}
+/* Row 1 bergerak 0 → -50% → 0 (bolak-balik) */
+@keyframes pingpongRow1 {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+/* Row 2 bergerak -50% → 0 → -50% (bolak-balik) */
+@keyframes pingpongRow2 {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.title-testimoni{
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 54px;
+  text-align: center;
+  color: var(--white);
+}
+
+.sub-title-testimoni{
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 27px;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+
+.title-label{
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 30px;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--heading-color);
+  border: #000 solid 1px;
+  border-radius: 20px;
+  padding: 5px 15px;
+}
+
+.title-label .span{
+  border: #000 solid 1px;
+  border-radius: 20px;
+  padding: 5px 15px;
+}
+
+.col-title{
+  text-align: start;
+  font-size: 22px;
+  font-weight: 800;
+  color: #6b7280;
+}
+
+.col-rating{
+  text-align: end;
+}
+
+.col-message{
+  text-align: justify;
+  font-size: 14px;
+  font-weight: 600;
+  color: #BEBEBE;
+  opacity: 70%;
+}
+
+.col-sender{
+  text-align: start;
+}
+
+.message-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* jumlah baris */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
