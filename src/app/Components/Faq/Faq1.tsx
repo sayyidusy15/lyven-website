@@ -52,7 +52,7 @@ const Faq1 = () => {
             <div className="cs_section_heading cs_style_1 text-center cs_mb_50">
              
               <h2 className="cs_fs_32 mb-3 wow fadeInUp">Frequently Asked Questions</h2>
-              <p className="cs_section_desc cs_fs_16 mb-0 text-muted wow fadeInUp" data-wow-delay="0.2s">
+              <p className="cs_section_desc cs_fs_16 mb-0 text-muted wow fadeInUp text-center" data-wow-delay="0.2s">
                 Temukan jawaban atas pertanyaan yang sering diajukan mengenai layanan kami.
               </p>
             </div>

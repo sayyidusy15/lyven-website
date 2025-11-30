@@ -137,11 +137,11 @@ export default function NavBar({ setMobileToggle }) {
       </li>   */}
 
       {/* contact */}
-      {/* <li>
+      <li>
         <Link href="/contact" onClick={() => setMobileToggle(false)}>
-          Contact
+          Contact Us
         </Link>
-      </li> */}
+      </li>
     </ul>
   );
 }

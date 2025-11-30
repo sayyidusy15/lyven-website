@@ -19,7 +19,8 @@ import ServiceCategory from '../Components/Services/ServiceCategory';
 import Marquee2 from '../Components/Marquee/Marquee2';
 import TestimonialCard from '../Components/Testimonial/TestimonialCard';
 import Marquee from '../Components/Marquee/Marquee';
-import TestimonialCard2 from '../Components/Testimonial/TestimonialCard2';
+import Client from '../Components/Client/Client';
+
 
 const page = () => {
     return (
@@ -34,6 +35,7 @@ const page = () => {
             {/* <Marquee2></Marquee2> */}
             <Pricing2></Pricing2>
             {/* <TestimonialCard2></TestimonialCard2> */}
+            <Client></Client>
             <Faq1></Faq1>
             <TestimonialCard></TestimonialCard>
             <Marquee2></Marquee2>

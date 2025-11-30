@@ -36,7 +36,7 @@ export default function TestimonialCard() {
         <div className="text-center" style={{ maxWidth: "800px", margin: "0 auto" }}>
           {/* Heading Utama */}
          <h2 className="cs_fs_32 mb-3 wow fadeInUp">Bagaimana pendapat klien kami?</h2>
-          <p className="cs_section_desc cs_fs_16 mb-0 text-muted wow fadeInUp" data-wow-delay="0.2s">
+          <p className="cs_section_desc cs_fs_16 mb-0 text-muted wow fadeInUp text-center" data-wow-delay="0.2s">
           Temukan jawaban atas pertanyaan yang sering diajukan mengenai layanan kami.
           </p>
 
