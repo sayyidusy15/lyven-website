@@ -10492,8 +10492,17 @@ Portfolio Showcase - Updated UI
   left: 50%; /* Center horizontally */
   right: auto;
   transform: translateX(-50%); /* Shift back by half width */
-  top: 100%;
+  top: calc(100% + 15px); /* Start slightly lower */
   z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.cs_nav .cs_nav_list li.cs-mega_menu:hover .mega-menu-container {
+  top: 100%; /* Move up on hover */
+  opacity: 1;
+  visibility: visible;
 }
 
 .cs_nav .cs_nav_list li.cs-mega_menu .mega-menu-col {
@@ -10513,7 +10522,7 @@ Portfolio Showcase - Updated UI
   margin: 0;
   display: block;
   opacity: 1;
-  visibility: visible;
+  visibility: inherit; /* Fix: Inherit visibility from parent so it hides when parent hides */
   position: static;
   box-shadow: none;
   border: none;
@@ -10523,6 +10532,7 @@ Portfolio Showcase - Updated UI
 
 .cs_nav .cs_nav_list li.cs-mega_menu .mega-menu-col ul li {
   margin-bottom: 12px;
+  border-bottom: none !important;
 }
 
 .cs_nav .cs_nav_list li.cs-mega_menu .mega-menu-col ul li a {
@@ -10531,6 +10541,7 @@ Portfolio Showcase - Updated UI
   font-weight: 400;
   display: block;
   padding: 0;
+  border-bottom: none !important;
 }
 
 .cs_nav .cs_nav_list li.cs-mega_menu .mega-menu-col ul li a:hover {
