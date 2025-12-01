@@ -26,8 +26,8 @@ const AboutCustomWeb = () => {
                 <p className="cs_section_subtitle cs_accent_color cs_fs_18 cs_medium cs_mb_10 text-uppercase">
                   PROFESSIONAL WEB DEVELOPER
                 </p>
-                <h2 className="cs_section_title cs_fs_48 cs_bold cs_mb_20">
-                  JASA PEMBUATAN WEBSITE CUSTOM DEVELOPMENT
+                <h2 className="cs_section_title cs_fs_36 cs_bold cs_mb_20">
+                  Jasa Pembuatan Website Custom Development
                 </h2>
                 <p className="cs_section_desc cs_fs_16 cs_mb_20 text-muted">
                   Semakin hari semakin banyak Cara atau Teknologi untuk membuat website dengan cepat dan Efisien, Tapi seringkali cara tersebut memiliki sangat banyak kekurangan, Salah satu contohnya kita tidak bisa membuat Fitur Custom yang sesuai dengan kebutuhan kita di Dunia Industri.

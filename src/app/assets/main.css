@@ -10346,8 +10346,8 @@ Portfolio Showcase - Updated UI
   padding: 50px 0;
   background: linear-gradient(
     180deg,
-    rgba(221, 233, 248, 1) 0%,
-    rgb(241, 246, 253) 100%
+    rgba(245, 245, 245, 0) 0%,
+    rgb(233, 233, 233) 100%
   );
 }
 
@@ -10581,4 +10581,18 @@ Portfolio Showcase - Updated UI
     width: 100%;
     flex: none !important;
   }
+}
+
+/* Fix Navbar Hover Color and Font */
+.cs_primary_font {
+  font-family: var(--heading-font);
+}
+
+.cs_site_header .cs_nav .cs_nav_list > li > a:hover,
+.cs_site_header .cs_nav .cs_nav_list ul li a:hover {
+  color: var(--blue-color) !important;
+}
+
+.cs_site_header .cs_nav .cs_nav_list > li.menu-item-has-children:hover > a::after {
+  color: var(--blue-color) !important;
 }

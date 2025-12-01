@@ -40,7 +40,7 @@ const page = () => {
             <Client></Client>
             <Faq1></Faq1>
             <TestimonialCard></TestimonialCard>
-            <Marquee2></Marquee2>
+            {/* <Marquee2></Marquee2> */}
             {/* <HowWeDo2></HowWeDo2>
             <Services2></Services2>
             <Project2></Project2>
