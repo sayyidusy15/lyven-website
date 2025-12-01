@@ -115,6 +115,11 @@ export default function NavBar2({ setMobileToggle }: any) {
                 Reviews
               </Link>
             </li>
+            <li>
+              <Link href="/faq" onClick={() => setMobileToggle(false)}>
+                FAQ
+              </Link>
+            </li>
           </ul>
         </DropDown>
       </li>
