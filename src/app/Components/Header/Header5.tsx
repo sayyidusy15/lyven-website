@@ -52,7 +52,7 @@ export default function Header5({ variant }  : any ) {
               {/* BAGIAN TENGAH DIHAPUS AGAR MENU PINDAH KE KANAN */}
 
               {/* --- BAGIAN KANAN: MENU + TOMBOL --- */}
-              <div className="cs_main_header_right" style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
+              <div className="cs_main_header_right cs_header_nav_right" style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
                 
                 {/* Menu Navigasi Dipindahkan ke Sini */}
                 <div className="cs_nav cs_primary_font fw-medium">

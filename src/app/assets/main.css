@@ -10261,6 +10261,8 @@ Portfolio Showcase - Updated UI
     flex-shrink: 0 !important;
     width: auto !important;
     margin-right: 0 !important; /* Reset margin */
+    justify-content: flex-start !important; /* Force align left */
+    flex: 0 0 auto !important;
   }
   
   /* Ukuran gambar logo di mobile */
@@ -10297,6 +10299,19 @@ Portfolio Showcase - Updated UI
   /* 5. SEMBUNYIKAN TOMBOL DESKTOP (KANAN) */
   /* Tombol 'Lets Talk' tidak perlu di mobile */
   .header_style_2 .cs_main_header_right {
+    display: none !important;
+  }
+
+  /* Fix for Header5: Show right section (for hamburger) but hide button */
+  /* Fix for Header5: Show right section (for hamburger) but hide button */
+  .header_style_2 .cs_main_header_right.cs_header_nav_right {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end; /* Align hamburger to right */
+    flex: 1; /* Take up remaining space to push to right */
+  }
+
+  .header_style_2 .cs_main_header_right.cs_header_nav_right .header-btn {
     display: none !important;
   }
 }

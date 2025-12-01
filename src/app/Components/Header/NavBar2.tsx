@@ -94,19 +94,19 @@ export default function NavBar2({ setMobileToggle }: any) {
       </li>
 
       <li>
-        <Link href="/project" onClick={() => setMobileToggle(false)}>
+        <Link href="/portfolio-list" onClick={() => setMobileToggle(false)}>
           Portfolio
         </Link>
       </li>
 
       <li className="menu-item-has-children">
-        <Link href="/about" onClick={() => setMobileToggle(false)}>
+        <Link href="" onClick={() => setMobileToggle(false)}>
           About Us
         </Link>
         <DropDown>
           <ul>
             <li>
-              <Link href="/about" onClick={() => setMobileToggle(false)}>
+              <Link href="/about-agency" onClick={() => setMobileToggle(false)}>
                 About Agency
               </Link>
             </li>

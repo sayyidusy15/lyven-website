@@ -9,7 +9,7 @@ const DefalultLayout = ({ children }) => {
     <div className="main-page-area3">
       <Header5></Header5>
       {children}
-      {/* <Footer2></Footer2> */}
+      <Footer2></Footer2>
     </div>
   );
 };
