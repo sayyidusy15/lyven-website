@@ -38,14 +38,20 @@ const CardPortfolio: React.FC<CardPortfolioProps> = ({
       {/* 2. Konten Bawah */}
       <div className="cs_portfolio_content">
         {/* Logo Brand */}
-        <div className="cs_brand_logo_container">
+        <div className="cs_brand_logo_container" style={{ height: '32px', marginBottom: '12px', display: 'flex', alignItems: 'center' }}>
           <Image
             src={companyLogo}
             alt={`${title} logo`}
-            width={100}
-            height={30}
-            className="object-fit-contain object-position-left"
-            style={{ objectFit: 'contain', objectPosition: 'left' }}
+            width={120}
+            height={32}
+            style={{
+              objectFit: 'contain',
+              objectPosition: 'left',
+              maxWidth: '100%',
+              maxHeight: '100%',
+              width: 'auto',
+              height: 'auto'
+            }}
           />
         </div>
 
