@@ -1,17 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import CardPortfolio from '../Card/CardPortfolio';
-// Sesuaikan path import ini dengan struktur foldermu
-import { portfolioData } from '../../../data/portfolioData'
-
-
-
+import { getAllPortfolioItems } from '../../../lib/portfolio';
 
 const PortfolioShowcase = () => {
-  // Misalnya di Home cuma mau tampilkan 3 item pertama saja:
-  // const featuredItems = portfolioData.slice(0, 3); 
-  const featuredItems = portfolioData.slice(0,6);
-  // Atau kalau mau tampilkan semua, pakai portfolioData langsung.
+  const data = getAllPortfolioItems();
+  const featuredItems = data.slice(0, 6);
+
   return (
     <section className="cs_portfolio_section">
       <div className="cs_height_120 cs_height_lg_80"></div>
@@ -29,9 +24,12 @@ const PortfolioShowcase = () => {
         </div>
 
         <div className="cs_portfolio_grid">
-          {/* Mapping dari variable featuredItems */}
           {featuredItems.map((item, index) => (
-            <CardPortfolio key={index} {...item} />
+            <CardPortfolio
+              key={index}
+              {...item}
+              link={`/portfolio-details/${item.slug}`}
+            />
           ))}
         </div>
       </div>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 
 // Import Interface dari file data tadi
-import { PortfolioItem } from '../../../data/portfolioData'
+import { PortfolioItem } from '../../../lib/portfolio'
 
 // Kita definisikan tipe datanya agar aman (TypeScript)
 interface Technology {
@@ -20,7 +20,7 @@ interface CardPortfolioProps {
   link: string;
 }
 
-const CardPortfolio: React.FC<PortfolioItem> = ({
+const CardPortfolio: React.FC<CardPortfolioProps> = ({
   image,
   companyLogo,
   title,
