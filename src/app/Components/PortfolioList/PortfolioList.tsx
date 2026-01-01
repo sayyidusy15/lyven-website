@@ -24,11 +24,14 @@ const PortfolioList: React.FC<PortfolioListProps> = ({ data }) => {
                 <h3 className="cs_sidebar_widget_title cs_fs_22 cs_mb_22">Categories</h3>
                 <ul className="cs_service_category_list cs_medium cs_mp_0">
                   <li className="active"><a href="#"><span>All Projects</span><span> ({data.length})</span></a></li>
-                  <li><a href="#"><span>Web Development</span><span> (7)</span></a></li>
-                  <li><a href="#"><span>UI/UX Design</span><span> (4)</span></a></li>
-                  <li><a href="#"><span>Mobile Apps</span><span> (5)</span></a></li>
-                  <li><a href="#"><span>Digital Marketing</span><span> (3)</span></a></li>
-                  <li><a href="#"><span>Branding</span><span> (6)</span></a></li>
+                  {Array.from(new Set(data.flatMap(item => item.categories || []))).map(cat => (
+                    <li key={cat}>
+                      <a href="#">
+                        <span>{cat}</span>
+                        <span> ({data.filter(item => item.categories?.includes(cat)).length})</span>
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

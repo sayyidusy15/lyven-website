@@ -21,6 +21,4 @@ technologies:
   - name: "Laravel"
     logo: "/assets/img/tech_portfolio3.jpg"
 ---
-# NBS TV
-
 NBS TV delivers reliable news coverage with a focus on speed and accuracy. The platform supports high-concurrency live streaming during major events.

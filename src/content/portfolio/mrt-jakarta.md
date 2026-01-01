@@ -21,8 +21,6 @@ technologies:
   - name: "Node.js"
     logo: "/assets/img/tech_portfolio2.jpg"
 ---
-# MRT Jakarta
-
 The MRT Jakarta app is an essential companion for commuters in Jakarta. It provides real-time train schedules, station information, and efficient ticketing solutions.
 
 We implemented a robust booking system and integrated seamless payment gateways to improve the overall passenger experience.

@@ -58,12 +58,22 @@ const PortfolioDetails: React.FC<PortfolioDetailsProps> = ({ data }) => {
               </div>
 
               <h2 className="cs_fs_40 cs_bold cs_mb_24">{data.title}</h2>
-              <p className="cs_mb_20 cs_fs_18 cs_heading_color">
-                {data.description}
-              </p>
-              <div className="cs_mb_30 text-muted portfolio-content">
-                <ReactMarkdown>{data.content}</ReactMarkdown>
-              </div>
+
+              {/* Short Summary / Lead Paragraph */}
+              {data.description && (
+                <div className="cs_portfolio_summary cs_mb_30">
+                  <p className="cs_fs_18 cs_heading_color cs_medium mb-0" style={{ lineHeight: '1.6' }}>
+                    {data.description}
+                  </p>
+                </div>
+              )}
+
+              {/* Main Content Body */}
+              {data.content && (
+                <div className="cs_portfolio_content_body cs_mb_30 text-muted" style={{ fontSize: '16px', lineHeight: '1.8' }}>
+                  <ReactMarkdown>{data.content}</ReactMarkdown>
+                </div>
+              )}
 
               {/* Scope of Work */}
               {data.scopeOfWork && data.scopeOfWork.length > 0 && (
@@ -116,7 +126,7 @@ const PortfolioDetails: React.FC<PortfolioDetailsProps> = ({ data }) => {
                   <div className="cs_detail_img_inner">
                     <Image
                       src={image}
-                      alt={`Visual ${data.title} ${index + 1}`}
+                      alt={`${data.title} ${index + 1}`}
                       width={800}
                       height={1000}
                       className="w-100 h-auto"
