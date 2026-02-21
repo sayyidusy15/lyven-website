@@ -1,3 +1,4 @@
+"use client"
 import { useState } from 'react';
 
 export default function DropDown({ children }) {
@@ -15,6 +16,7 @@ export default function DropDown({ children }) {
             : 'cs-munu_dropdown_toggle'
         }
         onClick={handelMobileToggle}
+        style={{ zIndex: 10, cursor: 'pointer' }}
       >
         <span></span>
       </span>
