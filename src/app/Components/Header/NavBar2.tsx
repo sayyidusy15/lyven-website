@@ -22,25 +22,19 @@ export default function NavBar2({ setMobileToggle }: any) {
               <h3>Development</h3>
               <ul>
                 <li>
-                  <Link href="/service/ecommerce" onClick={() => setMobileToggle(false)}>WordPress</Link>
+                  <Link href="/service/company-profile" onClick={() => setMobileToggle(false)}>Company Profile &amp; Landing Page</Link>
                 </li>
                 <li>
                   <Link href="/service/web-development" onClick={() => setMobileToggle(false)}>Web Development</Link>
                 </li>
                 <li>
-                  <Link href="/service/responsive-web-design" onClick={() => setMobileToggle(false)}>Web App Development</Link>
+                  <Link href="/service/mobile-development" onClick={() => setMobileToggle(false)}>Mobile Development</Link>
                 </li>
                 <li>
-                  <Link href="/service/website-security" onClick={() => setMobileToggle(false)}>Mobile App Development</Link>
+                  <Link href="/service/pos-system" onClick={() => setMobileToggle(false)}>POS (Sistem Kasir)</Link>
                 </li>
-                <li>
-                  <Link href="/service/website-updates" onClick={() => setMobileToggle(false)}>Game Development</Link>
-                </li>
-               
               </ul>
             </li>
-
-            
 
             {/* Column 2: Creative */}
             <li className="mega-menu-col">
@@ -48,12 +42,6 @@ export default function NavBar2({ setMobileToggle }: any) {
               <ul>
                 <li>
                   <Link href="/service/branding" onClick={() => setMobileToggle(false)}>Branding</Link>
-                </li>
-                <li>
-                  <Link href="/service/custom-web-design" onClick={() => setMobileToggle(false)}>Custom Web Design</Link>
-                </li>
-                <li>
-                  <Link href="/service/graphic-design" onClick={() => setMobileToggle(false)}>Graphic Design</Link>
                 </li>
                 <li>
                   <Link href="/service/logo-design" onClick={() => setMobileToggle(false)}>Logo Design</Link>

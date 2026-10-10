@@ -1,88 +1,158 @@
-"use client"
-import { useEffect, useState } from 'react';
-import NavBar2 from './NavBar2';
-import Link from 'next/link';
-import Image from 'next/image';
+"use client";
 
-export default function Header5({ variant }  : any ) {
-  const [mobileToggle, setMobileToggle] = useState(false);
-  const [isSticky, setIsSticky] = useState<string>("");
-  const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
-  
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+
+const navigation = [
+  { label: "What We Do", href: "/service" },
+  { label: "Portfolio", href: "/portfolio-list" },
+  { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
+];
+
+const SCROLL_THRESHOLD = 88;
+const HIDE_THRESHOLD = 160;
+const DIRECTION_TOLERANCE = 8;
+
+export default function Header5() {
+  const pathname = usePathname();
+  const isHomepage = pathname === "/";
+  const [isScrolled, setIsScrolled] = useState(!isHomepage);
+  const [isHidden, setIsHidden] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+  const frameId = useRef<number | null>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      if (currentScrollPos > prevScrollPos) {
-        setIsSticky('cs-gescout_sticky'); // Scrolling down
-      } else if (currentScrollPos !== 0) {
-        setIsSticky('cs-gescout_show cs-gescout_sticky'); // Scrolling up
-      } else {
-        setIsSticky('');
+    lastScrollY.current = Math.max(window.scrollY, 0);
+
+    const updateHeader = () => {
+      const currentScrollY = Math.max(window.scrollY, 0);
+      const nextScrolled = !isHomepage || currentScrollY > SCROLL_THRESHOLD;
+      const distance = currentScrollY - lastScrollY.current;
+
+      setIsScrolled(nextScrolled);
+
+      if (!isHomepage || !nextScrolled || menuOpen) {
+        setIsHidden(false);
+      } else if (Math.abs(distance) >= DIRECTION_TOLERANCE) {
+        setIsHidden(distance > 0 && currentScrollY > HIDE_THRESHOLD);
       }
-      setPrevScrollPos(currentScrollPos); // Update previous scroll position
+
+      lastScrollY.current = currentScrollY;
+      ticking.current = false;
+      frameId.current = null;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (ticking.current) return;
+      ticking.current = true;
+      frameId.current = window.requestAnimationFrame(updateHeader);
+    };
 
+    updateHeader();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      window.removeEventListener('scroll', handleScroll); // Cleanup the event listener
+      window.removeEventListener("scroll", handleScroll);
+      if (frameId.current !== null) window.cancelAnimationFrame(frameId.current);
+      ticking.current = false;
     };
-  }, [prevScrollPos]);
+  }, [isHomepage, menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    window.requestAnimationFrame(() => {
+      navRef.current?.querySelector<HTMLElement>("a[href]")?.focus();
+    });
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab" || !navRef.current) return;
+
+      const focusable = Array.from(navRef.current.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"));
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <div>
-      <header
-        className={`cs_site_header header_style_2 header_style_2_0 cs_style_1 header_sticky_style1 ${
-          variant ? variant : ''
-        } cs_sticky_header cs_site_header_full_width ${
-          mobileToggle ? 'cs_mobile_toggle_active' : ''
-        } ${isSticky ? isSticky : ''}`}
-      >
-        <div className="cs_main_header">
-          <div className="container">
-            <div className="cs_main_header_in">
-              
-              {/* --- BAGIAN KIRI: LOGO --- */}
-              <div className="cs_main_header_left">
-                <Link className="cs_site_branding" href="/">
-                  <Image src="/assets/img/logo-lyven-primary.svg" alt="img" width={212} height={38} />
-                </Link>
-              </div>
+    <header
+      className={`lyven-header${isHomepage ? " is-homepage" : " is-inner"}${isScrolled ? " is-scrolled" : " is-hero"}${isHidden ? " is-hidden" : ""}${menuOpen ? " is-menu-open" : ""}`}
+    >
+      <div className="lyven-header__inner">
+        <Link className="lyven-header__brand" href="/" aria-label="Lyven home" onClick={closeMenu}>
+          <Image
+            src="/assets/img/logo-lyven-primary.svg"
+            alt="Lyven"
+            width={138}
+            height={38}
+            priority
+          />
+        </Link>
 
-              {/* BAGIAN TENGAH DIHAPUS AGAR MENU PINDAH KE KANAN */}
+        <button
+          ref={toggleRef}
+          className="lyven-header__toggle"
+          type="button"
+          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+        </button>
 
-              {/* --- BAGIAN KANAN: MENU + TOMBOL --- */}
-              <div className="cs_main_header_right cs_header_nav_right" style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
-                
-                {/* Menu Navigasi Dipindahkan ke Sini */}
-                <div className="cs_nav cs_primary_font fw-medium">
-                  <span
-                    className={
-                      mobileToggle
-                        ? 'cs-munu_toggle cs_teggle_active'
-                        : 'cs-munu_toggle'
-                    }
-                    onClick={() => setMobileToggle(!mobileToggle)}
-                  >
-                    <span></span>
-                  </span>
-                  <NavBar2 setMobileToggle={setMobileToggle} />
-                </div>
-
-                {/* Tombol Lets Talk */}
-                <div className="header-btn d-flex align-items-center">
-                  <div className="main-button">
-                    <Link href="/contact" className='cs_btn cs_style_1 cs_fs_14 text-uppercase'>
-                      <span> Lets Talk </span>
-                    </Link>
-                  </div>
-                </div>
-
-              </div>
-            </div>
+        <nav
+          ref={navRef}
+          id="primary-navigation"
+          className={`lyven-header__nav${menuOpen ? " is-open" : ""}`}
+          aria-label="Primary navigation"
+        >
+          <div className="lyven-header__links">
+            {navigation.map((item) => (
+              <Link key={item.label} href={item.href} onClick={closeMenu}>
+                {item.label}
+              </Link>
+            ))}
           </div>
-        </div>
-      </header>
-    </div>
+
+          <Link className="lyven-header__cta" href="/contact" onClick={closeMenu}>
+            <span>Get a Quote</span>
+            <span aria-hidden="true">↗</span>
+          </Link>
+        </nav>
+      </div>
+    </header>
   );
 }
