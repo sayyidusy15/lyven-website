@@ -3,64 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-interface Project {
-  index: string;
-  title: string;
-  categoryPill: string;
-  bgColor: string;
-  hoverBgColor: string;
-  image: string;
-  link: string;
-}
-
-const projects: Project[] = [
-  {
-    index: "01",
-    title: "Qwibly",
-    categoryPill: "Internal Tools • Automation",
-    bgColor: "#EEF3F8", // Silver-cool soft tint
-    hoverBgColor: "#E6EDF5",
-    image: "/assets/img/ChatGPT Image Oct 8, 2026, 06_29_26 PM-1.png",
-    link: "/portfolio-list",
-  },
-  {
-    index: "02",
-    title: "MySchoolMate",
-    categoryPill: "Web App • Education",
-    bgColor: "#F5F6F8", // Abu-abu keputihan terang
-    hoverBgColor: "#ECEEF2",
-    image: "/assets/img/ChatGPT Image Oct 8, 2026, 06_29_27 PM-2.png",
-    link: "/portfolio-list",
-  },
-  {
-    index: "03",
-    title: "Muslim 101",
-    categoryPill: "Mobile App • Community",
-    bgColor: "#E9EEF4", // Abu-abu agak lebih gelap dikit banget
-    hoverBgColor: "#DFE5EE",
-    image: "/assets/img/ChatGPT Image Oct 8, 2026, 06_29_29 PM-3.png",
-    link: "/portfolio-list",
-  },
-  {
-    index: "04",
-    title: "POS Haji Wong Halal",
-    categoryPill: "Mobile App • POS",
-    bgColor: "#F3F5FA", // Abu-abu soft selaras
-    hoverBgColor: "#E9EDF5",
-    image: "/assets/img/ChatGPT Image Oct 8, 2026, 06_29_30 PM-4.png",
-    link: "/portfolio-list",
-  },
-  {
-    index: "05",
-    title: "Photobox",
-    categoryPill: "Mobile App • IoT",
-    bgColor: "#ECEEF4", // Soft light slate-gray
-    hoverBgColor: "#E2E5EE",
-    image: "/assets/img/ChatGPT Image Oct 8, 2026, 06_29_31 PM-5.png",
-    link: "/portfolio-list",
-  },
-];
+import { lyvenProjects } from "../../../lib/projects";
 
 export default function SelectedWork() {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -152,13 +95,13 @@ export default function SelectedWork() {
         {/* Horizontal Slider with 5 Project Cards */}
         <div className="lyven-work__slider-wrapper">
           <div className="lyven-work__slider" ref={sliderRef}>
-            {projects.map((project, idx) => (
+            {lyvenProjects.filter((project) => project.featured).map((project, idx) => (
               <article
                 className="lyven-work__card"
                 key={project.index}
                 style={{ backgroundColor: project.bgColor }}
               >
-                <Link href={project.link} aria-label={`View ${project.title} project`}>
+                <Link href="/portfolio-list" aria-label={`View ${project.title} project`}>
                   {/* Card Header Meta */}
                   <div className="lyven-work__meta">
                     <div className="lyven-work__meta-top">
@@ -174,7 +117,7 @@ export default function SelectedWork() {
                   {/* Card Image Showcase */}
                   <div className="lyven-work__media">
                     <Image
-                      src={project.image}
+                      src={project.image!}
                       alt={`${project.title} showcase mockup`}
                       width={640}
                       height={800}

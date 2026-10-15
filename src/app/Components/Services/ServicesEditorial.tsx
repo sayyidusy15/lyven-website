@@ -7,22 +7,22 @@ const services = [
   {
     icon: "bi-box",
     title: <>Web & Mobile<br />Development</>,
-    description: "Website dan aplikasi mobile modern yang dirancang sesuai kebutuhan bisnis Anda.",
+    description: "Modern websites and mobile applications designed around your business needs.",
   },
   {
     icon: "bi-database",
     title: <>System<br />Integration</>,
-    description: "Menghubungkan platform, tools, API, dan data menjadi satu ekosistem yang terintegrasi.",
+    description: "Connect platforms, tools, APIs, and data into one integrated ecosystem.",
   },
   {
     icon: "bi-stars",
     title: <>AI & Automation</>,
-    description: "Solusi AI dan automation untuk menyederhanakan proses dan meningkatkan produktivitas.",
+    description: "Practical AI and automation solutions that simplify work and improve productivity.",
   },
   {
     icon: "bi-bar-chart-line",
     title: <>Digital<br />Consultation</>,
-    description: "Pendampingan strategis dari validasi ide hingga implementasi solusi digital.",
+    description: "Strategic guidance from idea validation through digital solution implementation.",
   },
 ];
 
@@ -67,8 +67,8 @@ export default function ServicesEditorial() {
 
           <div className="lyven-services__intro">
             <p>
-              Layanan digital end-to-end untuk membantu bisnis bergerak lebih cepat, bekerja lebih
-              cerdas, dan menciptakan dampak nyata.
+              End-to-end digital services that help businesses move faster, work smarter, and
+              create measurable impact.
             </p>
             <Link href="/service" className="lyven-services__all" aria-label="View all services">
               <span aria-hidden="true">↗</span>
