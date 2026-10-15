@@ -111,7 +111,7 @@ const PortfolioDetails: React.FC<PortfolioDetailsProps> = ({ data }) => {
                 </div>
 
                 <Link href="/contact" className="cs_btn cs_style_1 cs_fs_16 cs_semibold text-uppercase w-100 cs_center">
-                  <span>Hubungi Kami Sekarang</span>
+                  <span>Contact Us Today</span>
                 </Link>
               </div>
 

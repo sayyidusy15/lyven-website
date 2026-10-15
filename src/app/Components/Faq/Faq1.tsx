@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 // import loadBackgroudImages from '../Common/loadBackgroudImages';
 // import VideoModal from '../VideoModal/VideoModal';
 // import Image from 'next/image';
@@ -19,8 +19,7 @@ const Faq1 = () => {
     { title: 'Is hosting included in the package?', content: 'Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.' },
   ];
 
-  const [openItemIndex, setOpenItemIndex] = useState(-1);
-  const [firstItemOpen, setFirstItemOpen] = useState(true);
+  const [openItemIndex, setOpenItemIndex] = useState(0);
 
   const handleItemClick = index => {
     if (index === openItemIndex) {
@@ -29,13 +28,6 @@ const Faq1 = () => {
       setOpenItemIndex(index);
     }
   };
-
-  useEffect(() => {
-    if (firstItemOpen) {
-      setOpenItemIndex(0); // Item pertama (kiri atas) terbuka default
-      setFirstItemOpen(false);
-    }
-  }, [firstItemOpen]);
 
   // Membagi data menjadi 2 bagian
   const leftColumnData = faqContent.slice(0, 4);
@@ -53,7 +45,7 @@ const Faq1 = () => {
              
               <h2 className="cs_fs_32 mb-3 wow fadeInUp">Frequently Asked Questions</h2>
               <p className="cs_section_desc cs_fs_16 mb-0 text-muted wow fadeInUp text-center" data-wow-delay="0.2s">
-                Temukan jawaban atas pertanyaan yang sering diajukan mengenai layanan kami.
+                Find clear answers to common questions about our services.
               </p>
             </div>
           </div>

@@ -175,7 +175,7 @@ const Pricing2 = () => {
           onClick={() => setShowDetail(!showDetail)}
           className="cs_btn_simple_toggle"
         >
-          {showDetail ? 'Sembunyikan Perbandingan' : 'Lihat Detail Lengkap'}
+          {showDetail ? 'Hide Comparison' : 'View Full Details'}
           <i className={`bi ${showDetail ? 'bi-chevron-up' : 'bi-chevron-down'} cs_ms_10`}></i>
         </button>
       </div>

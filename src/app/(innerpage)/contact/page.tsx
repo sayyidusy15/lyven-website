@@ -1,17 +1,11 @@
-import React from 'react';
-import BreadCumb from '../../Components/Common/BreadCumb';
-import Contact3 from '../../Components/Contact/Contact3';
+import type { Metadata } from "next";
+import ContactEditorial from "../../Components/Contact/ContactEditorial";
 
-const page = () => {
-  return (
-    <div>
-              <BreadCumb
-                bgimg="/assets/img/page_header.jpg"
-                Title="Contact Us"
-            ></BreadCumb>       
-            <Contact3></Contact3>       
-    </div>
-  );
+export const metadata: Metadata = {
+  title: "Contact | Lyven",
+  description: "Tell us about your project, idea, or digital needs and start a conversation with Lyven.",
 };
 
-export default page;
+export default function ContactPage() {
+  return <ContactEditorial />;
+}

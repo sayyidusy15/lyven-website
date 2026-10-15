@@ -1,75 +1,166 @@
-import React from 'react';
-import CardPortfolio from '../Card/CardPortfolio';
-import { PortfolioItem } from '../../../lib/portfolio';
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useMemo, useState, type CSSProperties } from "react";
+import type { LyvenProject, ProjectCategory } from "../../../lib/projects";
+
+type Filter = "All Projects" | ProjectCategory;
+
+const filters: Filter[] = [
+  "All Projects",
+  "Branding",
+  "UI/UX Design",
+  "Development",
+];
+
+const PROJECTS_PER_PAGE = 3;
 
 interface PortfolioListProps {
-  data: PortfolioItem[];
+  data: LyvenProject[];
 }
 
-const PortfolioList: React.FC<PortfolioListProps> = ({ data }) => {
+export default function PortfolioList({ data }: PortfolioListProps) {
+  const [activeFilter, setActiveFilter] = useState<Filter>("All Projects");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // LOGIC: Ambil hanya 6 data pertama
-  const visibleItems = data.slice(0, 6);
+  const visibleProjects = useMemo(
+    () => activeFilter === "All Projects" ? data : data.filter((project) => project.category === activeFilter),
+    [activeFilter, data],
+  );
+  const pageCount = Math.max(1, Math.ceil(visibleProjects.length / PROJECTS_PER_PAGE));
+  const pageStart = (currentPage - 1) * PROJECTS_PER_PAGE;
+  const pagedProjects = visibleProjects.slice(pageStart, pageStart + PROJECTS_PER_PAGE);
+
+  const selectFilter = (filter: Filter) => {
+    setActiveFilter(filter);
+    setCurrentPage(1);
+  };
 
   return (
-    <section>
-      <div className="cs_height_120 cs_height_lg_80"></div>
-      <div className="container">
-        <div className="row cs_row_gap_30 cs_gap_y_60">
+    <main className="lyven-portfolio-page">
+      <section className="lyven-portfolio-hero" aria-labelledby="portfolio-page-heading">
+        <div className="lyven-portfolio-hero__backdrop" aria-hidden="true" />
+        <div className="lyven-portfolio-page__inner lyven-portfolio-hero__content">
+          <p className="lyven-portfolio-hero__eyebrow">Our Work</p>
+          <h1 id="portfolio-page-heading" className="lyven-portfolio-hero__heading">
+            <span>Real Projects.</span>
+            <span>Real Impact.</span>
+          </h1>
+          <p className="lyven-portfolio-hero__description">
+            We partner with businesses, startups, and organizations to turn ideas into
+            meaningful digital products.
+          </p>
+        </div>
+      </section>
 
-          {/* --- SIDEBAR --- */}
-          <aside className="col-xl-4 col-lg-5">
-            <div className="cs_sidebar cs_style_1 cs_type_1">
-              <div className="cs_sidebar_widget cs_gray_bg_1 cs_radius_10 wow fadeInDown">
-                <h3 className="cs_sidebar_widget_title cs_fs_22 cs_mb_22">Categories</h3>
-                <ul className="cs_service_category_list cs_medium cs_mp_0">
-                  <li className="active"><a href="#"><span>All Projects</span><span> ({data.length})</span></a></li>
-                  {Array.from(new Set(data.flatMap(item => item.categories || []))).map(cat => (
-                    <li key={cat}>
-                      <a href="#">
-                        <span>{cat}</span>
-                        <span> ({data.filter(item => item.categories?.includes(cat)).length})</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </aside>
+      <section className="lyven-portfolio-projects" aria-labelledby="portfolio-projects-heading">
+        <div className="lyven-portfolio-page__inner">
+          <h2 id="portfolio-projects-heading" className="visually-hidden">Lyven projects</h2>
 
-          {/* --- MAIN CONTENT --- */}
-          <div className="col-xl-8 col-lg-7">
+          <div className="lyven-portfolio-filters" role="group" aria-label="Filter projects by category">
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                type="button"
+                className={activeFilter === filter ? "is-active" : undefined}
+                aria-pressed={activeFilter === filter}
+                onClick={() => selectFilter(filter)}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
 
-            {/* Grid Container */}
-            <div className="cs_portfolio_list_grid">
-              {visibleItems.map((item, index) => (
-                <CardPortfolio
-                  key={index}
-                  {...item}
-                  link={`/portfolio-details/${item.slug}`}
-                />
+          {visibleProjects.length > 0 ? (
+            <div className="lyven-portfolio-grid" key={`${activeFilter}-${currentPage}`} aria-live="polite">
+              {pagedProjects.map((project, index) => (
+                <article
+                  className="lyven-portfolio-card"
+                  key={project.slug}
+                  style={{ "--portfolio-delay": `${index * 55}ms` } as CSSProperties}
+                >
+                  <div className="lyven-portfolio-card__media">
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} project showcase`}
+                        fill
+                        priority={index < 3 && activeFilter === "All Projects" && currentPage === 1}
+                        sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1050px) 44vw, 31vw"
+                      />
+                    ) : (
+                      <div className="lyven-portfolio-card__placeholder" aria-label={`${project.title} visual placeholder`}>
+                        <span>{project.title}</span>
+                        <small>Project visual coming soon</small>
+                      </div>
+                    )}
+                    {project.detailHref && (
+                      <Link
+                        href={project.detailHref}
+                        className="lyven-portfolio-card__arrow"
+                        aria-label={`View ${project.title} case study`}
+                      >
+                        ↗
+                      </Link>
+                    )}
+                  </div>
+                  <div className="lyven-portfolio-card__content">
+                    <p>{project.category}</p>
+                    <h3>
+                      {project.detailHref ? <Link href={project.detailHref}>{project.title}</Link> : project.title}
+                    </h3>
+                    <span>{project.description}</span>
+                  </div>
+                </article>
               ))}
             </div>
+          ) : (
+            <p className="lyven-portfolio-empty" role="status">
+              No projects are available in this category yet.
+            </p>
+          )}
 
-            {/* --- PAGINATION --- */}
-            <div className="cs_pagination_box cs_mt_60 cs_center">
-              <ul className="cs_pagination">
-                <li><a href="#" className="cs_pagination_item cs_center"><i className="bi bi-arrow-left"></i></a></li>
-                <li><a href="#" className="cs_pagination_item cs_center active">1</a></li>
-                <li><a href="#" className="cs_pagination_item cs_center">2</a></li>
-                <li><a href="#" className="cs_pagination_item cs_center">3</a></li>
-                <li><a href="#" className="cs_pagination_item cs_center">4</a></li>
-                <li><a href="#" className="cs_pagination_item cs_center">5</a></li>
-                <li><a href="#" className="cs_pagination_item cs_center"><i className="bi bi-arrow-right"></i></a></li>
-              </ul>
-            </div>
+          {visibleProjects.length > PROJECTS_PER_PAGE && (
+            <nav className="lyven-portfolio-pager" aria-label="Portfolio pages">
+              <button
+                type="button"
+                className="lyven-portfolio-pager__arrow"
+                aria-label="Previous portfolio page"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+              >
+                ←
+              </button>
 
-          </div>
+              <div className="lyven-portfolio-pager__pages">
+                {Array.from({ length: pageCount }, (_, index) => index + 1).map((page) => (
+                  <button
+                    type="button"
+                    key={page}
+                    className={page === currentPage ? "is-active" : undefined}
+                    aria-label={`View portfolio page ${page}`}
+                    aria-current={page === currentPage ? "page" : undefined}
+                    onClick={() => setCurrentPage(page)}
+                  >
+                    {String(page).padStart(2, "0")}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                className="lyven-portfolio-pager__arrow"
+                aria-label="Next portfolio page"
+                disabled={currentPage === pageCount}
+                onClick={() => setCurrentPage((page) => Math.min(pageCount, page + 1))}
+              >
+                →
+              </button>
+            </nav>
+          )}
         </div>
-      </div>
-      <div className="cs_height_120 cs_height_lg_80"></div>
-    </section>
+      </section>
+    </main>
   );
-};
-
-export default PortfolioList;
+}

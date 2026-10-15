@@ -32,18 +32,18 @@ const HeroBanner4 = () => {
                   >
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.95a1 1 0 0 0 .95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.447a1 1 0 0 0-.364 1.118l1.287 3.95c.3.921-.755 1.688-1.538 1.118l-3.37-2.447a1 1 0 0 0-1.176 0l-3.37 2.447c-.783.57-1.838-.197-1.538-1.118l1.287-3.95a1 1 0 0 0-.364-1.118L2.063 9.377c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 0 0 .95-.69l1.286-3.95z" />
                   </svg>
-                  <span>Partner pembuatan website bisnis &amp; UMKM</span>
+                  <span>Website partner for businesses and growing teams</span>
                 </span>
               </div>
 
               <h2 className="cs_fs_48 cs_mb_21 wow fadeInUp">
-                Jasa Pembuatan Website Profesional & Halaman 1 Google
+                Professional Website Development Built for Growth
               </h2>
               <p
                 className="cs_section_heading_text mb-21 wow fadeInUp"
                 data-wow-delay="200ms"
               >
-                Spesialis Jasa Pembuatan Website kebutuhan Bisnis, Industri
+                Custom website solutions for businesses, industries, and organizations.
                 Hingga E-Commerce. Gratis Domain, Hosting dan Maintenance
                 Selamanya
               </p>
