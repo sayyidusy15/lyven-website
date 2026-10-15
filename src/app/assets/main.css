@@ -47,6 +47,544 @@
 }
 
 /*--------------------------------------------------------------
+Lyven About page
+----------------------------------------------------------------*/
+.lyven-about-page {
+  overflow: hidden;
+  color: var(--lyven-text-primary);
+  background:
+    radial-gradient(circle at 100% 6%, rgba(55, 139, 255, 0.09), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, #fff 18%, #fff 82%, #f8fbff 100%);
+}
+
+.lyven-about-page__hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 540px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.lyven-about-page__hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.8) 39%, rgba(255, 255, 255, 0.08) 72%);
+  pointer-events: none;
+}
+
+.lyven-about-page__hero-backdrop {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background-image: url("/assets/img/what-we-do-header.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.lyven-about-page__hero-inner,
+.lyven-about-page__values-inner,
+.lyven-about-page__belief-inner,
+.lyven-about-page__studio-inner {
+  width: min(calc(100% - var(--lyven-page-gap)), var(--lyven-container));
+  margin-inline: auto;
+}
+
+.lyven-about-page__hero-inner {
+  display: block;
+}
+
+.lyven-about-page__hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 610px;
+  padding: 132px 0 70px;
+}
+
+.lyven-about-page__eyebrow {
+  margin: 0 0 22px;
+  color: #31558c;
+  font-family: var(--body-font);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.lyven-about-page__hero h1 {
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(58px, 5.4vw, 78px);
+  font-weight: 650;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.lyven-about-page__hero h1 span,
+.lyven-about-page__studio h2 span {
+  display: block;
+}
+
+.lyven-about-page__hero h1 em,
+.lyven-about-page__studio h2 em {
+  color: var(--lyven-blue);
+  font-style: normal;
+}
+
+.lyven-about-page__lead {
+  max-width: 475px;
+  margin: 26px 0 0;
+  color: var(--lyven-text-secondary);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.lyven-about-page__orbit {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.lyven-about-page__orbit path {
+  fill: none;
+  stroke: rgba(20, 115, 255, 0.18);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.lyven-about-page__orbit circle {
+  fill: #76adf7;
+  filter: drop-shadow(0 3px 8px rgba(20, 115, 255, 0.28));
+}
+
+.lyven-about-page__values {
+  position: relative;
+  z-index: 2;
+  padding: 38px 0 44px;
+}
+
+.lyven-about-page__values-inner {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 30px 0;
+  border-top: 1px solid rgba(213, 225, 241, 0.88);
+  border-bottom: 1px solid rgba(213, 225, 241, 0.88);
+}
+
+.lyven-about-page__value {
+  min-width: 0;
+  padding: 5px 28px;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.lyven-about-page__value:first-of-type {
+  padding-left: 0;
+}
+
+.lyven-about-page__value:not(:first-of-type) {
+  border-left: 1px solid var(--lyven-border);
+}
+
+.lyven-about-page__value-icon {
+  width: 48px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: var(--lyven-blue);
+  background: #eef5ff;
+  font-size: 22px;
+}
+
+.lyven-about-page__value h3 {
+  margin: 2px 0 5px;
+  color: var(--lyven-text-primary);
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.lyven-about-page__value p {
+  margin: 0;
+  color: var(--lyven-text-secondary);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.lyven-about-page__belief {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(500px, 62vh, 590px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0% 75%, rgba(81, 155, 255, 0.08), transparent 30%),
+    linear-gradient(180deg, #fff 0%, #f9fbff 55%, #fff 100%);
+}
+
+.lyven-about-page__orbit.is-belief {
+  transform: rotate(180deg) scaleX(-1);
+  opacity: 0.82;
+}
+
+.lyven-about-page__belief-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: start;
+}
+
+.lyven-about-page__quote-mark {
+  margin-top: -13px;
+  color: #dce9fb;
+  font-family: Georgia, serif;
+  font-size: 124px;
+  font-weight: 700;
+  line-height: 0.75;
+}
+
+.lyven-about-page__belief blockquote {
+  max-width: 1040px;
+  margin: 0;
+  font-style: normal;
+}
+
+.lyven-about-page__belief blockquote p {
+  margin: 0;
+  color: #ccd4df;
+  font-family: var(--heading-font);
+  font-size: clamp(39px, 3.45vw, 53px);
+  font-weight: 450;
+  line-height: 1.07;
+  letter-spacing: -0.047em;
+}
+
+.lyven-about-page__quote-line {
+  display: block;
+}
+
+.lyven-about-page__quote-word {
+  --quote-fill: 0;
+  color: #ccd4df;
+  color: color-mix(in srgb, var(--lyven-text-primary) calc(var(--quote-fill) * 100%), #ccd4df);
+  transition: color 90ms linear;
+}
+
+.lyven-about-page__quote-word.is-highlight {
+  color: #c9d7eb;
+  color: color-mix(in srgb, var(--lyven-blue) calc(var(--quote-fill) * 100%), #c9d7eb);
+}
+
+.lyven-about-page__quote-word:not(:last-child)::after {
+  content: " ";
+}
+
+.lyven-about-page__belief cite {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  color: #71839e;
+  font-family: var(--body-font);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.lyven-about-page__belief cite::before {
+  content: "";
+  width: 38px;
+  height: 1px;
+  background: #96a9c6;
+}
+
+.lyven-about-page__studio {
+  padding: 72px 0 94px;
+  background:
+    radial-gradient(circle at 85% 42%, rgba(20, 115, 255, 0.055), transparent 30%),
+    linear-gradient(180deg, #fff 0%, #f8fbff 100%);
+}
+
+.lyven-about-page__studio-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(380px, 0.85fr);
+  align-items: center;
+  gap: clamp(52px, 6vw, 88px);
+}
+
+.lyven-about-page__studio-visual {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  border: 1px solid var(--lyven-border-blue);
+  border-radius: 24px;
+  background: #f3f8ff;
+  box-shadow: 0 16px 50px rgba(8, 48, 105, 0.07);
+}
+
+.lyven-about-page__studio-visual img {
+  object-fit: cover;
+  object-position: 58% center;
+  transform: scale(1.06);
+}
+
+.lyven-about-page__studio-copy {
+  padding-right: 8px;
+}
+
+.lyven-about-page__studio h2 {
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(45px, 4vw, 60px);
+  font-weight: 650;
+  line-height: 0.99;
+  letter-spacing: -0.05em;
+}
+
+.lyven-about-page__studio-copy > p:not(.lyven-about-page__eyebrow) {
+  max-width: 510px;
+  margin: 25px 0 0;
+  color: var(--lyven-text-secondary);
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+@media (max-width: 1199px) {
+  .lyven-about-page__value {
+    padding-inline: 20px;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 13px;
+  }
+
+  .lyven-about-page__value-icon {
+    width: 42px;
+    border-radius: 12px;
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 991px) {
+  .lyven-about-page__hero-inner,
+  .lyven-about-page__values-inner,
+  .lyven-about-page__belief-inner,
+  .lyven-about-page__studio-inner {
+    width: min(calc(100% - var(--lyven-page-gap-tablet)), 760px);
+  }
+
+  .lyven-about-page__hero {
+    min-height: 500px;
+  }
+
+  .lyven-about-page__hero-copy {
+    padding: 124px 0 62px;
+  }
+
+  .lyven-about-page__hero h1 {
+    max-width: 640px;
+    font-size: clamp(58px, 9vw, 70px);
+  }
+
+  .lyven-about-page__values {
+    padding-bottom: 40px;
+  }
+
+  .lyven-about-page__values-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lyven-about-page__value,
+  .lyven-about-page__value:first-of-type {
+    padding: 24px 26px;
+  }
+
+  .lyven-about-page__value:nth-of-type(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .lyven-about-page__value:nth-of-type(even) {
+    border-left: 1px solid var(--lyven-border);
+  }
+
+  .lyven-about-page__value:nth-of-type(n + 3) {
+    border-top: 1px solid var(--lyven-border);
+  }
+
+  .lyven-about-page__belief {
+    min-height: 520px;
+  }
+
+  .lyven-about-page__belief-inner {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .lyven-about-page__quote-mark {
+    font-size: 96px;
+  }
+
+  .lyven-about-page__belief blockquote p {
+    font-size: clamp(35px, 5vw, 43px);
+  }
+
+  .lyven-about-page__studio {
+    padding: 64px 0 86px;
+  }
+
+  .lyven-about-page__studio-inner {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .lyven-about-page__studio-visual {
+    min-height: 390px;
+  }
+
+  .lyven-about-page__studio-copy {
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 600px) {
+  .lyven-about-page__hero-inner,
+  .lyven-about-page__values-inner,
+  .lyven-about-page__belief-inner,
+  .lyven-about-page__studio-inner {
+    width: calc(100% - var(--lyven-page-gap-mobile));
+  }
+
+  .lyven-about-page__hero {
+    min-height: 470px;
+  }
+
+  .lyven-about-page__hero-copy {
+    padding: 112px 0 54px;
+  }
+
+  .lyven-about-page__eyebrow {
+    margin-bottom: 18px;
+    font-size: 11px;
+  }
+
+  .lyven-about-page__hero h1 {
+    font-size: clamp(46px, 14vw, 58px);
+    line-height: 0.98;
+  }
+
+  .lyven-about-page__lead {
+    margin-top: 22px;
+    font-size: 16px;
+  }
+
+  .lyven-about-page__hero-backdrop {
+    background-position: 65% center;
+  }
+
+  .lyven-about-page__hero::after {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.82) 62%, rgba(255, 255, 255, 0.28) 100%);
+  }
+
+  .lyven-about-page__values-inner {
+    grid-template-columns: 1fr;
+    padding-block: 0;
+  }
+
+  .lyven-about-page__value,
+  .lyven-about-page__value:first-of-type,
+  .lyven-about-page__value:nth-of-type(odd) {
+    padding: 24px 0;
+    border-left: 0;
+  }
+
+  .lyven-about-page__value:not(:first-of-type) {
+    border-top: 1px solid var(--lyven-border);
+  }
+
+  .lyven-about-page__belief {
+    min-height: auto;
+    padding: 72px 0;
+  }
+
+  .lyven-about-page__belief-inner {
+    display: block;
+  }
+
+  .lyven-about-page__quote-mark {
+    height: 62px;
+    margin: 0 0 12px;
+    display: block;
+    font-size: 100px;
+  }
+
+  .lyven-about-page__belief blockquote p {
+    font-size: clamp(33px, 9.5vw, 42px);
+    line-height: 1.08;
+  }
+
+  .lyven-about-page__quote-line {
+    display: inline;
+  }
+
+  .lyven-about-page__quote-line:not(:last-child)::after {
+    content: " ";
+  }
+
+  .lyven-about-page__belief cite {
+    margin-top: 28px;
+  }
+
+  .lyven-about-page__studio {
+    padding: 58px 0 76px;
+  }
+
+  .lyven-about-page__studio-inner {
+    gap: 34px;
+  }
+
+  .lyven-about-page__studio-visual {
+    min-height: 300px;
+    border-radius: 18px;
+  }
+
+  .lyven-about-page__studio h2 {
+    font-size: clamp(41px, 12vw, 52px);
+  }
+
+  .lyven-about-page__studio-copy > p:not(.lyven-about-page__eyebrow) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyven-about-page__quote-word,
+  .lyven-about-page__quote-word.is-highlight {
+    transition: none;
+  }
+
+  .lyven-about-page__quote-word {
+    color: var(--lyven-text-primary);
+  }
+
+  .lyven-about-page__quote-word.is-highlight {
+    color: var(--lyven-blue);
+  }
+}
+
+/*--------------------------------------------------------------
 03. Typography
 ----------------------------------------------------------------*/
 body,
@@ -10762,31 +11300,6 @@ Lyven landing header + hero redesign
   text-align: center;
 }
 
-.lyven-hero__eyebrow {
-  min-height: 40px;
-  margin: 0 0 32px;
-  padding: 0 17px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #546785;
-  background: rgba(247, 250, 255, 0.74);
-  border: 1px solid var(--lyven-border-blue);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.lyven-hero__eyebrow > span {
-  width: 10px;
-  height: 10px;
-  flex: 0 0 auto;
-  background: var(--lyven-blue);
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(20, 115, 255, 0.07);
-}
-
 .lyven-hero__title {
   margin: 0;
   color: var(--lyven-text-primary);
@@ -11035,18 +11548,6 @@ Lyven landing header + hero redesign
   .lyven-hero__content {
     width: calc(100% - 40px);
     padding-top: 50px;
-  }
-
-  .lyven-hero__eyebrow {
-    min-height: 36px;
-    margin-bottom: 26px;
-    padding-inline: 13px;
-    font-size: 11px;
-  }
-
-  .lyven-hero__eyebrow > span {
-    width: 8px;
-    height: 8px;
   }
 
   .lyven-hero__title {
@@ -11380,7 +11881,7 @@ Lyven landing header + hero redesign
 .lyven-faq__headline {
   margin: 0;
   color: var(--lyven-text-primary);
-  font-size: clamp(38px, 4vw, 56px);
+  font-size: clamp(34px, 3.4vw, 48px);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.035em;
@@ -11524,7 +12025,7 @@ Lyven landing header + hero redesign
   }
 
   .lyven-faq__headline {
-    font-size: clamp(32px, 6vw, 44px);
+    font-size: clamp(30px, 5.2vw, 40px);
   }
 }
 
@@ -11539,7 +12040,7 @@ Lyven landing header + hero redesign
   }
 
   .lyven-faq__headline {
-    font-size: clamp(30px, 9vw, 38px);
+    font-size: clamp(28px, 8vw, 35px);
   }
 
   .lyven-faq__trigger {
@@ -11650,7 +12151,7 @@ Lyven landing header + hero redesign
   margin: 0;
   color: var(--lyven-text-primary);
   font-family: var(--heading-font);
-  font-size: clamp(52px, 5vw, 78px);
+  font-size: clamp(44px, 4.2vw, 66px);
   font-weight: 600;
   line-height: 0.94;
   letter-spacing: -0.055em;
@@ -11802,7 +12303,7 @@ Lyven landing header + hero redesign
   }
 
   .lyven-why__headline {
-    font-size: clamp(58px, 9vw, 76px);
+    font-size: clamp(48px, 7.5vw, 64px);
   }
 
   .lyven-why__copy {
@@ -11829,7 +12330,7 @@ Lyven landing header + hero redesign
   }
 
   .lyven-why__headline {
-    font-size: clamp(46px, 12.3vw, 52px);
+    font-size: clamp(40px, 10.8vw, 47px);
   }
 
   .lyven-why__copy {
@@ -11884,14 +12385,24 @@ Lyven About introduction
 ----------------------------------------------------------------*/
 .lyven-about {
   position: relative;
+  height: 200svh;
+  min-height: 1280px;
+  background: #fff;
+}
+
+.lyven-about__sticky {
+  position: sticky;
+  top: 0;
   isolation: isolate;
-  min-height: auto;
+  height: 100svh;
+  min-height: 680px;
   overflow: hidden;
-  padding: 76px 0 64px;
+  display: flex;
+  align-items: stretch;
   background:
-    radial-gradient(circle at 100% 22%, rgba(70, 150, 255, 0.08), transparent 28%),
-    radial-gradient(circle at 0% 78%, rgba(70, 150, 255, 0.08), transparent 28%),
-    linear-gradient(180deg, #f7faff 0%, #fff 20%, #fff 80%, #f9fbff 100%);
+    radial-gradient(circle at 100% 10%, rgba(70, 150, 255, 0.09), transparent 31%),
+    radial-gradient(circle at 0% 86%, rgba(70, 150, 255, 0.09), transparent 31%),
+    linear-gradient(180deg, #fbfdff 0%, #fff 48%, #f9fbff 100%);
 }
 
 .lyven-about__orbits {
@@ -11923,43 +12434,39 @@ Lyven About introduction
   position: relative;
   z-index: 1;
   width: min(100% - 128px, 1248px);
+  min-height: 100%;
   margin-inline: auto;
-  display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  column-gap: 62px;
+  padding: clamp(70px, 8vh, 96px) 0 clamp(42px, 6vh, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .lyven-about__label {
-  padding-top: 17px;
-  display: flex;
-  align-items: flex-start;
-  gap: 28px;
-  color: #0b3aa9;
-  font-size: 14px;
-  font-weight: 600;
+  margin: 0 0 clamp(36px, 5vh, 54px);
+  padding: 0;
+  color: var(--lyven-blue);
+  font-family: var(--body-font);
+  font-size: 12px;
+  font-weight: 500;
   line-height: 1;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.lyven-about__label i {
-  width: 54px;
-  height: 1px;
-  margin-top: 6px;
-  display: block;
-  background: #9eacc0;
 }
 
 .lyven-about__statement {
-  max-width: 910px;
+  width: 100%;
+  max-width: 1180px;
   margin: 0;
-  color: #c9ced8;
+  color: rgba(7, 22, 47, 0.16);
   font-family: var(--heading-font);
-  font-size: clamp(46px, 4.15vw, 64px);
-  font-weight: 400;
-  line-height: 1.09;
-  letter-spacing: -0.043em;
+  font-size: clamp(44px, 4vw, 64px);
+  font-weight: 450;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
 }
 
 .lyven-about__line {
@@ -11968,9 +12475,14 @@ Lyven About introduction
 
 .lyven-about__word {
   --word-fill: 0;
-  color: #c9ced8;
-  color: color-mix(in srgb, var(--lyven-text-primary) calc(var(--word-fill) * 100%), #c9ced8);
+  color: rgba(7, 22, 47, 0.16);
+  color: color-mix(in srgb, var(--lyven-text-primary) calc(var(--word-fill) * 100%), rgba(7, 22, 47, 0.16));
   transition: color 90ms linear;
+}
+
+.lyven-about__word.is-highlight {
+  color: rgba(0, 102, 255, 0.18);
+  color: color-mix(in srgb, var(--lyven-blue) calc(var(--word-fill) * 100%), rgba(0, 102, 255, 0.18));
 }
 
 .lyven-about__word:not(:last-child)::after {
@@ -11978,19 +12490,28 @@ Lyven About introduction
 }
 
 .lyven-about__metrics {
-  grid-column: 1 / -1;
-  margin: 48px 0 0;
+  --metrics-opacity: 0.45;
+  --metrics-offset: 10px;
+  width: 100%;
+  margin: clamp(48px, 7vh, 70px) 0 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  opacity: var(--metrics-opacity);
+  transform: translateY(var(--metrics-offset));
+  transition: opacity 100ms linear, transform 100ms linear;
 }
 
 .lyven-about__metric {
   min-width: 0;
-  padding: 0 52px;
+  padding: 2px 36px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .lyven-about__metric:first-child {
-  padding-left: 18px;
+  padding-left: 36px;
 }
 
 .lyven-about__metric:not(:first-child) {
@@ -11998,31 +12519,25 @@ Lyven About introduction
 }
 
 .lyven-about__metric dt {
-  margin: 0 0 13px;
-  color: #0b3aa9;
+  margin: 0 0 12px;
+  color: var(--lyven-blue);
   font-family: var(--heading-font);
-  font-size: clamp(42px, 3.6vw, 54px);
-  font-weight: 400;
+  font-size: clamp(36px, 3vw, 50px);
+  font-weight: 450;
   line-height: 1;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.04em;
 }
 
 .lyven-about__metric dd {
   margin: 0;
-  color: #8a929f;
-  font-size: 18px;
+  color: var(--lyven-text-secondary);
+  font-size: 15px;
   line-height: 1.35;
 }
 
 @media (max-width: 1100px) {
-  .lyven-about__inner {
-    width: min(100% - 80px, 960px);
-    grid-template-columns: 170px minmax(0, 1fr);
-    column-gap: 40px;
-  }
-
   .lyven-about__statement {
-    font-size: clamp(42px, 5.2vw, 52px);
+    font-size: clamp(42px, 5.4vw, 54px);
   }
 
   .lyven-about__metric {
@@ -12032,27 +12547,26 @@ Lyven About introduction
 
 @media (max-width: 991px) {
   .lyven-about {
-    min-height: auto;
-    padding: 60px 0 52px;
+    height: 170svh;
+    min-height: 1050px;
   }
 
   .lyven-about__inner {
     width: min(100% - 64px, 760px);
-    display: block;
+    padding-block: 64px 48px;
   }
 
   .lyven-about__label {
-    margin-bottom: 44px;
-    padding-top: 0;
+    margin-bottom: 34px;
   }
 
   .lyven-about__statement {
     max-width: 740px;
-    font-size: clamp(40px, 6.2vw, 50px);
+    font-size: clamp(40px, 5.8vw, 52px);
   }
 
   .lyven-about__metrics {
-    margin-top: 40px;
+    margin-top: 44px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -12062,7 +12576,7 @@ Lyven About introduction
   }
 
   .lyven-about__metric:nth-child(odd) {
-    padding-left: 0;
+    padding-left: 34px;
     border-left: 0;
   }
 
@@ -12077,27 +12591,29 @@ Lyven About introduction
 
 @media (max-width: 600px) {
   .lyven-about {
-    padding: 48px 0 40px;
+    height: 155svh;
+    min-height: 0;
+  }
+
+  .lyven-about__sticky {
+    min-height: 0;
   }
 
   .lyven-about__inner {
     width: calc(100% - 40px);
+    padding: 54px 0 34px;
   }
 
   .lyven-about__label {
-    margin-bottom: 36px;
-    gap: 20px;
-    font-size: 12px;
-  }
-
-  .lyven-about__label i {
-    width: 42px;
+    margin-bottom: 28px;
+    font-size: 11px;
   }
 
   .lyven-about__statement {
-    font-size: clamp(34px, 8.8vw, 40px);
-    line-height: 1.08;
-    letter-spacing: -0.045em;
+    max-width: 520px;
+    font-size: clamp(32px, 9.4vw, 40px);
+    line-height: 1.06;
+    letter-spacing: -0.048em;
   }
 
   .lyven-about__line {
@@ -12109,7 +12625,7 @@ Lyven About introduction
   }
 
   .lyven-about__metrics {
-    margin-top: 36px;
+    margin-top: 38px;
   }
 
   .lyven-about__metric,
@@ -12118,12 +12634,12 @@ Lyven About introduction
   }
 
   .lyven-about__metric:nth-child(odd) {
-    padding-left: 0;
+    padding-left: 17px;
   }
 
   .lyven-about__metric dt {
     margin-bottom: 10px;
-    font-size: clamp(38px, 11vw, 48px);
+    font-size: clamp(30px, 8vw, 40px);
   }
 
   .lyven-about__metric dd {
@@ -12137,8 +12653,37 @@ Lyven About introduction
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .lyven-about {
+    height: auto;
+    min-height: 0;
+  }
+
+  .lyven-about__sticky {
+    position: relative;
+    height: auto;
+    min-height: 0;
+  }
+
+  .lyven-about__inner {
+    min-height: min(850px, 100svh);
+  }
+
+  .lyven-about__word,
+  .lyven-about__word.is-highlight {
+    transition: none;
+  }
+
   .lyven-about__word {
     color: var(--lyven-text-primary);
+  }
+
+  .lyven-about__word.is-highlight {
+    color: var(--lyven-blue);
+  }
+
+  .lyven-about__metrics {
+    opacity: 1;
+    transform: none;
     transition: none;
   }
 }
@@ -12292,7 +12837,7 @@ Lyven selected work (Carousel Slider - 5 Projects)
 .lyven-work__heading {
   margin: 0;
   color: var(--lyven-text-primary);
-  font-size: clamp(48px, 4.4vw, 68px);
+  font-size: clamp(42px, 3.8vw, 58px);
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.04em;
@@ -12575,6 +13120,10 @@ Lyven selected work (Carousel Slider - 5 Projects)
     width: calc(100% - 36px);
   }
 
+  .lyven-work__heading {
+    font-size: clamp(34px, 9.5vw, 42px);
+  }
+
   .lyven-work__card {
     flex: 0 0 82vw;
   }
@@ -12647,9 +13196,9 @@ Lyven services editorial
   margin: 0;
   color: var(--lyven-text-primary);
   font-family: var(--heading-font);
-  font-size: clamp(68px, 6vw, 104px);
+  font-size: clamp(50px, 4.7vw, 78px);
   font-weight: 600;
-  line-height: 0.86;
+  line-height: 1;
   letter-spacing: -0.055em;
 }
 
@@ -12788,7 +13337,7 @@ Lyven services editorial
   }
 
   .lyven-services__headline {
-    font-size: clamp(62px, 9vw, 84px);
+    font-size: clamp(48px, 7.2vw, 68px);
   }
 
   .lyven-services__intro {
@@ -12829,7 +13378,7 @@ Lyven services editorial
   }
 
   .lyven-services__headline {
-    font-size: clamp(54px, 15vw, 64px);
+    font-size: clamp(42px, 12vw, 52px);
   }
 
   .lyven-services__intro p {
@@ -12929,7 +13478,7 @@ Lyven services editorial
   margin: 0;
   color: var(--lyven-text-primary);
   font-family: var(--heading-font);
-  font-size: clamp(48px, 4.3vw, 66px);
+  font-size: clamp(42px, 3.8vw, 56px);
   font-weight: 600;
   line-height: 0.99;
   letter-spacing: -0.05em;
@@ -13116,7 +13665,7 @@ Lyven services editorial
   }
 
   .lyven-blog__heading {
-    font-size: clamp(44px, 12.5vw, 52px);
+    font-size: clamp(38px, 10.5vw, 46px);
   }
 
   .lyven-blog__grid {
@@ -13212,7 +13761,7 @@ Lyven services editorial
   margin: 0;
   color: var(--lyven-text-primary);
   font-family: var(--heading-font);
-  font-size: clamp(50px, 4.5vw, 66px);
+  font-size: clamp(42px, 3.8vw, 56px);
   font-weight: 600;
   line-height: 0.98;
   letter-spacing: -0.055em;
@@ -13313,7 +13862,7 @@ Lyven services editorial
   }
 
   .lyven-final-cta__heading {
-    font-size: clamp(48px, 7vw, 60px);
+    font-size: clamp(40px, 6vw, 52px);
   }
 }
 
@@ -13338,7 +13887,7 @@ Lyven services editorial
   }
 
   .lyven-final-cta__heading {
-    font-size: clamp(38px, 11vw, 46px);
+    font-size: clamp(34px, 9.5vw, 42px);
   }
 
   .lyven-final-cta__heading span:last-child {
@@ -13421,7 +13970,7 @@ Lyven services editorial
 }
 
 /* Lyven navbar — Variant 4: dynamic hide on scroll */
-.lyven-header.is-homepage {
+.lyven-header.is-dynamic {
   position: fixed;
   top: 24px;
   right: 0;
@@ -13434,11 +13983,11 @@ Lyven services editorial
   transition: top 280ms cubic-bezier(0.22, 1, 0.36, 1), transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.lyven-header.is-homepage.is-hidden:not(.is-menu-open) {
+.lyven-header.is-dynamic.is-hidden:not(.is-menu-open) {
   transform: translateY(calc(-100% - 32px));
 }
 
-.lyven-header.is-homepage .lyven-header__inner {
+.lyven-header.is-dynamic .lyven-header__inner {
   position: relative;
   width: min(calc(100% - var(--lyven-page-gap)), var(--lyven-container));
   height: 64px;
@@ -13450,7 +13999,7 @@ Lyven services editorial
   transition: width 280ms cubic-bezier(0.22, 1, 0.36, 1), height 280ms cubic-bezier(0.22, 1, 0.36, 1), padding 280ms cubic-bezier(0.22, 1, 0.36, 1), background-color 280ms cubic-bezier(0.22, 1, 0.36, 1), border-color 280ms cubic-bezier(0.22, 1, 0.36, 1), border-radius 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.lyven-header.is-homepage.is-scrolled {
+.lyven-header.is-dynamic.is-scrolled {
   top: 18px;
   background: transparent;
   border: 0;
@@ -13458,8 +14007,8 @@ Lyven services editorial
   backdrop-filter: none;
 }
 
-.lyven-header.is-homepage.is-scrolled .lyven-header__inner,
-.lyven-header.is-homepage.is-menu-open .lyven-header__inner {
+.lyven-header.is-dynamic.is-scrolled .lyven-header__inner,
+.lyven-header.is-dynamic.is-menu-open .lyven-header__inner {
   width: min(calc(100% - 32px), 1180px);
   height: 68px;
   padding-inline: 22px;
@@ -13471,26 +14020,26 @@ Lyven services editorial
   backdrop-filter: blur(8px);
 }
 
-.lyven-header.is-homepage .lyven-header__brand img {
+.lyven-header.is-dynamic .lyven-header__brand img {
   width: 122px;
   transition: width 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.lyven-header.is-homepage.is-scrolled .lyven-header__brand img {
+.lyven-header.is-dynamic.is-scrolled .lyven-header__brand img {
   width: 114px;
 }
 
-.lyven-header.is-homepage .lyven-header__links {
+.lyven-header.is-dynamic .lyven-header__links {
   gap: clamp(28px, 3vw, 46px);
   color: #435575;
   font-size: 14px;
 }
 
-.lyven-header.is-homepage .lyven-header__links > a {
+.lyven-header.is-dynamic .lyven-header__links > a {
   position: relative;
 }
 
-.lyven-header.is-homepage .lyven-header__links > a::after {
+.lyven-header.is-dynamic .lyven-header__links > a::after {
   content: "";
   position: absolute;
   right: 0;
@@ -13503,12 +14052,12 @@ Lyven services editorial
   transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.lyven-header.is-homepage .lyven-header__links > a:hover::after,
-.lyven-header.is-homepage .lyven-header__links > a:focus-visible::after {
+.lyven-header.is-dynamic .lyven-header__links > a:hover::after,
+.lyven-header.is-dynamic .lyven-header__links > a:focus-visible::after {
   transform: scaleX(1);
 }
 
-.lyven-header.is-homepage .lyven-header__cta {
+.lyven-header.is-dynamic .lyven-header__cta {
   min-height: 46px;
   padding-inline: 23px;
   color: var(--lyven-text-primary);
@@ -13519,8 +14068,8 @@ Lyven services editorial
   backdrop-filter: blur(5px);
 }
 
-.lyven-header.is-homepage.is-scrolled .lyven-header__cta,
-.lyven-header.is-homepage.is-menu-open .lyven-header__cta {
+.lyven-header.is-dynamic.is-scrolled .lyven-header__cta,
+.lyven-header.is-dynamic.is-menu-open .lyven-header__cta {
   color: #fff;
   background: var(--lyven-blue);
   border-color: var(--lyven-blue);
@@ -13529,21 +14078,21 @@ Lyven services editorial
   backdrop-filter: none;
 }
 
-.lyven-header.is-homepage .lyven-header__cta:hover,
-.lyven-header.is-homepage .lyven-header__cta:focus-visible,
-.lyven-header.is-homepage.is-scrolled .lyven-header__cta:hover,
-.lyven-header.is-homepage.is-scrolled .lyven-header__cta:focus-visible {
+.lyven-header.is-dynamic .lyven-header__cta:hover,
+.lyven-header.is-dynamic .lyven-header__cta:focus-visible,
+.lyven-header.is-dynamic.is-scrolled .lyven-header__cta:hover,
+.lyven-header.is-dynamic.is-scrolled .lyven-header__cta:focus-visible {
   color: #fff;
   background: var(--lyven-blue-hover);
   border-color: var(--lyven-blue-hover);
 }
 
-.lyven-header.is-homepage .lyven-header__cta span:last-child {
+.lyven-header.is-dynamic .lyven-header__cta span:last-child {
   transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.lyven-header.is-homepage .lyven-header__cta:hover span:last-child,
-.lyven-header.is-homepage .lyven-header__cta:focus-visible span:last-child {
+.lyven-header.is-dynamic .lyven-header__cta:hover span:last-child,
+.lyven-header.is-dynamic .lyven-header__cta:focus-visible span:last-child {
   transform: translate(2px, -2px);
 }
 
@@ -13553,45 +14102,46 @@ Lyven services editorial
 
 .main-page-area3 .lyven-hero {
   min-height: clamp(820px, 100svh, 920px);
+  align-items: center;
 }
 
 .main-page-area3 .lyven-hero__content {
-  padding-top: clamp(148px, 17vh, 170px);
+  padding-top: 0;
 }
 
 @media (max-width: 991px) {
-  .lyven-header.is-homepage {
+  .lyven-header.is-dynamic {
     top: 16px;
   }
 
-  .lyven-header.is-homepage.is-scrolled {
+  .lyven-header.is-dynamic.is-scrolled {
     top: 12px;
   }
 
-  .lyven-header.is-homepage .lyven-header__inner {
+  .lyven-header.is-dynamic .lyven-header__inner {
     width: min(calc(100% - var(--lyven-page-gap-tablet)), 760px);
     height: 60px;
   }
 
-  .lyven-header.is-homepage.is-scrolled .lyven-header__inner,
-  .lyven-header.is-homepage.is-menu-open .lyven-header__inner {
+  .lyven-header.is-dynamic.is-scrolled .lyven-header__inner,
+  .lyven-header.is-dynamic.is-menu-open .lyven-header__inner {
     width: min(calc(100% - 32px), 760px);
     height: 64px;
     padding-inline: 14px;
   }
 
-  .lyven-header.is-homepage .lyven-header__brand img,
-  .lyven-header.is-homepage.is-scrolled .lyven-header__brand img {
+  .lyven-header.is-dynamic .lyven-header__brand img,
+  .lyven-header.is-dynamic.is-scrolled .lyven-header__brand img {
     width: 108px;
   }
 
-  .lyven-header.is-homepage .lyven-header__toggle {
+  .lyven-header.is-dynamic .lyven-header__toggle {
     width: 40px;
     height: 40px;
     background: rgba(255, 255, 255, 0.54);
   }
 
-  .lyven-header.is-homepage .lyven-header__nav {
+  .lyven-header.is-dynamic .lyven-header__nav {
     top: calc(100% + 10px);
     left: 0;
     right: 0;
@@ -13603,15 +14153,15 @@ Lyven services editorial
     box-shadow: 0 18px 48px rgba(7, 22, 47, 0.11);
   }
 
-  .lyven-header.is-homepage .lyven-header__links > a {
+  .lyven-header.is-dynamic .lyven-header__links > a {
     padding: 12px 0;
   }
 
-  .lyven-header.is-homepage .lyven-header__links > a::after {
+  .lyven-header.is-dynamic .lyven-header__links > a::after {
     display: none;
   }
 
-  .lyven-header.is-homepage .lyven-header__cta {
+  .lyven-header.is-dynamic .lyven-header__cta {
     width: 100%;
     align-self: stretch;
   }
@@ -13621,17 +14171,17 @@ Lyven services editorial
   }
 
   .main-page-area3 .lyven-hero__content {
-    padding-top: 132px;
+    padding-top: 0;
   }
 }
 
 @media (max-width: 600px) {
-  .lyven-header.is-homepage .lyven-header__inner {
+  .lyven-header.is-dynamic .lyven-header__inner {
     width: calc(100% - var(--lyven-page-gap-mobile));
   }
 
-  .lyven-header.is-homepage.is-scrolled .lyven-header__inner,
-  .lyven-header.is-homepage.is-menu-open .lyven-header__inner {
+  .lyven-header.is-dynamic.is-scrolled .lyven-header__inner,
+  .lyven-header.is-dynamic.is-menu-open .lyven-header__inner {
     width: calc(100% - 24px);
   }
 
@@ -13640,21 +14190,3065 @@ Lyven services editorial
   }
 
   .main-page-area3 .lyven-hero__content {
-    padding-top: 120px;
+    padding-top: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lyven-header.is-homepage,
-  .lyven-header.is-homepage .lyven-header__inner,
-  .lyven-header.is-homepage .lyven-header__brand img,
-  .lyven-header.is-homepage .lyven-header__links > a::after,
-  .lyven-header.is-homepage .lyven-header__cta,
-  .lyven-header.is-homepage .lyven-header__cta span:last-child {
+  .lyven-header.is-dynamic,
+  .lyven-header.is-dynamic .lyven-header__inner,
+  .lyven-header.is-dynamic .lyven-header__brand img,
+  .lyven-header.is-dynamic .lyven-header__links > a::after,
+  .lyven-header.is-dynamic .lyven-header__cta,
+  .lyven-header.is-dynamic .lyven-header__cta span:last-child {
     transition: none;
   }
 
-  .lyven-header.is-homepage.is-hidden:not(.is-menu-open) {
+  .lyven-header.is-dynamic.is-hidden:not(.is-menu-open) {
     transform: none;
+  }
+}
+
+.lyven-header__links > a.is-active {
+  color: var(--lyven-blue);
+}
+
+.lyven-header.is-dynamic .lyven-header__links > a.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Lyven portfolio listing */
+.lyven-portfolio-page {
+  color: var(--lyven-text-primary);
+  background: #fff;
+}
+
+.lyven-portfolio-page__inner {
+  width: min(calc(100% - var(--lyven-page-gap)), var(--lyven-container));
+  margin-inline: auto;
+}
+
+.lyven-portfolio-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 540px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.lyven-portfolio-hero__backdrop {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background-image: url("/assets/img/header-page.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.lyven-portfolio-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.7) 36%, rgba(255, 255, 255, 0) 68%);
+  pointer-events: none;
+}
+
+.lyven-portfolio-hero__content {
+  padding: 132px 0 70px;
+  animation: lyven-portfolio-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lyven-portfolio-hero__eyebrow {
+  margin: 0 0 22px;
+  color: #617492;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.lyven-portfolio-hero__heading {
+  max-width: 720px;
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(58px, 5vw, 82px);
+  font-weight: 650;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+}
+
+.lyven-portfolio-hero__heading span {
+  display: block;
+}
+
+.lyven-portfolio-hero__heading span:last-child {
+  color: var(--lyven-blue);
+}
+
+.lyven-portfolio-hero__description {
+  max-width: 610px;
+  margin: 28px 0 0;
+  color: #596c88;
+  font-size: 18px;
+  line-height: 1.62;
+}
+
+.lyven-portfolio-projects {
+  padding: 48px 0 112px;
+  background: linear-gradient(180deg, #fbfdff 0%, #fff 120px, #fff 100%);
+}
+
+.lyven-portfolio-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 44px;
+  animation: lyven-portfolio-enter 600ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+}
+
+.lyven-portfolio-filters button {
+  min-height: 42px;
+  padding: 0 20px;
+  color: #526682;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  transition: color 220ms ease, background-color 220ms ease, border-color 220ms ease;
+}
+
+.lyven-portfolio-filters button:hover,
+.lyven-portfolio-filters button:focus-visible {
+  color: var(--lyven-blue);
+  border-color: var(--lyven-border-blue);
+}
+
+.lyven-portfolio-filters button.is-active {
+  color: #fff;
+  background: var(--lyven-blue);
+  border-color: var(--lyven-blue);
+}
+
+.lyven-portfolio-filters button:focus-visible {
+  outline: 3px solid rgba(20, 115, 255, 0.25);
+  outline-offset: 3px;
+}
+
+.lyven-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 26px;
+  row-gap: 48px;
+}
+
+.lyven-portfolio-card {
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: lyven-portfolio-card-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) var(--portfolio-delay) forwards;
+}
+
+.lyven-portfolio-card__media {
+  position: relative;
+  aspect-ratio: 1.35 / 1;
+  overflow: hidden;
+  background: #edf2f7;
+  border-radius: 18px;
+}
+
+.lyven-portfolio-card__media img {
+  object-fit: cover;
+  transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lyven-portfolio-card__placeholder,
+.lyven-case-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  color: #405775;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(20, 115, 255, 0.12), transparent 29%),
+    linear-gradient(145deg, #f6f9fd, #e8f0f9);
+  text-align: center;
+}
+
+.lyven-portfolio-card__placeholder span,
+.lyven-case-placeholder span {
+  font-family: var(--heading-font);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.lyven-portfolio-card__placeholder small,
+.lyven-case-placeholder small {
+  color: #7b8da6;
+  font-size: 12px;
+}
+
+.lyven-portfolio-card__arrow {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--lyven-text-primary);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(7, 22, 47, 0.07);
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  box-shadow: 0 7px 20px rgba(7, 22, 47, 0.08);
+  transition: color 220ms ease, background-color 220ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lyven-portfolio-card__content {
+  padding-top: 16px;
+}
+
+.lyven-portfolio-card__content p {
+  margin: 0 0 7px;
+  color: #71829b;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.lyven-portfolio-card__content h3 {
+  margin: 0 0 8px;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(21px, 1.65vw, 24px);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+}
+
+.lyven-portfolio-card__content h3 a {
+  color: inherit;
+}
+
+.lyven-portfolio-card__content h3 a:hover,
+.lyven-portfolio-card__content h3 a:focus-visible {
+  color: var(--lyven-blue);
+}
+
+.lyven-portfolio-card__arrow:focus-visible,
+.lyven-portfolio-card__content h3 a:focus-visible {
+  outline: 3px solid rgba(20, 115, 255, 0.28);
+  outline-offset: 3px;
+}
+
+.lyven-portfolio-card__content > span {
+  max-width: 390px;
+  display: block;
+  color: var(--lyven-text-secondary);
+  font-size: 15px;
+  line-height: 1.52;
+}
+
+.lyven-portfolio-empty {
+  min-height: 260px;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  color: var(--lyven-text-secondary);
+  border-top: 1px solid var(--lyven-border);
+  font-size: 16px;
+}
+
+.lyven-portfolio-pager {
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.lyven-portfolio-pager button {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: #61738d;
+  background: #fff;
+  border: 1px solid #dbe5f2;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease;
+}
+
+.lyven-portfolio-pager__pages {
+  display: flex;
+  gap: 8px;
+}
+
+.lyven-portfolio-pager__pages button {
+  border-color: transparent;
+}
+
+.lyven-portfolio-pager button:hover:not(:disabled),
+.lyven-portfolio-pager button:focus-visible,
+.lyven-portfolio-pager__pages button.is-active {
+  color: #fff;
+  background: var(--lyven-blue);
+  border-color: var(--lyven-blue);
+}
+
+.lyven-portfolio-pager button:focus-visible {
+  outline: 3px solid rgba(20, 115, 255, 0.18);
+  outline-offset: 3px;
+}
+
+.lyven-portfolio-pager button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lyven-portfolio-card:hover .lyven-portfolio-card__media img {
+    transform: scale(1.045);
+  }
+
+  .lyven-portfolio-card:hover .lyven-portfolio-card__arrow {
+    color: #fff;
+    background: var(--lyven-blue);
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes lyven-portfolio-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lyven-portfolio-card-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 991px) {
+  .lyven-portfolio-page__inner {
+    width: min(calc(100% - var(--lyven-page-gap-tablet)), 760px);
+  }
+
+  .lyven-portfolio-hero {
+    min-height: 500px;
+  }
+
+  .lyven-portfolio-hero__content {
+    padding: 124px 0 62px;
+  }
+
+  .lyven-portfolio-hero__heading {
+    font-size: clamp(52px, 8vw, 68px);
+  }
+
+  .lyven-portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lyven-portfolio-pager {
+    margin-top: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .lyven-portfolio-page__inner {
+    width: calc(100% - var(--lyven-page-gap-mobile));
+  }
+
+  .lyven-portfolio-hero {
+    min-height: 470px;
+  }
+
+  .lyven-portfolio-hero__backdrop {
+    background-position: 65% center;
+  }
+
+  .lyven-portfolio-hero::after {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.77) 58%, rgba(255, 255, 255, 0.15) 100%);
+  }
+
+  .lyven-portfolio-hero__content {
+    padding: 112px 0 54px;
+  }
+
+  .lyven-portfolio-hero__eyebrow {
+    margin-bottom: 18px;
+    font-size: 12px;
+  }
+
+  .lyven-portfolio-hero__heading {
+    font-size: clamp(46px, 13.5vw, 58px);
+  }
+
+  .lyven-portfolio-hero__description {
+    margin-top: 22px;
+    font-size: 16px;
+  }
+
+  .lyven-portfolio-projects {
+    padding: 34px 0 84px;
+  }
+
+  .lyven-portfolio-filters {
+    width: calc(100% + var(--lyven-page-gap-mobile));
+    margin: 0 calc(var(--lyven-page-gap-mobile) / -2) 38px;
+    padding: 0 calc(var(--lyven-page-gap-mobile) / 2) 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .lyven-portfolio-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lyven-portfolio-grid {
+    grid-template-columns: 1fr;
+    row-gap: 38px;
+  }
+
+  .lyven-portfolio-card__media {
+    border-radius: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyven-portfolio-hero__content,
+  .lyven-portfolio-filters,
+  .lyven-portfolio-card {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .lyven-portfolio-card__media img,
+  .lyven-portfolio-card__arrow {
+    transition: none;
+  }
+}
+
+/* Lyven project detail / case study */
+.lyven-case-study {
+  overflow: hidden;
+  color: var(--lyven-text-primary);
+  background: #fff;
+}
+
+.lyven-case-study__inner {
+  width: min(calc(100% - var(--lyven-page-gap)), var(--lyven-container));
+  margin-inline: auto;
+}
+
+.lyven-case-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 540px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: #f8fbff;
+}
+
+.lyven-case-hero__background {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background: url("/assets/img/project_bg.png") center / cover no-repeat;
+  opacity: 0.34;
+}
+
+.lyven-case-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.78) 45%, rgba(255, 255, 255, 0.28) 100%);
+  pointer-events: none;
+}
+
+.lyven-case-hero__layout {
+  padding: 132px 0 70px;
+}
+
+.lyven-case-hero__content {
+  max-width: 720px;
+  animation: lyven-case-enter 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lyven-case-hero__back {
+  margin-bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #687b96;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.lyven-case-hero__back:hover,
+.lyven-case-hero__back:focus-visible {
+  color: var(--lyven-blue);
+  transform: translateX(-2px);
+}
+
+.lyven-case-hero h1 {
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(58px, 5vw, 82px);
+  font-weight: 650;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+}
+
+.lyven-case-hero h1 span {
+  display: block;
+}
+
+.lyven-case-hero h1 span:last-child {
+  color: var(--lyven-blue);
+}
+
+.lyven-case-about__visual img,
+.lyven-case-screenshot__media img {
+  object-fit: cover;
+}
+
+.lyven-case-info {
+  position: relative;
+  z-index: 2;
+  margin-top: -28px;
+}
+
+.lyven-case-info__bar {
+  min-height: 122px;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 0.78fr 0.62fr 0.9fr;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(7, 22, 47, 0.07);
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(7, 22, 47, 0.035);
+  animation: lyven-case-enter 620ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+}
+
+.lyven-case-info__item {
+  min-width: 0;
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lyven-case-info__item:first-child {
+  padding-left: 0;
+}
+
+.lyven-case-info__item:last-child {
+  padding-right: 0;
+}
+
+.lyven-case-info__item:not(:first-child) {
+  border-left: 1px solid rgba(7, 22, 47, 0.09);
+}
+
+.lyven-case-info__item > i {
+  flex: 0 0 auto;
+  color: var(--lyven-blue);
+  font-size: 22px;
+}
+
+.lyven-case-info__item div {
+  min-width: 0;
+}
+
+.lyven-case-info__item span,
+.lyven-case-info__item strong,
+.lyven-case-info__item a {
+  display: block;
+}
+
+.lyven-case-info__item span {
+  margin-bottom: 5px;
+  color: #8291a7;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.lyven-case-info__item strong,
+.lyven-case-info__item a {
+  color: var(--lyven-text-primary);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.lyven-case-info__item a {
+  color: var(--lyven-blue);
+}
+
+.lyven-case-info__item a b {
+  display: inline-block;
+  font-weight: 500;
+  transition: transform 200ms ease;
+}
+
+.lyven-case-info__item a:hover b,
+.lyven-case-info__item a:focus-visible b {
+  transform: translate(2px, -2px);
+}
+
+.lyven-case-info__item .is-unavailable {
+  color: #8a98aa;
+  font-weight: 500;
+}
+
+.lyven-case-about {
+  padding: 92px 0 82px;
+}
+
+.lyven-case-about__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.65fr);
+  gap: clamp(60px, 9vw, 130px);
+  align-items: center;
+  animation: lyven-case-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lyven-case-about__content p,
+.lyven-case-screenshots__header p {
+  margin: 0 0 16px;
+  color: #687b98;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.lyven-case-about__content h2,
+.lyven-case-screenshots__header h2 {
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(42px, 4vw, 54px);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.lyven-case-about__content > span {
+  max-width: 720px;
+  margin-top: 24px;
+  display: block;
+  color: var(--lyven-text-secondary);
+  font-size: 17px;
+  line-height: 1.68;
+}
+
+.lyven-case-about__visual {
+  position: relative;
+  aspect-ratio: 1.45 / 1;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.lyven-case-screenshots {
+  padding: 24px 0 104px;
+  animation: lyven-case-enter 650ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lyven-case-screenshots__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 38px;
+}
+
+.lyven-case-screenshots__controls {
+  display: flex;
+  gap: 10px;
+}
+
+.lyven-case-screenshots__controls button {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  color: var(--lyven-text-primary);
+  background: #fff;
+  border: 1px solid #b9cce5;
+  border-radius: 50%;
+  font-size: 19px;
+  line-height: 1;
+  transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease;
+}
+
+.lyven-case-screenshots__controls button:hover:not(:disabled),
+.lyven-case-screenshots__controls button:focus-visible:not(:disabled) {
+  color: #fff;
+  background: var(--lyven-blue);
+  border-color: var(--lyven-blue);
+}
+
+.lyven-case-screenshots__controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.lyven-case-screenshots__track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 2px max(calc((100vw - var(--lyven-container)) / 2), calc(var(--lyven-page-gap) / 2)) 18px;
+  scroll-padding-inline: max(calc((100vw - var(--lyven-container)) / 2), calc(var(--lyven-page-gap) / 2));
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.lyven-case-screenshots__track::-webkit-scrollbar {
+  display: none;
+}
+
+.lyven-case-screenshots__track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.lyven-case-screenshots__track:focus-visible {
+  outline: 3px solid rgba(20, 115, 255, 0.25);
+  outline-offset: -3px;
+}
+
+.lyven-case-screenshot {
+  flex: 0 0 min(42vw, 600px);
+  scroll-snap-align: start;
+}
+
+.lyven-case-screenshot__media {
+  position: relative;
+  aspect-ratio: 1.48 / 1;
+  overflow: hidden;
+  background: #edf2f7;
+  border-radius: 18px;
+}
+
+.lyven-case-screenshot__media img {
+  pointer-events: none;
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lyven-case-screenshot h3 {
+  margin: 13px 0 0;
+  color: #536785;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lyven-case-screenshot:hover .lyven-case-screenshot__media img {
+    transform: scale(1.025);
+  }
+}
+
+@keyframes lyven-case-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1100px) {
+  .lyven-case-info__bar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 22px;
+  }
+
+  .lyven-case-info__item:nth-child(4) {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .lyven-case-study__inner {
+    width: min(calc(100% - var(--lyven-page-gap-tablet)), 760px);
+  }
+
+  .lyven-case-hero {
+    min-height: 500px;
+  }
+
+  .lyven-case-hero__layout {
+    padding: 124px 0 62px;
+  }
+
+  .lyven-case-hero h1 {
+    font-size: clamp(52px, 7.4vw, 68px);
+  }
+
+  .lyven-case-about__layout {
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 44px;
+  }
+
+  .lyven-case-screenshot {
+    flex-basis: 58vw;
+  }
+
+  .lyven-case-screenshots__track {
+    padding-inline: max(calc((100vw - 760px) / 2), calc(var(--lyven-page-gap-tablet) / 2));
+    scroll-padding-inline: max(calc((100vw - 760px) / 2), calc(var(--lyven-page-gap-tablet) / 2));
+  }
+}
+
+@media (max-width: 767px) {
+  .lyven-case-hero {
+    min-height: 470px;
+  }
+
+  .lyven-case-hero__layout {
+    padding: 112px 0 54px;
+  }
+
+  .lyven-case-hero__back {
+    margin-bottom: 22px;
+  }
+
+  .lyven-case-hero__background {
+    background-position: 62% center;
+  }
+
+  .lyven-case-hero::after {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.82) 66%, rgba(255, 255, 255, 0.5) 100%);
+  }
+
+  .lyven-case-info {
+    margin-top: 0;
+    padding-top: 24px;
+  }
+
+  .lyven-case-info__bar {
+    padding: 8px 22px;
+    grid-template-columns: 1fr;
+    row-gap: 0;
+  }
+
+  .lyven-case-info__item,
+  .lyven-case-info__item:first-child,
+  .lyven-case-info__item:last-child {
+    padding: 18px 0;
+  }
+
+  .lyven-case-info__item:not(:first-child) {
+    border-top: 1px solid rgba(7, 22, 47, 0.08);
+    border-left: 0;
+  }
+
+  .lyven-case-about {
+    padding: 74px 0 66px;
+  }
+
+  .lyven-case-about__layout {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .lyven-case-screenshots {
+    padding: 18px 0 84px;
+  }
+
+  .lyven-case-screenshots__header {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+
+  .lyven-case-screenshot {
+    flex-basis: 86vw;
+  }
+
+  .lyven-case-screenshots__track {
+    padding-inline: calc(var(--lyven-page-gap-mobile) / 2);
+    scroll-padding-inline: calc(var(--lyven-page-gap-mobile) / 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .lyven-case-study__inner {
+    width: calc(100% - var(--lyven-page-gap-mobile));
+  }
+
+  .lyven-case-hero h1 {
+    font-size: clamp(48px, 14vw, 60px);
+  }
+
+  .lyven-case-about__content h2,
+  .lyven-case-screenshots__header h2 {
+    font-size: clamp(39px, 11.5vw, 48px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyven-case-hero__content,
+  .lyven-case-info__bar,
+  .lyven-case-about__layout,
+  .lyven-case-screenshots {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .lyven-case-screenshot__media img,
+  .lyven-case-screenshots__controls button,
+  .lyven-case-info__item a b,
+  .lyven-case-hero__back {
+    transition: none;
+  }
+}
+
+/*--------------------------------------------------------------
+Lyven services page
+----------------------------------------------------------------*/
+.lyven-services-page {
+  overflow: hidden;
+  color: var(--lyven-text-primary);
+  background: #fff;
+}
+
+.lyven-services-page__inner {
+  width: min(calc(100% - var(--lyven-page-gap)), var(--lyven-container));
+  margin-inline: auto;
+}
+
+.lyven-services-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 540px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.lyven-services-hero__backdrop {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background-image: url("/assets/img/what-we-do-header.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.lyven-services-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.76) 42%, rgba(255, 255, 255, 0.08) 72%);
+  pointer-events: none;
+}
+
+.lyven-services-hero__layout {
+  padding: 132px 0 70px;
+}
+
+.lyven-services-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  animation: lyven-services-page-enter 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lyven-services-hero__eyebrow {
+  margin: 0 0 22px;
+  color: #617492;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.lyven-services-hero__heading {
+  max-width: 720px;
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(58px, 5vw, 82px);
+  font-weight: 650;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+}
+
+.lyven-services-hero__heading span {
+  display: block;
+}
+
+.lyven-services-hero__heading span:last-child {
+  color: var(--lyven-blue);
+}
+
+.lyven-services-hero__description {
+  max-width: 610px;
+  margin: 28px 0 0;
+  color: #596c88;
+  font-size: 18px;
+  line-height: 1.62;
+}
+
+.lyven-services-overview {
+  padding: 94px 0 132px;
+  background: linear-gradient(180deg, #fff 0%, #fff 82%, #fbfdff 100%);
+}
+
+.lyven-services-overview__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lyven-service-column {
+  min-width: 0;
+  min-height: 460px;
+  padding: 0 clamp(34px, 4vw, 64px);
+  display: flex;
+  flex-direction: column;
+}
+
+.lyven-service-column:first-child {
+  padding-left: 0;
+}
+
+.lyven-service-column:last-child {
+  padding-right: 0;
+}
+
+.lyven-service-column:not(:first-child) {
+  border-left: 1px solid rgba(7, 22, 47, 0.09);
+}
+
+.lyven-service-column__number {
+  margin-bottom: 34px;
+  color: #8493aa;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.lyven-service-column__icon {
+  width: 32px;
+  margin-bottom: 22px;
+  color: var(--lyven-blue);
+  font-size: 29px;
+  line-height: 1;
+  transition: color 220ms ease;
+}
+
+.lyven-service-column h3 {
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(25px, 2vw, 30px);
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.lyven-service-column > p {
+  max-width: 340px;
+  margin: 16px 0 22px;
+  color: #66758f;
+  font-size: 16px;
+  line-height: 1.56;
+}
+
+.lyven-service-column ul {
+  margin: 0 0 34px;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+  list-style: none;
+}
+
+.lyven-service-column li {
+  position: relative;
+  padding-left: 17px;
+  color: #344861;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.lyven-service-column li::before {
+  content: "";
+  position: absolute;
+  top: 0.63em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--lyven-blue);
+  border-radius: 50%;
+}
+
+.lyven-service-column__more {
+  width: fit-content;
+  margin-top: auto;
+  color: #506682;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  transition: color 220ms ease;
+}
+
+.lyven-service-column__more b {
+  display: inline-block;
+  margin-left: 5px;
+  font-weight: inherit;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .lyven-service-column:hover .lyven-service-column__icon,
+  .lyven-service-column:hover .lyven-service-column__more {
+    color: var(--lyven-blue);
+  }
+
+  .lyven-service-column:hover .lyven-service-column__more b {
+    transform: translate(2px, -2px);
+  }
+}
+
+@keyframes lyven-services-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .lyven-services-hero__heading {
+    font-size: clamp(52px, 7vw, 68px);
+  }
+
+  .lyven-services-overview__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lyven-service-column {
+    min-height: 430px;
+    padding: 0 42px 52px;
+  }
+
+  .lyven-service-column:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .lyven-service-column:nth-child(even) {
+    padding-right: 0;
+    border-left: 1px solid rgba(7, 22, 47, 0.09);
+  }
+
+  .lyven-service-column:nth-child(3) {
+    grid-column: 1 / -1;
+    min-height: 0;
+    padding: 54px 0 0;
+    border-top: 1px solid rgba(7, 22, 47, 0.09);
+  }
+
+  .lyven-service-column:nth-child(3) > p {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 767px) {
+  .lyven-services-page__inner {
+    width: calc(100% - var(--lyven-page-gap-mobile));
+  }
+
+  .lyven-services-hero {
+    min-height: 470px;
+  }
+
+  .lyven-services-hero__layout {
+    padding: 112px 0 54px;
+  }
+
+  .lyven-services-hero__eyebrow {
+    margin-bottom: 19px;
+  }
+
+  .lyven-services-hero__heading {
+    font-size: clamp(43px, 12vw, 56px);
+    line-height: 0.98;
+  }
+
+  .lyven-services-hero__description {
+    margin-top: 22px;
+    font-size: 16px;
+  }
+
+  .lyven-services-hero__backdrop {
+    background-position: 67% center;
+  }
+
+  .lyven-services-hero::after {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.84) 68%, rgba(255, 255, 255, 0.42) 100%);
+  }
+
+  .lyven-services-overview {
+    padding: 64px 0 92px;
+  }
+
+  .lyven-services-overview__grid {
+    display: block;
+  }
+
+  .lyven-service-column,
+  .lyven-service-column:first-child,
+  .lyven-service-column:last-child,
+  .lyven-service-column:nth-child(2),
+  .lyven-service-column:nth-child(3) {
+    min-height: 0;
+    padding: 42px 0;
+    border: 0;
+  }
+
+  .lyven-service-column:first-child {
+    padding-top: 0;
+  }
+
+  .lyven-service-column:not(:first-child) {
+    border-top: 1px solid rgba(7, 22, 47, 0.09);
+  }
+
+  .lyven-service-column__number {
+    margin-bottom: 25px;
+  }
+
+  .lyven-service-column__icon {
+    margin-bottom: 18px;
+  }
+
+  .lyven-service-column > p {
+    max-width: 460px;
+  }
+
+  .lyven-service-column__more {
+    margin-top: 4px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .lyven-services-page__inner {
+    width: min(calc(100% - var(--lyven-page-gap-tablet)), 760px);
+  }
+
+  .lyven-services-hero {
+    min-height: 500px;
+  }
+
+  .lyven-services-hero__layout {
+    padding: 124px 0 62px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyven-services-hero__content {
+    animation: none;
+  }
+
+  .lyven-service-column__icon,
+  .lyven-service-column__more,
+  .lyven-service-column__more b {
+    transition: none;
+  }
+}
+
+/*--------------------------------------------------------------
+Lyven process — editorial rows
+----------------------------------------------------------------*/
+.lyven-process {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(104px, 9vw, 140px) 0 clamp(112px, 10vw, 152px);
+  color: var(--lyven-text-primary);
+  background: linear-gradient(180deg, #fbfdff 0%, #fff 26%, #fff 100%);
+}
+
+.lyven-process__orbit {
+  position: absolute;
+  z-index: -1;
+  top: -24px;
+  right: -52px;
+  width: min(58vw, 820px);
+  height: auto;
+  pointer-events: none;
+}
+
+.lyven-process__orbit path {
+  stroke: rgba(45, 126, 247, 0.17);
+  stroke-width: 1;
+}
+
+.lyven-process__orbit circle {
+  fill: #2d7ef7;
+  filter: drop-shadow(0 0 7px rgba(45, 126, 247, 0.45));
+}
+
+.lyven-process__inner {
+  width: min(calc(100% - var(--lyven-page-gap)), var(--lyven-container));
+  margin-inline: auto;
+}
+
+.lyven-process__header {
+  max-width: 760px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lyven-process[data-visible="true"] .lyven-process__header {
+  opacity: 1;
+  transform: none;
+}
+
+.lyven-process__eyebrow {
+  margin: 0 0 22px;
+  color: var(--lyven-blue);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.lyven-process__header h2 {
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(48px, 4.6vw, 68px);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.lyven-process__header > p:last-child {
+  max-width: 720px;
+  margin: 24px 0 0;
+  color: #5d6f8a;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.lyven-process__rows {
+  margin-top: clamp(58px, 6vw, 82px);
+  border-top: 1px solid rgba(7, 22, 47, 0.11);
+}
+
+.lyven-process-row {
+  --process-delay: 0ms;
+  display: grid;
+  grid-template-columns: 64px minmax(220px, 0.8fr) minmax(0, 1.45fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: center;
+  min-height: 150px;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(7, 22, 47, 0.11);
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1) var(--process-delay),
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1) var(--process-delay);
+}
+
+.lyven-process[data-visible="true"] .lyven-process-row {
+  opacity: 1;
+  transform: none;
+}
+
+.lyven-process-row__icon {
+  width: 54px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  color: #0e5fe9;
+  font-size: clamp(22px, 1.7vw, 26px);
+  background: #edf5ff;
+  border-radius: 50%;
+}
+
+.lyven-process-row__content {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  column-gap: 18px;
+  align-items: baseline;
+}
+
+.lyven-process-row__content > span {
+  grid-row: 1 / span 2;
+  color: var(--lyven-blue);
+  font-family: var(--heading-font);
+  font-size: 23px;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+
+.lyven-process-row__content h3 {
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+.lyven-process-row__content p {
+  max-width: 320px;
+  margin: 8px 0 0;
+  color: #687994;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.lyven-process-row__activities {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+}
+
+.lyven-process-row__activities li {
+  padding: 9px 15px;
+  color: #344862;
+  font-size: 14px;
+  line-height: 1;
+  background: #f1f5fa;
+  border: 1px solid rgba(82, 110, 149, 0.06);
+  border-radius: 8px;
+}
+
+@media (max-width: 991px) {
+  .lyven-process__inner {
+    width: min(calc(100% - var(--lyven-page-gap-tablet)), 760px);
+  }
+
+  .lyven-process__orbit {
+    right: -150px;
+    width: 760px;
+  }
+
+  .lyven-process-row {
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 24px;
+    padding: 30px 0 34px;
+  }
+
+  .lyven-process-row__activities {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .lyven-process {
+    padding: 88px 0 102px;
+  }
+
+  .lyven-process__inner {
+    width: calc(100% - var(--lyven-page-gap-mobile));
+  }
+
+  .lyven-process__orbit {
+    top: -10px;
+    right: -250px;
+    width: 650px;
+  }
+
+  .lyven-process__header h2 {
+    font-size: clamp(42px, 12vw, 54px);
+  }
+
+  .lyven-process__header > p:last-child {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+  .lyven-process__rows {
+    margin-top: 50px;
+  }
+
+  .lyven-process-row {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 17px;
+    padding: 29px 0 32px;
+  }
+
+  .lyven-process-row__icon {
+    width: 46px;
+    font-size: 20px;
+  }
+
+  .lyven-process-row__content {
+    grid-template-columns: 42px 1fr;
+    column-gap: 12px;
+  }
+
+  .lyven-process-row__content h3 {
+    font-size: 22px;
+  }
+
+  .lyven-process-row__content p {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+  }
+
+  .lyven-process-row__activities {
+    grid-column: 1 / -1;
+    margin-top: 3px;
+    gap: 8px;
+  }
+
+  .lyven-process-row__activities li {
+    padding: 8px 11px;
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyven-process__header,
+  .lyven-process-row {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/*--------------------------------------------------------------
+Lyven blog page — featured editorial
+----------------------------------------------------------------*/
+.lyven-blog-page {
+  overflow: hidden;
+  color: var(--lyven-text-primary);
+  background: #fff;
+}
+
+.lyven-blog-page__inner {
+  width: min(calc(100% - var(--lyven-page-gap)), var(--lyven-container));
+  margin-inline: auto;
+}
+
+.lyven-blog-page-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 88px 0 72px;
+  background:
+    radial-gradient(circle at 100% 10%, rgba(78, 147, 255, 0.13), transparent 34%),
+    radial-gradient(circle at 72% 80%, rgba(152, 198, 255, 0.1), transparent 27%),
+    #fff;
+}
+
+.lyven-blog-page-hero__orbit {
+  position: absolute;
+  z-index: -1;
+  top: -132px;
+  right: -70px;
+  width: min(49vw, 720px);
+  pointer-events: none;
+}
+
+.lyven-blog-page-hero__orbit path {
+  stroke: rgba(20, 115, 255, 0.17);
+  stroke-width: 1;
+}
+
+.lyven-blog-page-hero__orbit circle {
+  fill: #1473ff;
+  filter: drop-shadow(0 3px 7px rgba(20, 115, 255, 0.3));
+}
+
+.lyven-blog-page-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(310px, 0.6fr);
+  gap: clamp(54px, 8vw, 124px);
+  align-items: end;
+}
+
+.lyven-blog-page-hero__intro {
+  animation: lyven-blog-page-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lyven-blog-page__eyebrow {
+  margin: 0 0 22px;
+  color: #60738f;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.lyven-blog-page-hero h1 {
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(54px, 4.8vw, 76px);
+  font-weight: 680;
+  line-height: 0.96;
+  letter-spacing: -0.048em;
+}
+
+.lyven-blog-page-hero h1 span {
+  display: block;
+}
+
+.lyven-blog-page-hero h1 em {
+  color: var(--lyven-blue);
+  font-style: normal;
+}
+
+.lyven-blog-page-hero__copy {
+  max-width: 390px;
+  margin: 0 0 8px;
+  color: #62728c;
+  font-size: 17px;
+  line-height: 1.58;
+}
+
+.lyven-blog-featured {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(7, 22, 47, 0.075);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(7, 22, 47, 0.035);
+  animation: lyven-blog-page-enter 700ms 100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: border-color 240ms ease;
+}
+
+.lyven-blog-featured > a {
+  display: block;
+  color: inherit;
+}
+
+.lyven-blog-featured__image {
+  position: relative;
+  aspect-ratio: 16 / 7.4;
+  display: block;
+  overflow: hidden;
+  background: #eef5ff;
+}
+
+.lyven-blog-featured__image img,
+.lyven-blog-page-card__image img {
+  object-fit: cover;
+  transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lyven-blog-featured__content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 24px;
+  padding: 24px 28px 28px;
+}
+
+.lyven-blog-featured__badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 7px 10px;
+  color: var(--lyven-blue);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+}
+
+.lyven-blog-featured__meta {
+  color: #8492a7;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.lyven-blog-featured__meta i,
+.lyven-blog-page-card__meta i {
+  padding-inline: 4px;
+  font-style: normal;
+}
+
+.lyven-blog-featured__content strong {
+  grid-column: 1;
+  max-width: 470px;
+  margin-top: 13px;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(25px, 2.25vw, 31px);
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.lyven-blog-featured__excerpt {
+  grid-column: 1;
+  max-width: 510px;
+  margin-top: 11px;
+  color: #66758f;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.lyven-blog-featured__arrow,
+.lyven-blog-page-card__arrow {
+  display: grid;
+  place-items: center;
+  color: #17314f;
+  border: 1px solid #cddbef;
+  border-radius: 50%;
+  transition:
+    color 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+
+.lyven-blog-featured__arrow {
+  grid-column: 2;
+  grid-row: 2 / span 2;
+  align-self: end;
+  width: 42px;
+  height: 42px;
+  font-size: 17px;
+}
+
+.lyven-blog-toolbar {
+  margin-top: 34px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.lyven-blog-search {
+  position: relative;
+  width: min(100%, 400px);
+}
+
+.lyven-blog-search > i {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  color: #7789a4;
+  font-size: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.lyven-blog-search input {
+  width: 100%;
+  height: 47px;
+  padding: 0 20px 0 45px;
+  color: var(--lyven-text-primary);
+  font-size: 14px;
+  line-height: 1;
+  background: #fff;
+  border: 1px solid rgba(7, 22, 47, 0.11);
+  border-radius: 999px;
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.lyven-blog-search input::placeholder {
+  color: #8d9bb0;
+}
+
+.lyven-blog-search input:focus {
+  border-color: var(--lyven-blue);
+  box-shadow: 0 0 0 3px rgba(20, 115, 255, 0.08);
+}
+
+.lyven-blog-view-all {
+  min-height: 47px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  background: var(--lyven-text-primary);
+  border: 1px solid var(--lyven-text-primary);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 220ms ease, background-color 220ms ease, transform 220ms ease;
+}
+
+.lyven-blog-view-all:hover,
+.lyven-blog-view-all:focus-visible {
+  background: var(--lyven-blue);
+  border-color: var(--lyven-blue);
+  transform: translateY(-1px);
+}
+
+.lyven-blog-view-all:focus-visible {
+  outline: 3px solid rgba(20, 115, 255, 0.16);
+  outline-offset: 3px;
+}
+
+.lyven-blog-lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(330px, 0.78fr);
+  gap: 20px;
+  align-items: stretch;
+  margin-top: 20px;
+}
+
+.lyven-blog-stacked {
+  overflow: hidden;
+  padding: 0 20px;
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  background: #fff;
+  border: 1px solid rgba(7, 22, 47, 0.075);
+  border-radius: 18px;
+  animation: lyven-blog-page-enter 700ms 160ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lyven-blog-stacked-card:not(:last-child) {
+  border-bottom: 1px solid rgba(7, 22, 47, 0.085);
+}
+
+.lyven-blog-stacked-card > a {
+  height: 100%;
+  min-height: 132px;
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr) 36px;
+  gap: 16px;
+  align-items: center;
+  color: inherit;
+}
+
+.lyven-blog-stacked-card__image {
+  position: relative;
+  aspect-ratio: 1.4 / 1;
+  display: block;
+  overflow: hidden;
+  background: #eef5ff;
+  border-radius: 10px;
+}
+
+.lyven-blog-stacked-card__image img {
+  object-fit: cover;
+  transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lyven-blog-stacked-card__content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.lyven-blog-stacked-card__content > span {
+  color: #8290a5;
+  font-size: 10px;
+  font-weight: 550;
+  line-height: 1.2;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.lyven-blog-stacked-card__content i {
+  padding-inline: 3px;
+  font-style: normal;
+}
+
+.lyven-blog-stacked-card__content strong {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.lyven-blog-stacked-card__arrow {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: #17314f;
+  font-size: 13px;
+  border: 1px solid #cddbef;
+  border-radius: 50%;
+  transition:
+    color 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+
+.lyven-blog-feed {
+  padding: 72px 0 120px;
+  background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+}
+
+.lyven-blog-feed__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 42px;
+}
+
+.lyven-blog-feed__heading .lyven-blog-page__eyebrow {
+  margin: 0;
+}
+
+.lyven-blog-feed__heading h2 {
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(30px, 2.6vw, 40px);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.lyven-blog-feed__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.lyven-blog-page-card {
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(7, 22, 47, 0.075);
+  border-radius: 18px;
+  transition: border-color 240ms ease;
+}
+
+.lyven-blog-page-card > a {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+}
+
+.lyven-blog-page-card__image {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: block;
+  overflow: hidden;
+  background: #eef5ff;
+}
+
+.lyven-blog-page-card__body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 21px 22px 22px;
+}
+
+.lyven-blog-page-card__meta {
+  margin-bottom: 12px;
+  color: #8593a8;
+  font-size: 11px;
+  font-weight: 550;
+  line-height: 1.2;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.lyven-blog-page-card__body > strong {
+  padding-right: 38px;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: 21px;
+  font-weight: 640;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+}
+
+.lyven-blog-page-card__excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 10px;
+  padding-right: 34px;
+  color: #66758f;
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.lyven-blog-page-card__arrow {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 35px;
+  height: 35px;
+  font-size: 14px;
+}
+
+.lyven-blog-feed__empty {
+  min-height: 220px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 8px;
+  text-align: center;
+  border-top: 1px solid var(--lyven-border);
+  border-bottom: 1px solid var(--lyven-border);
+}
+
+.lyven-blog-feed__empty strong {
+  color: var(--lyven-text-primary);
+  font-size: 21px;
+  font-weight: 650;
+}
+
+.lyven-blog-feed__empty span {
+  color: #75859e;
+  font-size: 15px;
+}
+
+@media (hover: hover) {
+  .lyven-blog-featured:hover,
+  .lyven-blog-page-card:hover {
+    border-color: rgba(20, 115, 255, 0.23);
+  }
+
+  .lyven-blog-featured:hover .lyven-blog-featured__image img,
+  .lyven-blog-page-card:hover .lyven-blog-page-card__image img,
+  .lyven-blog-stacked-card:hover .lyven-blog-stacked-card__image img {
+    transform: scale(1.035);
+  }
+
+  .lyven-blog-featured:hover .lyven-blog-featured__arrow,
+  .lyven-blog-page-card:hover .lyven-blog-page-card__arrow,
+  .lyven-blog-stacked-card:hover .lyven-blog-stacked-card__arrow {
+    color: #fff;
+    background: var(--lyven-blue);
+    border-color: var(--lyven-blue);
+    transform: translateX(2px);
+  }
+}
+
+@keyframes lyven-blog-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .lyven-blog-page-hero__grid {
+    grid-template-columns: minmax(0, 1.25fr) minmax(290px, 0.75fr);
+    gap: 52px;
+  }
+
+  .lyven-blog-page-hero h1 {
+    font-size: clamp(50px, 5.6vw, 64px);
+  }
+
+  .lyven-blog-lead {
+    grid-template-columns: minmax(0, 1.35fr) minmax(310px, 0.8fr);
+  }
+
+  .lyven-blog-stacked-card > a {
+    grid-template-columns: 94px minmax(0, 1fr) 32px;
+    gap: 13px;
+  }
+}
+
+@media (max-width: 991px) {
+  .lyven-blog-page__inner {
+    width: min(calc(100% - var(--lyven-page-gap-tablet)), 760px);
+  }
+
+  .lyven-blog-page-hero {
+    padding: 84px 0 64px;
+  }
+
+  .lyven-blog-page-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .lyven-blog-page-hero__intro {
+    max-width: 650px;
+  }
+
+  .lyven-blog-page-hero h1 {
+    font-size: clamp(54px, 8vw, 68px);
+  }
+
+  .lyven-blog-page-hero__orbit {
+    top: -92px;
+    right: -195px;
+    width: 680px;
+  }
+
+  .lyven-blog-search {
+    width: 100%;
+  }
+
+  .lyven-blog-toolbar {
+    margin-top: 34px;
+  }
+
+  .lyven-blog-lead {
+    grid-template-columns: 1fr;
+  }
+
+  .lyven-blog-stacked-card > a {
+    grid-template-columns: 132px minmax(0, 1fr) 36px;
+    gap: 18px;
+  }
+
+  .lyven-blog-stacked {
+    grid-template-rows: repeat(3, minmax(132px, auto));
+  }
+
+  .lyven-blog-feed {
+    padding: 72px 0 112px;
+  }
+
+  .lyven-blog-feed__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .lyven-blog-page__inner {
+    width: calc(100% - var(--lyven-page-gap-mobile));
+  }
+
+  .lyven-blog-page-hero {
+    padding: 68px 0 54px;
+  }
+
+  .lyven-blog-page-hero__grid {
+    gap: 22px;
+  }
+
+  .lyven-blog-page-hero h1 {
+    font-size: clamp(43px, 12vw, 56px);
+    line-height: 0.98;
+  }
+
+  .lyven-blog-page-hero__copy {
+    margin-top: 21px;
+    font-size: 16px;
+  }
+
+  .lyven-blog-page-hero__orbit {
+    top: -40px;
+    right: -285px;
+    width: 570px;
+  }
+
+  .lyven-blog-featured {
+    border-radius: 17px;
+  }
+
+  .lyven-blog-featured__image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .lyven-blog-featured__content {
+    padding: 19px 19px 21px;
+  }
+
+  .lyven-blog-featured__meta {
+    grid-column: 1 / -1;
+    margin-top: 9px;
+  }
+
+  .lyven-blog-featured__content strong {
+    grid-column: 1 / -1;
+    font-size: 22px;
+  }
+
+  .lyven-blog-featured__excerpt {
+    padding-right: 42px;
+  }
+
+  .lyven-blog-featured__arrow {
+    grid-row: auto;
+    position: absolute;
+    right: 19px;
+    bottom: 20px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .lyven-blog-toolbar {
+    margin-top: 28px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lyven-blog-view-all {
+    justify-content: center;
+  }
+
+  .lyven-blog-lead {
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .lyven-blog-stacked {
+    padding: 0 14px;
+    border-radius: 16px;
+  }
+
+  .lyven-blog-stacked-card > a {
+    min-height: 112px;
+    grid-template-columns: 86px minmax(0, 1fr) 32px;
+    gap: 12px;
+  }
+
+  .lyven-blog-stacked-card__content strong {
+    font-size: 15px;
+  }
+
+  .lyven-blog-stacked-card__arrow {
+    width: 31px;
+    height: 31px;
+  }
+
+  .lyven-blog-feed {
+    padding: 62px 0 92px;
+  }
+
+  .lyven-blog-feed__heading {
+    display: block;
+    margin-bottom: 32px;
+  }
+
+  .lyven-blog-feed__heading .lyven-blog-page__eyebrow {
+    margin-bottom: 16px;
+  }
+
+  .lyven-blog-feed__heading h2 {
+    font-size: 38px;
+  }
+
+  .lyven-blog-feed__grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .lyven-blog-page-card {
+    border-radius: 16px;
+  }
+
+  .lyven-blog-page-card__body {
+    padding: 18px 18px 20px;
+  }
+
+  .lyven-blog-page-card__body > strong {
+    font-size: 20px;
+  }
+
+  .lyven-blog-page-card__arrow {
+    right: 17px;
+    bottom: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyven-blog-page-hero__intro,
+  .lyven-blog-featured {
+    animation: none;
+  }
+
+  .lyven-blog-featured__image img,
+  .lyven-blog-page-card__image img,
+  .lyven-blog-stacked-card__image img,
+  .lyven-blog-featured__arrow,
+  .lyven-blog-page-card__arrow,
+  .lyven-blog-stacked-card__arrow {
+    transition: none;
+  }
+}
+
+/* Blog listing refinements and article detail */
+.lyven-blog-page-hero {
+  min-height: 540px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background: #f8fbff;
+}
+
+.lyven-blog-page-hero__backdrop {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background: url("/assets/img/header-page.png") center / cover no-repeat;
+}
+
+.lyven-blog-page-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,.72) 42%, rgba(255,255,255,.08) 72%);
+}
+
+.lyven-blog-page-hero__content { padding: 132px 0 70px; }
+.lyven-blog-page-hero h1 { max-width: 760px; font-size: clamp(58px, 5vw, 82px); font-weight: 650; line-height: .94; }
+.lyven-blog-page-hero__copy { max-width: 610px; margin: 28px 0 0; font-size: 18px; line-height: 1.62; }
+.lyven-blog-page-hero__action { min-height: 46px; margin-top: 28px; padding: 0 21px; display: inline-flex; align-items: center; gap: 14px; color: #fff; background: var(--lyven-blue); border-radius: 999px; font-size: 14px; font-weight: 600; }
+.lyven-blog-highlights { padding: 58px 0 38px; background: linear-gradient(180deg, #fbfdff, #fff); }
+.lyven-blog-lead { margin-top: 0; }
+.lyven-blog-stacked-card__content small, .lyven-blog-page-card__category { color: var(--lyven-blue); font-size: 10px; font-style: normal; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.lyven-blog-feed { scroll-margin-top: 80px; padding: 58px 0 112px; }
+.lyven-blog-feed__heading { margin-bottom: 24px; }
+.lyven-blog-feed__heading > div:first-child { max-width: 620px; }
+.lyven-blog-categories { margin-bottom: 28px; display: flex; flex-wrap: wrap; gap: 8px; }
+.lyven-blog-categories button { min-height: 38px; padding: 0 17px; color: #5c6f8b; background: #fff; border: 1px solid #dbe5f2; border-radius: 999px; font-size: 13px; font-weight: 550; }
+.lyven-blog-categories button.is-active, .lyven-blog-categories button:hover, .lyven-blog-categories button:focus-visible { color: #fff; background: var(--lyven-blue); border-color: var(--lyven-blue); }
+.lyven-blog-page-card__category { margin-bottom: 6px; }
+.lyven-blog-pager { margin-top: 58px; display: flex; justify-content: center; align-items: center; gap: 13px; }
+.lyven-blog-pager > div { display: flex; gap: 8px; }
+.lyven-blog-pager button { width: 42px; height: 42px; display: grid; place-items: center; color: #61738d; background: #fff; border: 1px solid #dbe5f2; border-radius: 50%; font-size: 13px; font-weight: 600; }
+.lyven-blog-pager button.is-active, .lyven-blog-pager button:hover:not(:disabled), .lyven-blog-pager button:focus-visible { color: #fff; background: var(--lyven-blue); border-color: var(--lyven-blue); }
+.lyven-blog-pager button:disabled { opacity: .38; cursor: not-allowed; }
+
+.lyven-article-page { overflow-x: clip; color: var(--lyven-text-primary); background: #fff; }
+.lyven-article-shell { width: min(calc(100% - var(--lyven-page-gap)), var(--lyven-container)); margin-inline: auto; }
+.lyven-article-hero { position: relative; isolation: isolate; min-height: 650px; padding: 142px 0 78px; overflow: hidden; background: #f8fbff; }
+.lyven-article-hero__backdrop { position: absolute; z-index: -2; inset: 0; background: url("/assets/img/header-page.png") center / cover no-repeat; opacity: .78; }
+.lyven-article-hero::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,.97), rgba(255,255,255,.8) 56%, rgba(255,255,255,.24)); }
+.lyven-article-breadcrumb { max-width: 790px; display: flex; align-items: center; gap: 9px; color: #7b8ba2; font-size: 12px; }
+.lyven-article-breadcrumb a { color: #526987; }
+.lyven-article-breadcrumb > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lyven-article-hero__copy { max-width: 900px; margin-top: 54px; }
+.lyven-article-category { display: inline-flex; padding: 7px 12px; color: var(--lyven-blue); background: rgba(20,115,255,.08); border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.lyven-article-hero h1 { max-width: 900px; margin: 20px 0 0; font-family: var(--heading-font); font-size: clamp(55px, 5.5vw, 82px); font-weight: 640; line-height: .98; letter-spacing: -.05em; }
+.lyven-article-hero__copy > p { max-width: 760px; margin: 24px 0 0; color: #5e708b; font-size: 18px; line-height: 1.62; }
+.lyven-article-meta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px 28px; color: #7788a0; font-size: 13px; }
+.lyven-article-meta span:not(:last-child)::after { content: "·"; margin-left: 28px; }
+.lyven-article-share { min-height: 40px; margin-top: 24px; padding: 0 16px; display: inline-flex; align-items: center; gap: 12px; color: #17314f; background: rgba(255,255,255,.8); border: 1px solid #cfdbeb; border-radius: 999px; font-size: 13px; font-weight: 600; }
+.lyven-article-layout { position: relative; isolation: isolate; padding: 154px 0 110px; display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: clamp(48px, 6vw, 84px); align-items: start; }
+.lyven-article-layout::before { content: ""; position: absolute; z-index: -1; top: 0; left: 50%; width: 100vw; height: 650px; background: url("/assets/img/header-page.png") center top / cover no-repeat; transform: translateX(-50%); pointer-events: none; }
+.lyven-article-intro { margin-bottom: 46px; }
+.lyven-article-intro .lyven-article-hero__copy { margin-top: 38px; }
+.lyven-article-intro h1 { max-width: 900px; margin: 20px 0 0; font-family: var(--heading-font); font-size: clamp(55px, 5.5vw, 82px); font-weight: 640; line-height: .98; letter-spacing: -.05em; }
+.lyven-article-cover { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #edf4ff; border-radius: 24px; }
+.lyven-article-cover img { object-fit: cover; }
+.lyven-article-prose { max-width: 780px; margin: 54px auto 0; }
+.lyven-article-prose p { margin: 0 0 24px; color: #536681; font-size: 17px; line-height: 1.78; }
+.lyven-article-prose .lyven-article-lead { color: #253b58; font-size: 21px; line-height: 1.65; }
+.lyven-article-prose section { margin-top: 48px; }
+.lyven-article-prose h2 { margin: 0 0 16px; font-family: var(--heading-font); font-size: clamp(29px, 2.6vw, 38px); font-weight: 620; line-height: 1.12; letter-spacing: -.035em; }
+.lyven-article-prose blockquote { margin: 38px 0; padding: 30px 34px; color: #18365e; background: linear-gradient(135deg, #f3f8ff, #fbfdff); border-left: 3px solid var(--lyven-blue); border-radius: 0 18px 18px 0; font-family: var(--heading-font); font-size: 23px; font-weight: 500; line-height: 1.48; }
+.lyven-article-callout { margin: 34px 0; padding: 26px 28px; background: #f5f9ff; border: 1px solid #dce9fa; border-radius: 18px; }
+.lyven-article-callout strong { color: var(--lyven-blue); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.lyven-article-callout p { margin: 10px 0 0; }
+.lyven-article-tags { width: 100%; max-width: 780px; margin: -36px auto 0; padding-top: 28px; display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid #dce5ef; grid-column: 1; }
+.lyven-article-tags span { padding: 8px 13px; color: #536984; background: #f4f7fb; border-radius: 999px; font-size: 12px; }
+.lyven-article-sidebar { position: sticky; top: 108px; align-self: start; height: max-content; display: grid; gap: 18px; grid-column: 2; grid-row: 1; }
+.lyven-article-author, .lyven-article-related-list, .lyven-article-sidebar-tags { padding: 26px; background: #fbfdff; border: 1px solid #dfe8f2; border-radius: 20px; box-shadow: 0 14px 34px rgba(7,22,47,.035); }
+.lyven-article-author > p:first-child { margin: 0 0 18px; color: #7b8ba2; font-size: 11px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; }
+.lyven-article-author > div { display: flex; align-items: center; gap: 13px; }
+.lyven-article-author > div > span { width: 48px; height: 48px; display: grid; place-items: center; color: #fff; background: var(--lyven-blue); border-radius: 50%; font-size: 13px; font-weight: 700; }
+.lyven-article-author strong, .lyven-article-author small { display: block; }
+.lyven-article-author strong { font-size: 17px; font-weight: 620; }
+.lyven-article-author small { margin-top: 3px; color: #7a8ba3; font-size: 11px; }
+.lyven-article-author > p:last-child { margin: 18px 0 0; color: #61738d; font-size: 13px; line-height: 1.6; }
+.lyven-article-sidebar-tags h2 { margin: 0 0 16px; font-size: 20px; font-weight: 620; }
+.lyven-article-sidebar-tags > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.lyven-article-sidebar-tags span { padding: 8px 12px; color: #536984; background: #eef5ff; border-radius: 999px; font-size: 11px; line-height: 1; }
+.lyven-article-related-list h2 { margin: 0 0 8px; font-size: 20px; font-weight: 620; }
+.lyven-article-related:not(:last-child) { border-bottom: 1px solid #e1e8f1; }
+.lyven-article-related a { padding: 18px 0; display: grid; grid-template-columns: 84px 1fr; gap: 13px; color: inherit; }
+.lyven-article-related__image { position: relative; aspect-ratio: 1.2 / 1; overflow: hidden; border-radius: 10px; }
+.lyven-article-related__image img { object-fit: cover; }
+.lyven-article-related small, .lyven-article-related em { display: block; color: #7b8ca3; font-size: 9px; font-style: normal; text-transform: uppercase; }
+.lyven-article-related small { color: var(--lyven-blue); font-weight: 700; letter-spacing: .06em; }
+.lyven-article-related strong { margin: 5px 0 7px; display: block; font-size: 14px; font-weight: 620; line-height: 1.25; }
+.lyven-article-insights { padding: 96px 0 108px; background: #f8fbff; }
+.lyven-article-insights__heading { margin-bottom: 34px; display: flex; justify-content: space-between; align-items: end; gap: 40px; }
+.lyven-article-insights__heading p { margin: 0 0 10px; color: var(--lyven-blue); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.lyven-article-insights__heading h2 { margin: 0; font-size: clamp(38px, 4vw, 56px); font-weight: 620; letter-spacing: -.045em; }
+.lyven-article-insights__heading > span { max-width: 440px; color: #657790; font-size: 15px; line-height: 1.55; }
+.lyven-article-insights__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.lyven-article-insight-card { overflow: hidden; background: #fff; border: 1px solid #dfe8f2; border-radius: 18px; transition: transform .25s ease, border-color .25s ease; }
+.lyven-article-insight-card a { padding-bottom: 22px; display: flex; flex-direction: column; color: inherit; }
+.lyven-article-insight-card a > span { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+.lyven-article-insight-card img { object-fit: cover; transition: transform .5s ease; }
+.lyven-article-insight-card small, .lyven-article-insight-card strong, .lyven-article-insight-card em { margin-inline: 22px; }
+.lyven-article-insight-card small { margin-top: 19px; color: var(--lyven-blue); font-size: 10px; font-weight: 700; text-transform: uppercase; }
+.lyven-article-insight-card strong { margin-top: 8px; font-size: 20px; font-weight: 620; line-height: 1.2; }
+.lyven-article-insight-card em { margin-top: 18px; color: #58708e; font-size: 12px; font-style: normal; }
+.lyven-article-insight-card:hover { transform: translateY(-3px); border-color: #bcd5f5; }
+.lyven-article-insight-card:hover img { transform: scale(1.035); }
+.lyven-article-mini-cta { padding: 72px 0; background: #fff; }
+.lyven-article-mini-cta .lyven-article-shell { padding: 42px 48px; display: flex; align-items: center; justify-content: space-between; gap: 36px; background: linear-gradient(110deg, #f4f8ff, #eaf4ff); border: 1px solid #d5e5f8; border-radius: 24px; }
+.lyven-article-mini-cta p { margin: 0 0 8px; color: var(--lyven-blue); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.lyven-article-mini-cta h2 { margin: 0; font-size: clamp(30px, 3vw, 43px); font-weight: 620; letter-spacing: -.04em; }
+.lyven-article-mini-cta div > span { margin-top: 9px; display: block; color: #60738d; font-size: 14px; }
+.lyven-article-mini-cta a { min-height: 50px; padding: 0 23px; display: inline-flex; align-items: center; gap: 16px; flex: 0 0 auto; color: #fff; background: var(--lyven-blue); border-radius: 999px; font-size: 14px; font-weight: 600; }
+
+@media (max-width: 991px) {
+  .lyven-blog-page-hero { min-height: 500px; }
+  .lyven-blog-page-hero__content { padding: 124px 0 62px; }
+  .lyven-blog-highlights { padding-top: 46px; }
+  .lyven-article-shell { width: min(calc(100% - var(--lyven-page-gap-tablet)), 760px); }
+  .lyven-article-hero { min-height: auto; padding: 130px 0 72px; }
+  .lyven-article-layout { grid-template-columns: 1fr; padding-top: 130px; }
+  .lyven-article-layout::before { height: 620px; background-position: 60% top; }
+  .lyven-article-sidebar { position: static; grid-column: 1; grid-row: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lyven-article-related-list { grid-column: 1 / -1; }
+  .lyven-article-tags { margin-top: -28px; grid-column: 1; }
+}
+
+@media (max-width: 767px) {
+  .lyven-blog-page-hero { min-height: 470px; }
+  .lyven-blog-page-hero__content { padding: 112px 0 54px; }
+  .lyven-blog-page-hero h1 { font-size: clamp(44px, 13vw, 58px); }
+  .lyven-blog-page-hero__copy { margin-top: 22px; font-size: 16px; }
+  .lyven-blog-highlights { padding: 34px 0 22px; }
+  .lyven-blog-feed { padding: 48px 0 88px; }
+  .lyven-blog-feed__heading { align-items: stretch; flex-direction: column; gap: 22px; }
+  .lyven-blog-categories { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 6px; }
+  .lyven-article-shell { width: calc(100% - var(--lyven-page-gap-mobile)); }
+  .lyven-article-hero { padding: 112px 0 58px; }
+  .lyven-article-hero__copy { margin-top: 34px; }
+  .lyven-article-hero h1 { font-size: clamp(43px, 12vw, 57px); }
+  .lyven-article-hero__copy > p { font-size: 16px; }
+  .lyven-article-meta { display: grid; gap: 7px; }
+  .lyven-article-meta span::after { display: none; }
+  .lyven-article-layout { padding: 112px 0 78px; gap: 56px; }
+  .lyven-article-layout::before { height: 580px; background-position: 65% top; }
+  .lyven-article-intro { margin-bottom: 34px; }
+  .lyven-article-intro .lyven-article-hero__copy { margin-top: 28px; }
+  .lyven-article-intro h1 { font-size: clamp(43px, 12vw, 57px); }
+  .lyven-article-cover { border-radius: 17px; }
+  .lyven-article-prose { margin-top: 38px; }
+  .lyven-article-prose p { font-size: 16px; }
+  .lyven-article-prose .lyven-article-lead { font-size: 19px; }
+  .lyven-article-prose section { margin-top: 40px; }
+  .lyven-article-prose blockquote { padding: 24px; font-size: 20px; }
+  .lyven-article-sidebar { grid-template-columns: 1fr; }
+  .lyven-article-related-list { grid-column: auto; }
+  .lyven-article-insights { padding: 74px 0 82px; }
+  .lyven-article-insights__heading { align-items: flex-start; flex-direction: column; gap: 15px; }
+  .lyven-article-insights__grid { grid-template-columns: 1fr; }
+  .lyven-article-mini-cta { padding: 54px 0; }
+  .lyven-article-mini-cta .lyven-article-shell { width: calc(100% - var(--lyven-page-gap-mobile)); padding: 32px 26px; align-items: flex-start; flex-direction: column; }
+}
+
+/*--------------------------------------------------------------
+Lyven contact page — editorial split
+----------------------------------------------------------------*/
+.lyven-contact-page {
+  position: relative;
+  isolation: isolate;
+  min-height: 900px;
+  overflow: hidden;
+  padding: 148px 0 120px;
+  color: var(--lyven-text-primary);
+  background:
+    radial-gradient(circle at 0% 78%, rgba(74, 151, 255, 0.1), transparent 28%),
+    radial-gradient(circle at 100% 18%, rgba(74, 151, 255, 0.065), transparent 28%),
+    linear-gradient(180deg, #fbfdff 0%, #fff 30%, #fff 100%);
+}
+
+.lyven-contact-page__atmosphere {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+}
+
+.lyven-contact-page__atmosphere svg {
+  width: 100%;
+  height: 100%;
+}
+
+.lyven-contact-page__atmosphere path {
+  fill: none;
+  stroke: rgba(20, 115, 255, 0.19);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.lyven-contact-page__atmosphere circle {
+  fill: #72adff;
+  filter: drop-shadow(0 6px 10px rgba(20, 115, 255, 0.2));
+}
+
+.lyven-contact-page__inner {
+  width: min(calc(100% - var(--lyven-page-gap)), var(--lyven-container));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(560px, 1.22fr);
+  gap: clamp(70px, 7.2vw, 110px);
+  align-items: start;
+}
+
+.lyven-contact-intro {
+  padding-top: 26px;
+  animation: lyven-contact-enter 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lyven-contact-intro__eyebrow {
+  margin: 0 0 25px;
+  color: #617492;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.lyven-contact-intro h1 {
+  margin: 0;
+  color: var(--lyven-text-primary);
+  font-family: var(--heading-font);
+  font-size: clamp(58px, 5vw, 82px);
+  font-weight: 670;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+}
+
+.lyven-contact-intro h1 span {
+  display: block;
+}
+
+.lyven-contact-intro h1 span:last-child {
+  color: var(--lyven-blue);
+}
+
+.lyven-contact-intro__copy {
+  max-width: 500px;
+  margin: 28px 0 40px;
+  color: #5f718d;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.lyven-contact-direct {
+  max-width: 500px;
+  border-top: 1px solid rgba(7, 22, 47, 0.08);
+}
+
+.lyven-contact-direct__row {
+  min-height: 86px;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 44px;
+  gap: 16px;
+  align-items: center;
+  color: var(--lyven-text-primary);
+  border-bottom: 1px solid rgba(7, 22, 47, 0.08);
+  transition: color 220ms ease;
+}
+
+.lyven-contact-direct__row > i {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: var(--lyven-blue);
+  background: #eef5ff;
+  border-radius: 50%;
+  font-size: 19px;
+}
+
+.lyven-contact-direct__row > span {
+  min-width: 0;
+}
+
+.lyven-contact-direct__row small,
+.lyven-contact-direct__row strong {
+  display: block;
+}
+
+.lyven-contact-direct__row small {
+  margin-bottom: 4px;
+  color: #8290a5;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.lyven-contact-direct__row strong {
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lyven-contact-direct__row > b {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  justify-self: end;
+  border: 1px solid #c5d6ec;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 500;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease;
+}
+
+.lyven-contact-direct__row:hover,
+.lyven-contact-direct__row:focus-visible {
+  color: var(--lyven-blue);
+}
+
+.lyven-contact-direct__row:hover > b,
+.lyven-contact-direct__row:focus-visible > b {
+  border-color: var(--lyven-blue);
+  transform: translate(2px, -2px);
+}
+
+.lyven-contact-direct__row:focus-visible {
+  outline: 3px solid rgba(20, 115, 255, 0.2);
+  outline-offset: 3px;
+}
+
+.lyven-contact-direct__row.is-unavailable {
+  grid-template-columns: 46px minmax(0, 1fr);
+}
+
+.lyven-contact-direct__row.is-unavailable strong {
+  color: #93a0b2;
+  font-weight: 500;
+}
+
+.lyven-contact-form-panel {
+  padding: clamp(30px, 3vw, 40px);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(7, 22, 47, 0.075);
+  border-radius: 22px;
+  box-shadow: 0 14px 44px rgba(12, 50, 104, 0.045);
+  animation: lyven-contact-enter 760ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+}
+
+.lyven-contact-form-panel form {
+  display: grid;
+}
+
+.lyven-contact-form-group {
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 30px;
+  border: 0;
+}
+
+.lyven-contact-form-group:not(:first-child) {
+  padding-top: 30px;
+  border-top: 1px solid rgba(7, 22, 47, 0.075);
+}
+
+.lyven-contact-form-group legend {
+  width: 100%;
+  margin: 0 0 20px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  color: var(--lyven-text-primary);
+  line-height: 1.25;
+}
+
+.lyven-contact-form-group legend > span {
+  grid-row: 1 / 3;
+  color: #7486a1;
+  font-family: var(--heading-font);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.lyven-contact-form-group legend strong {
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.lyven-contact-form-group legend small {
+  margin-top: 3px;
+  color: #8290a5;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.lyven-project-type-selector {
+  margin-left: 42px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.lyven-project-type-selector button {
+  min-height: 88px;
+  padding: 14px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 9px;
+  color: var(--lyven-text-primary);
+  background: #fff;
+  border: 1px solid rgba(7, 22, 47, 0.11);
+  border-radius: 11px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease;
+}
+
+.lyven-project-type-selector button i {
+  color: var(--lyven-blue);
+  font-size: 23px;
+}
+
+.lyven-project-type-selector button:hover,
+.lyven-project-type-selector button:focus-visible,
+.lyven-project-type-selector button.is-selected {
+  color: #0d4ea9;
+  background: #f1f7ff;
+  border-color: rgba(20, 115, 255, 0.5);
+}
+
+.lyven-project-type-selector button:focus-visible,
+.lyven-contact-form-panel input:focus-visible,
+.lyven-contact-form-panel select:focus-visible,
+.lyven-contact-form-panel textarea:focus-visible,
+.lyven-contact-submit:focus-visible {
+  outline: 3px solid rgba(20, 115, 255, 0.14);
+  outline-offset: 2px;
+}
+
+.lyven-contact-form-panel select {
+  margin-left: 42px;
+  width: calc(100% - 42px);
+}
+
+.lyven-contact-form-panel input,
+.lyven-contact-form-panel select,
+.lyven-contact-form-panel textarea {
+  color: var(--lyven-text-primary);
+  background: #fff;
+  border: 1px solid rgba(7, 22, 47, 0.12);
+  border-radius: 10px;
+  font-family: var(--body-font);
+  font-size: 14px;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.lyven-contact-form-panel input,
+.lyven-contact-form-panel select {
+  height: 50px;
+  padding: 0 14px;
+}
+
+.lyven-contact-form-panel textarea {
+  min-height: 130px;
+  padding: 14px;
+  resize: vertical;
+}
+
+.lyven-contact-form-panel input:focus,
+.lyven-contact-form-panel select:focus,
+.lyven-contact-form-panel textarea:focus {
+  border-color: var(--lyven-blue);
+  box-shadow: 0 0 0 3px rgba(20, 115, 255, 0.08);
+}
+
+.lyven-contact-details__grid {
+  margin-left: 42px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.lyven-contact-field {
+  min-width: 0;
+}
+
+.lyven-contact-field.is-full {
+  grid-column: 1 / -1;
+}
+
+.lyven-contact-field label {
+  margin-bottom: 8px;
+  display: block;
+  color: #4f617b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.lyven-contact-field input,
+.lyven-contact-field textarea {
+  width: 100%;
+}
+
+.lyven-contact-error {
+  margin: 8px 0 0 42px;
+  color: #b42318;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.lyven-contact-field .lyven-contact-error {
+  margin-left: 0;
+}
+
+.lyven-contact-notice {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  color: #596b84;
+  background: #f5f8fc;
+  border: 1px solid #e3eaf3;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.lyven-contact-submit {
+  width: 100%;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #fff;
+  background: var(--lyven-blue);
+  border: 1px solid var(--lyven-blue);
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
+}
+
+.lyven-contact-submit span {
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lyven-contact-submit:hover {
+  background: var(--lyven-blue-hover);
+  border-color: var(--lyven-blue-hover);
+  transform: translateY(-1px);
+}
+
+.lyven-contact-submit:hover span {
+  transform: translate(2px, -2px);
+}
+
+@keyframes lyven-contact-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .lyven-contact-page__inner {
+    grid-template-columns: minmax(0, 0.72fr) minmax(520px, 1.28fr);
+    gap: 52px;
+  }
+
+  .lyven-contact-intro h1 {
+    font-size: clamp(54px, 6vw, 70px);
+  }
+}
+
+@media (max-width: 991px) {
+  .lyven-contact-page {
+    padding: 128px 0 94px;
+  }
+
+  .lyven-contact-page__inner {
+    width: min(calc(100% - var(--lyven-page-gap-tablet)), 760px);
+    grid-template-columns: 1fr;
+    gap: 58px;
+  }
+
+  .lyven-contact-intro {
+    max-width: 620px;
+    padding-top: 0;
+  }
+
+  .lyven-contact-direct {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .lyven-contact-page {
+    min-height: 0;
+    padding: 112px 0 76px;
+  }
+
+  .lyven-contact-page__inner {
+    width: calc(100% - var(--lyven-page-gap-mobile));
+    gap: 46px;
+  }
+
+  .lyven-contact-intro__eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .lyven-contact-intro h1 {
+    font-size: clamp(46px, 13.5vw, 58px);
+  }
+
+  .lyven-contact-intro__copy {
+    margin: 24px 0 34px;
+    font-size: 16px;
+  }
+
+  .lyven-contact-direct__row {
+    min-height: 80px;
+    grid-template-columns: 44px minmax(0, 1fr) 42px;
+    gap: 12px;
+  }
+
+  .lyven-contact-form-panel {
+    padding: 24px 20px;
+    border-radius: 18px;
+  }
+
+  .lyven-contact-form-group {
+    padding-bottom: 26px;
+  }
+
+  .lyven-contact-form-group:not(:first-child) {
+    padding-top: 26px;
+  }
+
+  .lyven-project-type-selector,
+  .lyven-contact-details__grid {
+    margin-left: 0;
+  }
+
+  .lyven-project-type-selector {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .lyven-project-type-selector button {
+    min-height: 56px;
+    padding: 10px 14px;
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+
+  .lyven-contact-form-panel select {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .lyven-contact-details__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lyven-contact-field.is-full {
+    grid-column: auto;
+  }
+
+  .lyven-contact-error {
+    margin-left: 0;
+  }
+
+  .lyven-contact-page__atmosphere path:last-of-type {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyven-contact-intro,
+  .lyven-contact-form-panel {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .lyven-contact-direct__row,
+  .lyven-contact-direct__row > b,
+  .lyven-project-type-selector button,
+  .lyven-contact-submit,
+  .lyven-contact-submit span {
+    transition: none;
   }
 }
