@@ -10,6 +10,7 @@ const navigation = [
   { label: "Portfolio", href: "/portfolio-list" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const SCROLL_THRESHOLD = 88;
@@ -19,7 +20,13 @@ const DIRECTION_TOLERANCE = 8;
 export default function Header5() {
   const pathname = usePathname();
   const isHomepage = pathname === "/";
-  const [isScrolled, setIsScrolled] = useState(!isHomepage);
+  const isPortfolio = pathname === "/portfolio-list" || pathname.startsWith("/portfolio-details/");
+  const isServices = pathname === "/service";
+  const isContact = pathname === "/contact";
+  const isBlog = pathname === "/blog" || pathname.startsWith("/blog/");
+  const isAbout = pathname === "/about";
+  const isDynamic = isHomepage || isPortfolio || isServices || isContact || isBlog || isAbout;
+  const [isScrolled, setIsScrolled] = useState(!isDynamic);
   const [isHidden, setIsHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
@@ -33,12 +40,12 @@ export default function Header5() {
 
     const updateHeader = () => {
       const currentScrollY = Math.max(window.scrollY, 0);
-      const nextScrolled = !isHomepage || currentScrollY > SCROLL_THRESHOLD;
+      const nextScrolled = !isDynamic || currentScrollY > SCROLL_THRESHOLD;
       const distance = currentScrollY - lastScrollY.current;
 
       setIsScrolled(nextScrolled);
 
-      if (!isHomepage || !nextScrolled || menuOpen) {
+      if (!isDynamic || !nextScrolled || menuOpen) {
         setIsHidden(false);
       } else if (Math.abs(distance) >= DIRECTION_TOLERANCE) {
         setIsHidden(distance > 0 && currentScrollY > HIDE_THRESHOLD);
@@ -62,7 +69,7 @@ export default function Header5() {
       if (frameId.current !== null) window.cancelAnimationFrame(frameId.current);
       ticking.current = false;
     };
-  }, [isHomepage, menuOpen]);
+  }, [isDynamic, menuOpen]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -107,7 +114,7 @@ export default function Header5() {
 
   return (
     <header
-      className={`lyven-header${isHomepage ? " is-homepage" : " is-inner"}${isScrolled ? " is-scrolled" : " is-hero"}${isHidden ? " is-hidden" : ""}${menuOpen ? " is-menu-open" : ""}`}
+      className={`lyven-header${isDynamic ? " is-dynamic" : " is-inner"}${isHomepage ? " is-homepage" : ""}${isScrolled ? " is-scrolled" : " is-hero"}${isHidden ? " is-hidden" : ""}${menuOpen ? " is-menu-open" : ""}`}
     >
       <div className="lyven-header__inner">
         <Link className="lyven-header__brand" href="/" aria-label="Lyven home" onClick={closeMenu}>
@@ -141,7 +148,13 @@ export default function Header5() {
         >
           <div className="lyven-header__links">
             {navigation.map((item) => (
-              <Link key={item.label} href={item.href} onClick={closeMenu}>
+              <Link
+                key={item.label}
+                href={item.href}
+                className={pathname === item.href || (item.href === "/portfolio-list" && isPortfolio) || (item.href === "/blog" && isBlog) ? "is-active" : undefined}
+                aria-current={pathname === item.href || (item.href === "/portfolio-list" && isPortfolio) || (item.href === "/blog" && isBlog) ? "page" : undefined}
+                onClick={closeMenu}
+              >
                 {item.label}
               </Link>
             ))}

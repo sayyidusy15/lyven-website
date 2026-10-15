@@ -47,7 +47,7 @@ export default function Footer3() {
             <Link href="/" aria-label="Lyven home" className="lyven-site-footer__logo">
               <Image src="/assets/img/logo-lyven-primary.svg" alt="Lyven" width={138} height={38} />
             </Link>
-            <p>Partner digital untuk bisnis modern. Dari ide hingga eksekusi, kami membantu Anda membangun solusi yang benar-benar berarti.</p>
+            <p>A digital partner for modern businesses. From idea to execution, we build solutions that create meaningful value.</p>
             <nav className="lyven-site-footer__socials" aria-label="Social media">
               {socials.map((social) => (
                 <a key={social.label} href="#" aria-label={social.label} className="lyven-site-footer__social">
@@ -75,7 +75,7 @@ export default function Footer3() {
 
         <div className="lyven-site-footer__bottom">
           <p>© {new Date().getFullYear()} Lyven. All rights reserved.</p>
-          <p>Dipercaya oleh bisnis yang ingin bertumbuh.</p>
+          <p>Trusted by businesses ready to grow.</p>
         </div>
       </div>
     </footer>
