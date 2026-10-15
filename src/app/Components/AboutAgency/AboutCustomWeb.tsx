@@ -27,17 +27,17 @@ const AboutCustomWeb = () => {
                   PROFESSIONAL WEB DEVELOPER
                 </p>
                 <h2 className="cs_section_title cs_fs_36 cs_bold cs_mb_20">
-                  Jasa Pembuatan Website Custom Development
+                  Professional Custom Website Development
                 </h2>
                 <p className="cs_section_desc cs_fs_16 cs_mb_20 text-muted">
-                  Semakin hari semakin banyak Cara atau Teknologi untuk membuat website dengan cepat dan Efisien, Tapi seringkali cara tersebut memiliki sangat banyak kekurangan, Salah satu contohnya kita tidak bisa membuat Fitur Custom yang sesuai dengan kebutuhan kita di Dunia Industri.
+                  Modern tools make it easier to launch websites quickly, but many limit the custom functionality required by real business and industry workflows.
                 </p>
                 <p className="cs_section_desc cs_fs_16 text-muted mb-0">
-                  Kami Hadir untuk mengatasi Masalah ini. Kami siap membuat Website dengan Fitur Fitur serta tampilan sesuai dengan apa yang kamu butuhkan, Website yang kamu dapatkan nantinya sudah teroptimasi dan dibuat dengan sebaik mungkin guna meminimalisir Kesalahan User.
+                  We solve that limitation by building optimized websites with the features, structure, and visual direction your business actually needs.
                 </p>
                 {/* <div className="cs_height_50"></div>
                 <Link href="/contact" className="cs_btn cs_style_1 cs_fs_16 cs_bold">
-                  <span>Konsultasi Sekarang</span>
+                  <span>Start a Consultation</span>
                 </Link> */}
               </div>
             </div>

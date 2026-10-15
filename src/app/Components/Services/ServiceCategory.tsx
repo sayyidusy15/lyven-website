@@ -3,33 +3,33 @@ import React from 'react';
 
 const serviceCategories = [
   {
-    title: 'Web Profil',
+    title: 'Profile Websites',
     icon: 'bi-person-badge', // Opsional: Tambah icon biar cantik
     items: [
       { label: 'Website Company Profile', url: '/service/company-profile' },
-      { label: 'Website Ekspor Komoditas', url: '/service/ekspor' },
-      { label: 'Website Sekolah', url: '/service/sekolah' },
-      { label: 'Website Komunitas / Organisasi', url: '/service/organisasi' },
+      { label: 'Export & Commodity Website', url: '/service/ekspor' },
+      { label: 'School Website', url: '/service/sekolah' },
+      { label: 'Community / Organization Website', url: '/service/organisasi' },
     ],
   },
   {
     title: 'Booking System',
     icon: 'bi-calendar-check',
     items: [
-      { label: 'Website Tour Travel', url: '/service/tour-travel' },
-      { label: 'Website Rental Mobil', url: '/service/rental' },
-      { label: 'Website Hotel / Villa', url: '/service/hotel' },
-      { label: 'Website Sewa Barang', url: '/service/sewa' },
+      { label: 'Tour & Travel Website', url: '/service/tour-travel' },
+      { label: 'Car Rental Website', url: '/service/rental' },
+      { label: 'Hotel / Villa Website', url: '/service/hotel' },
+      { label: 'Equipment Rental Website', url: '/service/sewa' },
     ],
   },
   {
-    title: 'Toko Online',
+    title: 'Online Stores',
     icon: 'bi-cart3',
     items: [
       { label: 'Website E-Commerce', url: '/service/ecommerce' },
-      { label: 'Toko Online Checkout via WA', url: '/service/toko-wa' },
-      { label: 'Website Katalog FnB', url: '/service/fnb' },
-      { label: 'Landing Page Produk', url: '/service/landing-page' },
+      { label: 'WhatsApp Checkout Store', url: '/service/toko-wa' },
+      { label: 'Food & Beverage Catalog', url: '/service/fnb' },
+      { label: 'Product Landing Page', url: '/service/landing-page' },
     ],
   },
 ];
@@ -47,15 +47,14 @@ const ServiceCategory = () => {
               
               {/* Tambahkan class responsive font jika perlu, tapi CSS diatas sudah menangani */}
               <h2 className="cs_fs_32 cs_bold mb-0 text-uppercase">
-                PILIHAN JENIS <br /> JASA PEMBUATAN WEBSITE
+                WEBSITE SOLUTIONS <br /> FOR YOUR BUSINESS
               </h2>
             </div>
           </div>
           <div className="col-lg-6">
             <p className="cs_section_desc text-end mb-0 cs_mobile_text_left">
-              Pilih solusi website yang paling sesuai dengan model bisnis Anda.
-              Kami menyediakan pengembangan website yang spesifik, terukur, dan
-              berorientasi pada konversi.
+              Choose the website solution that best fits your business model.
+              We provide focused, measurable development designed around real outcomes.
             </p>
           </div>
         </div>

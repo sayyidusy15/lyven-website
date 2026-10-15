@@ -4,43 +4,43 @@ const Advantages = () => {
   const advantagesData = [
     {
       icon: 'bi-box-seam',
-      title: 'Layanan All in One',
-      description: 'Tak hanya Website, kami juga bisa membuatkan kamu Design Promosi & Sekalian Iklan di Google',
+      title: 'All-in-One Service',
+      description: 'Beyond websites, we can support promotional design and Google advertising.',
     },
     {
       icon: 'bi-code-slash',
-      title: 'Bisa Custom Website',
-      description: 'Selain Web Company & Toko Online, kami juga siap untuk membuat Website Kompleks / Custom',
+      title: 'Custom Website Development',
+      description: 'From company profiles and online stores to complex, custom-built platforms.',
     },
     {
       icon: 'bi-gift',
-      title: 'Banyak Bonus Gratis',
-      description: 'Disetiap Paket Website. kami akan memberikan Bonus yang sangat berguna buat bisnismu',
+      title: 'Useful Extras Included',
+      description: 'Every website package includes practical additions that support your business.',
     },
     {
       icon: 'bi-clipboard-check',
-      title: 'Alur Pekerjaan Jelas',
-      description: 'Kami Memiliki Cara Kerja yang Efisien dan Profesional untuk membuat websitemu Go-Online dengan sangat baik',
+      title: 'A Clear Process',
+      description: 'An efficient, professional workflow keeps your website launch focused and organized.',
     },
     {
       icon: 'bi-tag',
-      title: 'Harga Bisa Request',
-      description: 'Suka sama layanan kami tapi Harga belum cocok? Santai. Kamu bisa tentukan harga websitemu sendiri',
+      title: 'Flexible Project Scope',
+      description: 'We can shape the scope and investment around your priorities and available budget.',
     },
     {
       icon: 'bi-shield-check',
-      title: 'Garansi Selamanya',
-      description: 'Tak perlu khawatir soal Support / Maintenance, kami beri Garansi Seumur Hidup',
+      title: 'Long-Term Support',
+      description: 'Ongoing support and maintenance are available after your website goes live.',
     },
     {
       icon: 'bi-people',
-      title: 'Dipercaya 850 Lebih Klien',
-      description: 'Sejak 2015, kami telah membantu UMKM, Start Up, PT hingga Instansi Pemerintahan',
+      title: 'Trusted Across Industries',
+      description: 'We have supported small businesses, startups, companies, and organizations.',
     },
     {
       icon: 'bi-camera-video',
-      title: 'Tatap Muka / Zoom Meeting',
-      description: 'Jarak tak jadi masalah, kami siap untuk Online Meeting demi terciptanya Solusi dari Kebutuhan kamu',
+      title: 'Flexible Collaboration',
+      description: 'Work with us through focused online meetings wherever your team is based.',
     },
   ];
 
@@ -50,11 +50,11 @@ const Advantages = () => {
       <div className="container">
         <div className="cs_section_heading cs_style_1 text-center">
           <h2 className="cs_fs_32 mb-3 wow fadeInUp">
-            Keuntungan Menggunakan Layanan Kami
+            Why Businesses Work With Us
           </h2>
       
           <p className="cs_section_desc cs_fs_16 mb-0 text-muted wow fadeInUp text-center">
-            Jasa Pembuatan Website yang kami sediakan memiliki keunggulan yang bisa <br /> membuat bisnismu berkembang
+            Thoughtful website development with the capabilities your business needs to grow.
           </p>
         </div>
         <div className="cs_height_60 cs_height_lg_40"></div>

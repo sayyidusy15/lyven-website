@@ -1,25 +1,19 @@
-import React from 'react';
-import BreadCumb from '../../Components/Common/BreadCumb';
-import Services4 from '../../Components/Services/Services4';
-import Marquee2 from '../../Components/Marquee/Marquee2';
-import Cta from '../../Components/Cta/Cta';
-import Pricing2 from '../../Components/Pricing/Pricing2';
-import Contact2 from '../../Components/Contact/Contact2';
+import type { Metadata } from "next";
+import FinalCTA from "../../Components/Cta/FinalCTA";
+import ProcessSection from "../../Components/Services/ProcessSection";
+import ServicesPage from "../../Components/Services/ServicesPage";
 
-const page = () => {
-  return (
-    <div>
-            <BreadCumb
-                bgimg="/assets/img/page_header.jpg"
-                Title="Services"
-            ></BreadCumb> 
-            <Services4></Services4>      
-            <Marquee2></Marquee2>   
-            <Cta></Cta> 
-            <Pricing2></Pricing2>
-            <Contact2></Contact2>      
-    </div>
-  );
+export const metadata: Metadata = {
+  title: "Services | Lyven",
+  description: "Branding, UI/UX design, and development services for businesses building modern digital experiences.",
 };
 
-export default page;
+export default function ServicePage() {
+  return (
+    <div className="main-page-area3">
+      <ServicesPage />
+      <ProcessSection />
+      <FinalCTA />
+    </div>
+  );
+}
