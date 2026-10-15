@@ -3,12 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 
 const faqs = [
-  { id: "01", question: "Proyek seperti apa yang dikerjakan Lyven?", answer: "Kami mengerjakan website, web application, mobile application, custom software, system integration, AI & automation, serta berbagai produk digital yang disesuaikan dengan kebutuhan bisnis." },
-  { id: "02", question: "Berapa lama waktu pengerjaan sebuah proyek?", answer: "Timeline bergantung pada scope dan tingkat kompleksitas proyek. Proyek yang lebih sederhana dapat selesai dalam beberapa minggu, sedangkan produk atau integrasi yang lebih kompleks dapat membutuhkan beberapa bulan. Estimasi waktu akan disepakati sebelum proses development dimulai." },
-  { id: "03", question: "Apakah Lyven hanya bekerja dengan perusahaan besar?", answer: "Tidak. Kami bekerja dengan startup, UMKM, bisnis yang sedang berkembang, organisasi, hingga perusahaan. Solusi akan disesuaikan dengan kebutuhan dan skala masing-masing proyek." },
-  { id: "04", question: "Apakah Lyven menyediakan maintenance setelah proyek selesai?", answer: "Ya. Kami dapat menyediakan maintenance, improvement, technical support, serta pengembangan lanjutan setelah launch sesuai scope layanan yang disepakati." },
-  { id: "05", question: "Teknologi apa yang digunakan Lyven?", answer: "Kami memilih teknologi berdasarkan kebutuhan setiap proyek. Stack yang digunakan dapat mencakup framework web dan mobile modern, API, database, cloud infrastructure, automation platform, serta teknologi AI." },
-  { id: "06", question: "Bagaimana cara memulai proyek dengan Lyven?", answer: "Ceritakan ide, tujuan, dan kebutuhan bisnis Anda kepada kami. Kami akan mempelajari kebutuhan tersebut, mendiskusikan pendekatan terbaik, kemudian menentukan scope, timeline, dan langkah selanjutnya bersama." },
+  { id: "01", question: "What types of projects does Lyven work on?", answer: "We build websites, web applications, mobile applications, custom software, system integrations, AI and automation solutions, and other digital products tailored to business needs." },
+  { id: "02", question: "How long does a typical project take?", answer: "Timelines depend on scope and complexity. A focused project may take a few weeks, while a more complex product or integration can take several months. We agree on the estimate before development begins." },
+  { id: "03", question: "Does Lyven only work with large companies?", answer: "No. We work with startups, small businesses, growing organizations, and established companies. Every solution is adapted to the needs and scale of the project." },
+  { id: "04", question: "Does Lyven provide support after launch?", answer: "Yes. We can provide maintenance, improvements, technical support, and continued development based on the agreed service scope." },
+  { id: "05", question: "What technologies does Lyven use?", answer: "We choose technology based on each project. The stack may include modern web and mobile frameworks, APIs, databases, cloud infrastructure, automation platforms, and AI technologies." },
+  { id: "06", question: "How do we start a project with Lyven?", answer: "Tell us about your idea, goals, and business needs. We will review the requirements, discuss the best approach, and define the scope, timeline, and next steps together." },
 ];
 
 export default function FaqSection() {
@@ -43,7 +43,7 @@ export default function FaqSection() {
           <h2 id="faq-heading" className="lyven-faq__headline">
             Common questions, <em>clear answers.</em>
           </h2>
-          <p className="lyven-faq__copy">Semua hal yang perlu Anda ketahui tentang proses kerja, timeline, dan cara bekerja bersama Lyven.</p>
+          <p className="lyven-faq__copy">Everything you need to know about our process, timelines, and working with Lyven.</p>
         </header>
 
         <ol className="lyven-faq__list">

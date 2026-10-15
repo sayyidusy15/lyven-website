@@ -58,7 +58,7 @@ export default function BlogSection() {
           </div>
 
           <div className="lyven-blog__intro">
-            <p>Baca artikel terbaru seputar strategi digital, pengembangan produk, teknologi, dan insight dari tim Lyven.</p>
+            <p>Read our latest notes on digital strategy, product development, technology, and the work behind meaningful products.</p>
             <Link href="/blog">View All Articles <span aria-hidden="true">→</span></Link>
           </div>
         </div>

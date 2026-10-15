@@ -37,7 +37,7 @@ export default function FinalCTA() {
               <span>something <em>meaningful?</em></span>
             </h2>
             <p className="lyven-final-cta__copy">
-              Kami membantu bisnis membangun produk digital, integrasi, dan sistem yang siap berkembang.
+              We help businesses build digital products, integrations, and systems designed to grow.
             </p>
             <Link href="/contact" className="lyven-final-cta__primary">
               Start Your Consultation <span aria-hidden="true">→</span>
