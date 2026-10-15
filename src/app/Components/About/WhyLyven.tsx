@@ -7,22 +7,22 @@ const values = [
   {
     icon: "bi-bar-chart-line",
     title: "Real Business Impact",
-    description: "Kami fokus pada solusi yang memberikan dampak nyata dan hasil yang terukur.",
+    description: "We focus on solutions that create real impact and measurable outcomes.",
   },
   {
     icon: "bi-layers",
     title: "Integrated Capabilities",
-    description: "Strategi, desain, development, dan integrasi dalam satu tim.",
+    description: "Strategy, design, development, and integration within one team.",
   },
   {
     icon: "bi-diagram-3",
     title: "Adaptable to Your Growth",
-    description: "Sistem yang fleksibel dan dapat berkembang seiring kebutuhan bisnis Anda.",
+    description: "Flexible systems designed to evolve with your business needs.",
   },
   {
     icon: "bi-people",
     title: "People You Can Rely On",
-    description: "Tim kolaboratif yang siap mendukung perkembangan bisnis Anda dalam jangka panjang.",
+    description: "A collaborative team committed to supporting your long-term growth.",
   },
 ];
 
@@ -70,8 +70,8 @@ export default function WhyLyven() {
             <span><em>growth.</em></span>
           </h2>
           <p className="lyven-why__copy">
-            Kami bekerja bersama bisnis yang ingin berkembang untuk membangun solusi digital yang tepat guna,
-            scalable, dan siap digunakan dalam jangka panjang.
+            We partner with growing businesses to build purposeful, scalable digital solutions
+            designed to create lasting value.
           </p>
           <Link href="/about" className="lyven-why__approach">
             <span aria-hidden="true">↗</span>

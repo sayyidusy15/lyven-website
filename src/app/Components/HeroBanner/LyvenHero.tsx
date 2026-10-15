@@ -11,20 +11,14 @@ export default function LyvenHero() {
       <OrbitBackground />
 
       <div className="lyven-hero__content">
-        <p className="lyven-hero__eyebrow">
-          <span aria-hidden="true" />
-          Mitra Digital untuk Brand Visioner
-        </p>
-
         <h1 id="lyven-hero-title" className="lyven-hero__title">
           <span>From idea to</span>
           <span>digital reality.</span>
         </h1>
 
         <p className="lyven-hero__description">
-          <span>Kami membantu brand dan bisnis membangun pengalaman</span>
-          <span>digital yang bermakna melalui strategi, desain, dan teknologi</span>
-          <span>yang bekerja nyata.</span>
+          <span>We create meaningful digital experiences through</span>
+          <span>strategy, design, and technology.</span>
         </p>
 
         <div className="lyven-hero__actions">
@@ -32,7 +26,7 @@ export default function LyvenHero() {
             Get a Quote <Arrow />
           </Link>
           <Link className="lyven-button lyven-button--secondary" href="/portfolio-list">
-            Lihat Portfolio <Arrow />
+            View Portfolio <Arrow />
           </Link>
         </div>
 

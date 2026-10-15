@@ -1,20 +1,21 @@
 "use client";
 
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { CSSProperties } from "react";
+import { useScrollFillProgress } from "./useScrollFillProgress";
 
 const lines = [
-  ["Kami", "membantu", "bisnis"],
-  ["mengubah", "ide", "menjadi"],
-  ["produk", "digital", "yang", "nyata,"],
-  ["berdampak,", "dan", "bertumbuh"],
-  ["bersama."],
+  ["We", "help", "businesses", "turn", "ideas"],
+  ["into", "clear", "identities,", "useful"],
+  ["digital", "experiences,", "and", "products"],
+  ["that", "are", "relevant,", "easy", "to", "use,"],
+  ["and", "ready", "to", "grow."],
 ];
 
 const metrics = [
-  { value: "120+", label: "Klien dipercaya" },
-  { value: "240+", label: "Proyek selesai" },
-  { value: "8 tahun", label: "Pengalaman tim" },
-  { value: "98%", label: "Klien repeat order" },
+  { value: "120+", label: "Trusted clients" },
+  { value: "240+", label: "Projects completed" },
+  { value: "8 years", label: "Team experience" },
+  { value: "98%", label: "Repeat clients" },
 ];
 
 function AboutOrbits() {
@@ -30,83 +31,58 @@ function AboutOrbits() {
 }
 
 export default function AboutIntro() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [progress, setProgress] = useState(0.12);
+  const { sectionRef, progress } = useScrollFillProgress({ minimum: 0, mode: "sticky" });
   const words = lines.flat();
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduceMotion.matches) {
-      setProgress(1);
-      return;
-    }
-
-    let frame = 0;
-    const update = () => {
-      const section = sectionRef.current;
-      if (!section) return;
-
-      const top = section.getBoundingClientRect().top;
-      const start = window.innerHeight * 0.8;
-      const end = window.innerHeight * 0.28;
-      setProgress(Math.min(1, Math.max(0.12, (start - top) / (start - end))));
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
+  const metricsReveal = Math.min(1, Math.max(0, (progress - 0.65) / 0.2));
+  const metricsOpacity = 0.45 + metricsReveal * 0.55;
+  const metricsOffset = `${(1 - metricsReveal) * 10}px`;
 
   let wordIndex = 0;
 
   return (
     <section ref={sectionRef} className="lyven-about" aria-labelledby="about-heading">
-      <AboutOrbits />
-      <div className="lyven-about__inner">
-        <div className="lyven-about__label">
-          <span>About Us</span>
-          <i aria-hidden="true" />
+      <div className="lyven-about__sticky">
+        <AboutOrbits />
+        <div className="lyven-about__inner">
+          <p className="lyven-about__label">About Us</p>
+
+          <h2 id="about-heading" className="lyven-about__statement">
+            {lines.map((line, lineIndex) => (
+              <span className="lyven-about__line" key={line.join(" ")}>
+                {line.map((word, lineWordIndex) => {
+                  const index = wordIndex++;
+                  const start = index / words.length;
+                  const fill = Math.min(1, Math.max(0, (progress - start * 0.78) / 0.2));
+                  const isHighlight = lineIndex === 1 && (lineWordIndex === 1 || lineWordIndex === 2);
+                  return (
+                    <span
+                      className={`lyven-about__word${isHighlight ? " is-highlight" : ""}`}
+                      style={{ "--word-fill": fill } as CSSProperties}
+                      key={`${word}-${index}`}
+                    >
+                      {word}
+                    </span>
+                  );
+                })}
+              </span>
+            ))}
+          </h2>
+
+          <dl
+            className="lyven-about__metrics"
+            style={{
+              "--metrics-opacity": metricsOpacity,
+              "--metrics-offset": metricsOffset,
+            } as CSSProperties}
+          >
+            {metrics.map((metric) => (
+              <div className="lyven-about__metric" key={metric.value}>
+                <dt>{metric.value}</dt>
+                <dd>{metric.label}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
-
-        <h2 id="about-heading" className="lyven-about__statement">
-          {lines.map((line) => (
-            <span className="lyven-about__line" key={line.join(" ")}>
-              {line.map((word) => {
-                const index = wordIndex++;
-                const start = index / words.length;
-                const fill = Math.min(1, Math.max(0, (progress - start * 0.78) / 0.2));
-                return (
-                  <span
-                    className="lyven-about__word"
-                    style={{ "--word-fill": fill } as CSSProperties}
-                    key={`${word}-${index}`}
-                  >
-                    {word}
-                  </span>
-                );
-              })}
-            </span>
-          ))}
-        </h2>
-
-        <dl className="lyven-about__metrics">
-          {metrics.map((metric) => (
-            <div className="lyven-about__metric" key={metric.value}>
-              <dt>{metric.value}</dt>
-              <dd>{metric.label}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   );
