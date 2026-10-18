@@ -1,13 +1,16 @@
 import React from 'react';
-import Footer1 from '../Components/Footer/Footer1';
-import Header4 from '../Components/Header/Header4';
+import Header5 from '../Components/Header/Header5';
+import Footer3 from '../Components/Footer/Footer3';
+import Marquee2 from '../Components/Marquee/Marquee2';
+
 
 const DefalultLayout = ({ children }) => {
     return (
         <div className='main-page-area'>
-            <Header4></Header4>
+            <Header5></Header5>
             {children}
-            <Footer1></Footer1>
+            {/* <Marquee2></Marquee2> */}
+            <Footer3></Footer3>
         </div>
     );
 };

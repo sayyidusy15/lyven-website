@@ -1,37 +1,45 @@
-import { Public_Sans } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Sans } from "next/font/google";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import "lenis/dist/lenis.css";
 import "slick-carousel/slick/slick.css";
+import SmoothScroll from "./Components/Common/SmoothScroll";
 import "./assets/main.css";
 
-const public_sans = Public_Sans({
+const instrumentSans = Instrument_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--body-color-font',
+  weight: 'variable',
+  variable: '--font-instrument-sans',
 });
 
+const bricolageGrotesque = Bricolage_Grotesque({
+  subsets: ['latin'],
+  weight: 'variable',
+  variable: '--font-bricolage-grotesque',
+});
 
 export const metadata = {
   title: {
     absolute: '',
-    default: 'Digitom - Digital Agency React NextJS Template',
-    template: '%s | Digitom - Digital Agency React NextJS Template',
+    default: 'Lyven Digital Agency',
+    template: '%s | Lyven Digital Agency',
   },
-  description: 'Digitom - Digital Agency React NextJS Template',
+  description: 'Lyven Digital Agency',
   openGraph: {
-    title: 'Digitom - Digital Agency React NextJS Template',
-    description: 'Digitom - Digital Agency React NextJS Template',
+    title: 'Lyven Digital Agency',
+    description: 'Lyven Digital Agency',
   },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${instrumentSans.variable} ${bricolageGrotesque.variable}`}>
       <head>
         <meta name="author" content="Themeservices" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`${public_sans.variable}`}>
+      <body>
+        <SmoothScroll />
         {children}
       </body>
     </html>

@@ -2,32 +2,71 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const PricingCard2 = ({addclass,name,content1,content2,price,duration,featurelist,btnname,btnurl}) => {
-    return (
-        <div className={addclass}>
-        <div className="cs_pricing_head">
-          <div className="cs_pricing_head_text">
-            <h3 className="cs_price_value cs_fs_40 cs_semibold">{price}</h3>
-            <p className="cs_fs_18 cs_medium cs_mb_21">{duration}</p>
-          </div>
-          <p className="cs_pricing_subtitle cs_mb_32">{content1}</p>
-        </div>
-        <div className="cs_pricing_seperator cs_mb_35"></div>
-        <div className="cs_pricing_feature cs_mb_24">
-          <ul className="cs_pricing_feature_list cs_medium cs_mp_0">
+const PricingCard2 = ({ 
+  isPopular, // Prop baru untuk menandai kartu "Active" (Tengah)
+  name, 
+  description, // Deskripsi singkat di bawah harga
+  price, 
+  duration, 
+  featurelist, 
+  btnname, 
+  btnurl 
+}) => {
+
+  // LOGIKA TOMBOL:
+  // Jika Popular -> Style 1 (Primary/Blue)
+  // Jika Tidak   -> Style 2 (Secondary/Outline)
+  const buttonClass = isPopular 
+    ? "cs_btn cs_style_1 cs_fs_14 cs_bold text-uppercase w-100 cs_center"
+    : "cs_btn cs_style_2 cs_fs_14 cs_bold text-uppercase w-100 cs_center";
+  return (
+    <div className={`cs_pricing_box ${isPopular ? 'active' : ''}`}>
+      
+      {/* 1. HEADER: Nama & Badge */}
+      <div className="cs_pricing_header_row">
+        <h4 className="cs_pricing_name">{name}</h4>
+        {isPopular && (
+          <span className="cs_popular_badge">Most Popular</span>
+        )}
+      </div>
+
+      {/* 2. PRICE */}
+      <div className="cs_pricing_price_row">
+        <h3 className="cs_price_value">{price}</h3>
+        <span className="cs_price_duration">{duration}</span>
+      </div>
+
+      {/* 3. DESCRIPTION */}
+      <p className="cs_pricing_desc">{description}</p>
+
+      {/* 4. BUTTON (Updated Classes) */}
+      <div className="cs_pricing_btn_wrapper">
+        <Link href={btnurl} className={buttonClass}>
+          {/* Tambahkan span agar animasi hover style_1 berjalan lancar */}
+          <span>{btnname}</span>
+        </Link>
+      </div>
+
+      {/* 5. SEPARATOR (Garis Tipis) */}
+      <div className="cs_pricing_divider"></div>
+
+      {/* 6. FEATURES */}
+      <div className="cs_pricing_features">
+        <ul className="cs_pricing_feature_list">
           {featurelist?.map((item, index) => (
             <li key={index}>
-              <Image src="/assets/img/icons/checkmark_2.svg" alt="img" width={16} height={16}   />
+              {/* Icon Checkmark */}
+              <div className="cs_check_icon">
+                 <Image src="/assets/img/icons/checkmark_2.svg" alt="check" width={14} height={14} />
+              </div>
               <span>{item}</span>
             </li>
-            ))}
-          </ul>
-        </div>
-        <p className="cs_fs_15 cs_medium cs_mb_15">{content2}</p>
-        <Link href={btnurl} className="cs_pricing_btn cs_radius_8 cs_semibold text-capitalize" aria-label="Click to buy service">{btnname}</Link>
-        <span className="cs_pricing_badge cs_blue_bg cs_fs_15 cs_white_color cs_medium position-absolute">{name}</span>
+          ))}
+        </ul>
       </div>
-    );
+
+    </div>
+  );
 };
 
 export default PricingCard2;

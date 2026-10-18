@@ -3,7 +3,7 @@ import React from 'react';
 
 const Marquee = () => {
     return (
-<div className="cs_brands cs_gray_bg_3">
+<div className="cs_brands cs_blue_bg_3">
       <div className="cs_horizontal_slider_wrapper">
         <div className="cs_horizontal_slider_in">
           <div className="cs_brands_list cs_fs_22 cs_heading_color cs_gallery_list">

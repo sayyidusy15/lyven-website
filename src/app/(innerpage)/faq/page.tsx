@@ -1,17 +1,14 @@
 import React from 'react';
 import BreadCumb from '../../Components/Common/BreadCumb';
-import Faq1 from '../../Components/Faq/Faq1';
+import FaqPage from '../../Components/Faq/FaqPage';
 
-const page = () => {
+const Page = () => {
   return (
-    <div>
-               <BreadCumb
-                bgimg="/assets/img/page_header.jpg"
-                Title="FAQ’s"
-            ></BreadCumb>    
-            <Faq1></Faq1>      
-    </div>
+    <>
+
+      <FaqPage />
+    </>
   );
 };
 
-export default page;
+export default Page;
