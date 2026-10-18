@@ -49,7 +49,7 @@ export const lyvenProjects: LyvenProject[] = [
     category: "UI/UX Design",
     categoryPill: "Web App • Education",
     description: "School discovery and comparison platform for parents and students.",
-    image: "/assets/img/ChatGPT Image Oct 8, 2026, 06_29_27 PM-2.png",
+    image: "/assets/img/my-schoolmate1.png",
     featured: true,
     bgColor: "#f5f6f8",
     hoverBgColor: "#eceef2",

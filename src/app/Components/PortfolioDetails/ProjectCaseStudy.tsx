@@ -26,6 +26,7 @@ function ScreenshotVisual({ screenshot, projectTitle }: { screenshot: ProjectScr
       src={screenshot.image}
       alt={`${projectTitle} ${screenshot.title} screenshot`}
       fill
+      unoptimized={!screenshot.image.startsWith("/")}
       sizes="(max-width: 600px) 86vw, (max-width: 991px) 58vw, 38vw"
     />
   );
@@ -90,7 +91,7 @@ export default function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
   return (
     <main className="lyven-case-study">
       <section className="lyven-case-hero" aria-labelledby="case-study-heading">
-        <div className="lyven-case-hero__background" aria-hidden="true" />
+        <div className="lyven-case-hero__background" aria-hidden="true" style={project.heroImage ? { backgroundImage: `url("${project.heroImage.replaceAll('"', '%22')}")` } : undefined} />
         <div className="lyven-case-study__inner lyven-case-hero__layout">
           <div className="lyven-case-hero__content">
             <Link href="/portfolio-list" className="lyven-case-hero__back">
@@ -165,6 +166,7 @@ export default function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
                 src={project.aboutImage}
                 alt={`${project.title} supporting visual`}
                 fill
+                unoptimized={!project.aboutImage.startsWith("/")}
                 sizes="(max-width: 767px) calc(100vw - 40px), 38vw"
               />
             ) : (
@@ -174,7 +176,7 @@ export default function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
         </div>
       </section>
 
-      <section className="lyven-case-screenshots" aria-labelledby="case-screenshots-heading">
+      {project.screenshots.length > 0 && <section className="lyven-case-screenshots" aria-labelledby="case-screenshots-heading">
         <div className="lyven-case-study__inner lyven-case-screenshots__header">
           <div>
             <p>Project Screenshots</p>
@@ -225,7 +227,7 @@ export default function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
             </article>
           ))}
         </div>
-      </section>
+      </section>}
     </main>
   );
 }

@@ -3,12 +3,17 @@
 import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { lyvenProjects } from "../../../lib/projects";
+import type { LyvenProject } from "../../../lib/projects";
+import { MAX_HOMEPAGE_PROJECTS } from "../../../lib/local-cms";
+import { loadProjects } from "../../../lib/supabase-cms";
 
 export default function SelectedWork() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [projects, setProjects] = useState<LyvenProject[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   const checkScroll = () => {
     if (!sliderRef.current) return;
@@ -27,6 +32,30 @@ export default function SelectedWork() {
       el.removeEventListener("scroll", checkScroll);
       window.removeEventListener("resize", checkScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    let mounted = true;
+    loadProjects().then((saved) => {
+      if (!mounted) return;
+      setProjects(saved.filter((item) => item.status === "Published").map((item, index) => {
+        return {
+          index: String(index + 1).padStart(2, "0"),
+          slug: item.slug,
+          title: item.title,
+          category: item.category,
+          categoryPill: item.category,
+          description: item.summary,
+          image: item.thumbnail || undefined,
+          detailHref: `/portfolio-details/${item.slug}`,
+          featured: item.featured,
+          bgColor: "#edf3fa",
+          hoverBgColor: "#e4edf7",
+        };
+      }));
+      window.requestAnimationFrame(checkScroll);
+    }).catch(() => { if (mounted) setLoadError(true); }).finally(() => { if (mounted) setLoading(false); });
+    return () => { mounted = false; };
   }, []);
 
   const handleScroll = (direction: "left" | "right") => {
@@ -95,13 +124,13 @@ export default function SelectedWork() {
         {/* Horizontal Slider with 5 Project Cards */}
         <div className="lyven-work__slider-wrapper">
           <div className="lyven-work__slider" ref={sliderRef}>
-            {lyvenProjects.filter((project) => project.featured).map((project, idx) => (
+            {projects.filter((project) => project.featured && project.image).slice(0, MAX_HOMEPAGE_PROJECTS).map((project, idx) => (
               <article
                 className="lyven-work__card"
-                key={project.index}
+                key={project.slug}
                 style={{ backgroundColor: project.bgColor }}
               >
-                <Link href="/portfolio-list" aria-label={`View ${project.title} project`}>
+                <Link href={project.detailHref ?? "/portfolio-list"} aria-label={`View ${project.title} project`}>
                   {/* Card Header Meta */}
                   <div className="lyven-work__meta">
                     <div className="lyven-work__meta-top">
@@ -119,6 +148,7 @@ export default function SelectedWork() {
                     <Image
                       src={project.image!}
                       alt={`${project.title} showcase mockup`}
+                      unoptimized={!project.image!.startsWith("/")}
                       width={640}
                       height={800}
                       className="lyven-work__image"
@@ -131,6 +161,7 @@ export default function SelectedWork() {
             ))}
           </div>
         </div>
+        {projects.filter((project) => project.featured && project.image).length === 0 && <p className="lyven-work__empty" role="status">{loading ? "Loading selected projects…" : loadError ? "Projects are temporarily unavailable. Please check back shortly." : "No projects are featured yet. Explore our full portfolio for more work."}</p>}
       </div>
     </section>
   );

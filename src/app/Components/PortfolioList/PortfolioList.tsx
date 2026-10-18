@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState, type CSSProperties } from "react";
-import type { LyvenProject, ProjectCategory } from "../../../lib/projects";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import type { ProjectCategory } from "../../../lib/projects";
+import type { LyvenProject } from "../../../lib/projects";
+import { loadProjects } from "../../../lib/supabase-cms";
 
 type Filter = "All Projects" | ProjectCategory;
 
@@ -16,17 +18,39 @@ const filters: Filter[] = [
 
 const PROJECTS_PER_PAGE = 3;
 
-interface PortfolioListProps {
-  data: LyvenProject[];
-}
-
-export default function PortfolioList({ data }: PortfolioListProps) {
+export default function PortfolioList() {
   const [activeFilter, setActiveFilter] = useState<Filter>("All Projects");
   const [currentPage, setCurrentPage] = useState(1);
+  const [projects, setProjects] = useState<LyvenProject[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    loadProjects().then((saved) => {
+        if (!mounted) return;
+        setProjects(saved.filter((project) => project.status === "Published").map((project, index) => {
+          return {
+            index: String(index + 1).padStart(2, "0"),
+            slug: project.slug,
+            title: project.title,
+            category: project.category,
+            categoryPill: project.category,
+            description: project.summary,
+            image: project.thumbnail || undefined,
+            detailHref: `/portfolio-details/${project.slug}`,
+            featured: project.featured,
+            bgColor: "#edf3fa",
+            hoverBgColor: "#e4edf7",
+          };
+        }));
+      }).catch(() => { if (mounted) setLoadError(true); }).finally(() => { if (mounted) setLoading(false); });
+    return () => { mounted = false; };
+  }, []);
 
   const visibleProjects = useMemo(
-    () => activeFilter === "All Projects" ? data : data.filter((project) => project.category === activeFilter),
-    [activeFilter, data],
+    () => activeFilter === "All Projects" ? projects : projects.filter((project) => project.category === activeFilter),
+    [activeFilter, projects],
   );
   const pageCount = Math.max(1, Math.ceil(visibleProjects.length / PROJECTS_PER_PAGE));
   const pageStart = (currentPage - 1) * PROJECTS_PER_PAGE;
@@ -86,6 +110,7 @@ export default function PortfolioList({ data }: PortfolioListProps) {
                         src={project.image}
                         alt={`${project.title} project showcase`}
                         fill
+                        unoptimized={!project.image.startsWith("/")}
                         priority={index < 3 && activeFilter === "All Projects" && currentPage === 1}
                         sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1050px) 44vw, 31vw"
                       />
@@ -117,7 +142,7 @@ export default function PortfolioList({ data }: PortfolioListProps) {
             </div>
           ) : (
             <p className="lyven-portfolio-empty" role="status">
-              No projects are available in this category yet.
+              {loading ? "Loading projects…" : loadError ? "Projects are temporarily unavailable. Please check back shortly." : projects.length ? "No projects are available in this category yet." : "No projects have been published yet. Please check back soon."}
             </p>
           )}
 
