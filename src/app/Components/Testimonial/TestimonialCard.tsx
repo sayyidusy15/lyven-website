@@ -5,16 +5,18 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabaseClient";
 
 export default function TestimonialCard() {
-  const [testimonials, setTestimonials] = useState([]);
+  const [testimonials, setTestimonials] = useState<{ id: string; title: string; message: string; star: number; senderName: string; senderTitle: string }[]>([]);
 
   useEffect(() => {
+    if (!supabase) return;
     const getTestimonials = async () => {
       const { data, error } = await supabase
-        .from("testimoni")
-        .select("*");
+        .from("lyven_testimonials")
+        .select("*")
+        .eq("status", "Published")
+        .order("sort_order", { ascending: true });
 
-      if (error) console.log(error);
-      else setTestimonials(data);
+      if (!error && data) setTestimonials(data.map((item) => ({ id: item.id, title: item.title, message: item.message, star: item.star, senderName: item.sender_name, senderTitle: item.sender_title })));
     };
 
     getTestimonials();
@@ -44,6 +46,7 @@ export default function TestimonialCard() {
       </div>
       
       <div className="overflow-hidden marquee-container">
+        {!testimonials.length && <p className="text-center text-muted">No client testimonials have been published yet.</p>}
         <div className="d-flex marquee-row marquee-left">
           {marqueeRow1.map((t, index) => (
             <div className="mx-3">

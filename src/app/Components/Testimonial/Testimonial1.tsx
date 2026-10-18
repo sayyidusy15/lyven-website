@@ -5,23 +5,17 @@ import Slider from "react-slick";
 import { supabase } from "../../../lib/supabaseClient";
 
 const Testimonial1 = () => {
-  const [testimonials, setTestimonials] = useState([]);
+  const [testimonials, setTestimonials] = useState<{ id: string; senderName: string; senderTitle: string; message: string; star: number }[]>([]);
 
   useEffect(() => {
+    if (!supabase) return;
     const fetchTestimonials = async () => {
       const { data, error } = await supabase
-        .from("testimoni")
+        .from("lyven_testimonials")
         .select("*")
-        .order("id", { ascending: true });
-
-      console.log("DATA:", data);
-      console.log("ERROR:", error);
-
-      if (error) {
-        console.error("Error fetch:", error);
-      } else {
-        setTestimonials(data);
-      }
+        .eq("status", "Published")
+        .order("sort_order", { ascending: true });
+      if (!error && data) setTestimonials(data.map((item) => ({ id: item.id, senderName: item.sender_name, senderTitle: item.sender_title, message: item.message, star: item.star })));
     };
 
     fetchTestimonials();
@@ -45,8 +39,8 @@ const Testimonial1 = () => {
   };
 
   const sliderRef = useRef(null);
-  const next = () => sliderRef.current.slickNext();
-  const previous = () => sliderRef.current.slickPrev();
+  const next = () => sliderRef.current?.slickNext();
+  const previous = () => sliderRef.current?.slickPrev();
 
   return (
     <section className="cs_slider cs_style_1 cs_testimonial_slider cs_slider_gap_30 position-relative">
@@ -88,7 +82,7 @@ const Testimonial1 = () => {
         </div>
 
         {/* Slider */}
-        <Slider ref={sliderRef} {...settings}>
+        {testimonials.length ? <Slider ref={sliderRef} {...settings}>
           {testimonials.map((item) => (
             <div key={item.id} className="cs_slide">
               <div className="cs_testimonial cs_style_1">
@@ -132,7 +126,7 @@ const Testimonial1 = () => {
               </div>
             </div>
           ))}
-        </Slider>
+        </Slider> : <p>No client testimonials have been published yet.</p>}
       </div>
     </section>
   );

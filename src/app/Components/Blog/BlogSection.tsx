@@ -2,28 +2,24 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type CSSProperties, useEffect, useRef } from "react";
-
-const featuredPosts = [
-  {
-    category: "Strategy",
-    title: "How to Turn Ideas into Digital Products That Last",
-    image: "/assets/img/post_6.jpg",
-  },
-  {
-    category: "Development",
-    title: "Web vs Mobile Apps: Which One Is Right for You?",
-    image: "/assets/img/post_7.jpg",
-  },
-  {
-    category: "Technology",
-    title: "How AI Can Improve Your Business Operations",
-    image: "/assets/img/post_10.jpg",
-  },
-];
+import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { blogDetailHref, type BlogPost } from "../../../lib/blog-posts";
+import { MAX_FEATURED_ARTICLES } from "../../../lib/local-cms";
+import { articleToBlogPost, loadArticles } from "../../../lib/supabase-cms";
 
 export default function BlogSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [featuredPosts, setFeaturedPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    loadArticles().then((rows) => {
+      if (mounted) setFeaturedPosts(rows.filter((article) => article.status === "Published" && article.featured).slice(0, MAX_FEATURED_ARTICLES).map(articleToBlogPost));
+    }).catch(() => { if (mounted) setLoadError(true); }).finally(() => { if (mounted) setLoading(false); });
+    return () => { mounted = false; };
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -66,8 +62,8 @@ export default function BlogSection() {
         <div className="lyven-blog__grid">
           {featuredPosts.map((post, index) => (
             <article className="lyven-blog__card" key={post.title} style={{ "--blog-delay": `${index * 70}ms` } as CSSProperties}>
-              <Link href="/blog/blog-details" aria-label={`Read ${post.title}`}>
-                <Image src={post.image} alt={post.title} fill sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 991px) 46vw, 400px" />
+              <Link href={blogDetailHref(post.slug)} aria-label={`Read ${post.title}`}>
+                <Image src={post.image} alt={post.imageAlt} fill unoptimized={!post.image.startsWith("/")} sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 991px) 46vw, 400px" />
                 <span className="lyven-blog__overlay" aria-hidden="true" />
                 <span className="lyven-blog__card-content">
                   <span className="lyven-blog__category">{post.category}</span>
@@ -78,6 +74,7 @@ export default function BlogSection() {
             </article>
           ))}
         </div>
+        {featuredPosts.length === 0 && <p className="lyven-blog__empty" role="status">{loading ? "Loading featured articles…" : loadError ? "Articles are temporarily unavailable. Please check back shortly." : "No featured articles have been published yet. Explore our blog for more stories."}</p>}
       </div>
     </section>
   );

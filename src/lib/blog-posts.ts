@@ -33,6 +33,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "4 min read",
     image: "/assets/img/post_6.jpg",
     imageAlt: "Abstract blue architectural form",
+    featured: true,
     searchTerms: ["design", "ui ux", "users"],
   },
   {
@@ -44,6 +45,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "6 min read",
     image: "/assets/img/post_10.jpg",
     imageAlt: "Code displayed on a dark screen",
+    featured: true,
     searchTerms: ["development", "web apps", "technology", "scalable"],
   },
   {
@@ -55,6 +57,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "5 min read",
     image: "/assets/img/post_8.jpg",
     imageAlt: "Layered white architectural details",
+    featured: true,
     searchTerms: ["process", "brief", "launch", "collaboration"],
   },
   {
