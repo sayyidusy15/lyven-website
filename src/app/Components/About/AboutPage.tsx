@@ -130,8 +130,8 @@ export default function AboutPage() {
         <div className="lyven-about-page__studio-inner">
           <div className="lyven-about-page__studio-visual">
             <Image
-              src="/assets/img/what-we-do-header.png"
-              alt="Lyven product interfaces shown across web and mobile screens"
+              src="/assets/img/about-us-image.png"
+              alt="Lyven team and creative studio workspace"
               fill
               sizes="(max-width: 991px) 100vw, 58vw"
             />

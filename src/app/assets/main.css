@@ -79,7 +79,7 @@ Lyven About page
   position: absolute;
   z-index: -2;
   inset: 0;
-  background-image: url("/assets/img/what-we-do-header.png");
+  background-image: url("/assets/img/about-us-header.png");
   background-position: center;
   background-size: cover;
 }
@@ -13531,8 +13531,16 @@ Lyven services editorial
 
 .lyven-blog__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.lyven-blog__empty,
+.lyven-work__empty {
+  padding: 28px 0;
+  color: #687b99;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .lyven-blog__card {
@@ -16616,6 +16624,10 @@ Lyven blog page — featured editorial
 .lyven-article-prose section { margin-top: 48px; }
 .lyven-article-prose h2 { margin: 0 0 16px; font-family: var(--heading-font); font-size: clamp(29px, 2.6vw, 38px); font-weight: 620; line-height: 1.12; letter-spacing: -.035em; }
 .lyven-article-prose blockquote { margin: 38px 0; padding: 30px 34px; color: #18365e; background: linear-gradient(135deg, #f3f8ff, #fbfdff); border-left: 3px solid var(--lyven-blue); border-radius: 0 18px 18px 0; font-family: var(--heading-font); font-size: 23px; font-weight: 500; line-height: 1.48; }
+.lyven-article-authored-content h2 { margin: 42px 0 16px; font-family: var(--heading-font); font-size: clamp(29px, 2.6vw, 38px); font-weight: 620; line-height: 1.12; letter-spacing: -.035em; }
+.lyven-article-authored-content h3 { margin: 32px 0 13px; font-family: var(--heading-font); font-size: clamp(22px, 2vw, 28px); font-weight: 620; line-height: 1.2; letter-spacing: -.025em; }
+.lyven-article-authored-content ul, .lyven-article-authored-content ol { margin: 0 0 26px; padding-left: 27px; color: #536681; font-size: 17px; line-height: 1.78; }
+.lyven-article-authored-content strong, .lyven-article-authored-content b { color: #243a58; font-weight: 700; }
 .lyven-article-callout { margin: 34px 0; padding: 26px 28px; background: #f5f9ff; border: 1px solid #dce9fa; border-radius: 18px; }
 .lyven-article-callout strong { color: var(--lyven-blue); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
 .lyven-article-callout p { margin: 10px 0 0; }
