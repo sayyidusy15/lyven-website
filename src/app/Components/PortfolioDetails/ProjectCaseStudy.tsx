@@ -90,7 +90,7 @@ export default function ProjectCaseStudy({ project }: ProjectCaseStudyProps) {
 
   return (
     <main className="lyven-case-study">
-      <section className="lyven-case-hero" aria-labelledby="case-study-heading">
+      <section className={`lyven-case-hero${project.heroImage ? " lyven-case-hero--custom-image" : ""}`} aria-labelledby="case-study-heading">
         <div className="lyven-case-hero__background" aria-hidden="true" style={project.heroImage ? { backgroundImage: `url("${project.heroImage.replaceAll('"', '%22')}")` } : undefined} />
         <div className="lyven-case-study__inner lyven-case-hero__layout">
           <div className="lyven-case-hero__content">
