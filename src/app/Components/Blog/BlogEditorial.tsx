@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { blogDetailHref, type BlogPost } from "../../../lib/blog-posts";
 import { MAX_FEATURED_ARTICLES } from "../../../lib/local-cms";
-import { articleToBlogPost, loadArticles } from "../../../lib/supabase-cms";
 
 const ARTICLES_PER_PAGE = 6;
 const categories = ["All", "Design", "Development", "Strategy", "Process"] as const;
@@ -39,20 +38,11 @@ function StackedArticle({ post }: { post: BlogPost }) {
   );
 }
 
-export default function BlogEditorial() {
+export default function BlogEditorial({ initialPosts }: { initialPosts: BlogPost[] }) {
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const [publicPosts, setPublicPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [loadError, setLoadError] = useState(false);
-  useEffect(() => {
-    let mounted = true;
-    loadArticles().then((rows) => { if (mounted) setPublicPosts(rows.filter((article) => article.status === "Published").map(articleToBlogPost)); })
-      .catch(() => { if (mounted) setLoadError(true); })
-      .finally(() => { if (mounted) setLoading(false); });
-    return () => { mounted = false; };
-  }, []);
+  const publicPosts = initialPosts;
   const selectedPosts = publicPosts.filter((post) => post.featured).slice(0, MAX_FEATURED_ARTICLES);
   const featuredPost = selectedPosts[0];
   const stackedPosts = selectedPosts.slice(1);
@@ -93,14 +83,14 @@ export default function BlogEditorial() {
             </Link>
           </article>
           <div className="lyven-blog-stacked" aria-label="More featured articles">{stackedPosts.map((post) => <StackedArticle post={post} key={post.slug} />)}</div>
-        </div> : <div className="lyven-blog-feed__empty" role="status"><strong>{loading ? "Loading featured articles…" : loadError ? "Articles are temporarily unavailable." : "No featured articles yet."}</strong><span>{loading || loadError ? "Please check back shortly." : "Explore all articles below."}</span></div>}</div>
+        </div> : <div className="lyven-blog-feed__empty" role="status"><strong>No featured articles yet.</strong><span>Explore all articles below.</span></div>}</div>
       </section>
 
       <section id="all-articles" className="lyven-blog-feed" aria-labelledby="blog-feed-heading">
         <div className="lyven-blog-page__inner">
           <div className="lyven-blog-feed__heading"><div><p className="lyven-blog-page__eyebrow">All Articles</p><h2 id="blog-feed-heading">Explore more from Lyven.</h2></div><div className="lyven-blog-search"><label className="visually-hidden" htmlFor="blog-search">Search articles</label><i className="bi bi-search" aria-hidden="true" /><input id="blog-search" type="search" value={query} onChange={(event) => { setQuery(event.target.value); setCurrentPage(1); }} placeholder="Search articles..." autoComplete="off" /></div></div>
           <div className="lyven-blog-categories" role="group" aria-label="Filter articles by category">{categories.map((category) => <button key={category} type="button" className={activeCategory === category ? "is-active" : undefined} aria-pressed={activeCategory === category} onClick={() => { setActiveCategory(category); setCurrentPage(1); }}>{category}</button>)}</div>
-          {pagedPosts.length ? <div className="lyven-blog-feed__grid" aria-live="polite">{pagedPosts.map((post) => <ArticleCard post={post} key={post.slug} />)}</div> : <div className="lyven-blog-feed__empty" role="status"><strong>{loading ? "Loading articles…" : loadError ? "Articles are temporarily unavailable." : publicPosts.length ? "No articles found." : "No articles published yet."}</strong><span>{loading || loadError ? "Please check back shortly." : publicPosts.length ? "Try another keyword or category." : "New stories will appear here once published."}</span></div>}
+          {pagedPosts.length ? <div className="lyven-blog-feed__grid" aria-live="polite">{pagedPosts.map((post) => <ArticleCard post={post} key={post.slug} />)}</div> : <div className="lyven-blog-feed__empty" role="status"><strong>{publicPosts.length ? "No articles found." : "No articles published yet."}</strong><span>{publicPosts.length ? "Try another keyword or category." : "New stories will appear here once published."}</span></div>}
           {pageCount > 1 && <nav className="lyven-blog-pager" aria-label="Blog pages"><button type="button" aria-label="Previous blog page" disabled={currentPage === 1} onClick={() => goToPage(Math.max(1, currentPage - 1))}>←</button><div>{Array.from({ length: pageCount }, (_, index) => index + 1).map((page) => <button key={page} type="button" className={page === currentPage ? "is-active" : undefined} aria-current={page === currentPage ? "page" : undefined} aria-label={`View blog page ${page}`} onClick={() => goToPage(page)}>{String(page).padStart(2, "0")}</button>)}</div><button type="button" aria-label="Next blog page" disabled={currentPage === pageCount} onClick={() => goToPage(Math.min(pageCount, currentPage + 1))}>→</button></nav>}
         </div>
       </section>

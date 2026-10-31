@@ -2,24 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef } from "react";
 import { blogDetailHref, type BlogPost } from "../../../lib/blog-posts";
-import { MAX_FEATURED_ARTICLES } from "../../../lib/local-cms";
-import { articleToBlogPost, loadArticles } from "../../../lib/supabase-cms";
 
-export default function BlogSection() {
+export default function BlogSection({ featuredPosts }: { featuredPosts: BlogPost[] }) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [featuredPosts, setFeaturedPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [loadError, setLoadError] = useState(false);
-
-  useEffect(() => {
-    let mounted = true;
-    loadArticles().then((rows) => {
-      if (mounted) setFeaturedPosts(rows.filter((article) => article.status === "Published" && article.featured).slice(0, MAX_FEATURED_ARTICLES).map(articleToBlogPost));
-    }).catch(() => { if (mounted) setLoadError(true); }).finally(() => { if (mounted) setLoading(false); });
-    return () => { mounted = false; };
-  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -74,7 +61,7 @@ export default function BlogSection() {
             </article>
           ))}
         </div>
-        {featuredPosts.length === 0 && <p className="lyven-blog__empty" role="status">{loading ? "Loading featured articles…" : loadError ? "Articles are temporarily unavailable. Please check back shortly." : "No featured articles have been published yet. Explore our blog for more stories."}</p>}
+        {featuredPosts.length === 0 && <p className="lyven-blog__empty" role="status">No featured articles have been published yet. Explore our blog for more stories.</p>}
       </div>
     </section>
   );

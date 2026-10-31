@@ -4,6 +4,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import "lenis/dist/lenis.css";
 import "slick-carousel/slick/slick.css";
 import SmoothScroll from "./Components/Common/SmoothScroll";
+import type { Metadata } from "next";
+import { getSiteUrl } from "../lib/site-url";
 import "./assets/main.css";
 
 const instrumentSans = Instrument_Sans({
@@ -18,26 +20,36 @@ const bricolageGrotesque = Bricolage_Grotesque({
   variable: '--font-bricolage-grotesque',
 });
 
-export const metadata = {
+const siteUrl = getSiteUrl();
+const siteDescription = "Lyven helps businesses shape ideas into clear identities, useful digital experiences, and scalable products.";
+
+export const metadata: Metadata = {
+  metadataBase: siteUrl ?? undefined,
   title: {
-    absolute: '',
-    default: 'Lyven Digital Agency',
-    template: '%s | Lyven Digital Agency',
+    default: "Lyven | Digital Product Design & Development",
+    template: "%s | Lyven",
   },
-  description: 'Lyven Digital Agency',
+  description: siteDescription,
+  applicationName: "Lyven",
+  creator: "Lyven",
+  publisher: "Lyven",
+  robots: siteUrl ? { index: true, follow: true } : { index: false, follow: false },
+  icons: { icon: "/assets/img/favicon.png" },
   openGraph: {
-    title: 'Lyven Digital Agency',
-    description: 'Lyven Digital Agency',
+    type: "website",
+    locale: "en_US",
+    siteName: "Lyven",
+    title: "Lyven | Digital Product Design & Development",
+    description: siteDescription,
+    url: siteUrl?.toString(),
+    images: siteUrl ? [{ url: new URL("/assets/img/CTA.png", siteUrl).toString(), width: 1815, height: 719, alt: "Lyven digital experiences" }] : undefined,
   },
+  twitter: { card: "summary_large_image", title: "Lyven | Digital Product Design & Development", description: siteDescription },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${instrumentSans.variable} ${bricolageGrotesque.variable}`}>
-      <head>
-        <meta name="author" content="Themeservices" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
       <body>
         <SmoothScroll />
         {children}
