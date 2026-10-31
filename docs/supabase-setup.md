@@ -2,6 +2,8 @@
 
 The copy-paste SQL is in [`supabase/lyven_schema.sql`](../supabase/lyven_schema.sql). Run it in **Supabase Dashboard → SQL Editor** using the same project as `.env.local`. It creates the schema, Storage bucket, and access rules. The admin dashboard and public Portfolio/Blog pages now read this schema directly. It does **not** copy records previously saved in browser IndexedDB or upload local browser images; those need a separate migration.
 
+If you already ran the original schema, run [`supabase/lyven_featured_thumbnail_migration.sql`](../supabase/lyven_featured_thumbnail_migration.sql) once before saving a project from the updated admin. It adds a separate `featured_thumbnail_media_id` for homepage portfolio cards and updates the public media-read policy. No existing project or image is deleted.
+
 Optionally, run [`supabase/lyven_seed_starter.sql`](../supabase/lyven_seed_starter.sql) **after** the schema. It copies six portfolio entries, eight blog titles/excerpts, and their bundled `/assets/` image references. Portfolio entries are Published. Blog entries are Draft because their individual article bodies are not authored yet; complete and review each one before publishing. The seed does not invent client inquiries or testimonials, and it does not import browser-only edits. Empty tables show dedicated empty states in the admin and public pages.
 
 ## What each table holds
@@ -10,7 +12,7 @@ Optionally, run [`supabase/lyven_seed_starter.sql`](../supabase/lyven_seed_start
 | --- | --- |
 | `lyven_admin_users` | Server-managed list of admin Auth UUIDs; not passwords. `owner`/`editor` is stored for future permissions; both currently have the same CMS rights. |
 | `lyven_media` | Media Library metadata: name, alt text, placement, dimensions, Storage object path or existing `/assets/` URL. |
-| `lyven_projects` | Portfolio card and case-study title, slug, category, summary, description, industry, duration, year, link, thumbnail/header/overview image, featured flag, publishing status. |
+| `lyven_projects` | Portfolio card and case-study title, slug, category, summary, description, industry, duration, year, link, portfolio thumbnail, separate homepage featured thumbnail, header/overview image, featured flag, publishing status. |
 | `lyven_project_gallery` | Ordered detail-page gallery images and optional captions, each linked to a project and media item. |
 | `lyven_articles` | Blog title, slug, category, excerpt, rich-text HTML, cover image, author details, tags, date, reading time, featured flag, publishing status. |
 | `lyven_inquiries` | Contact-form submissions and Inbox fields: sender, project type, budget, timeline, message, received time, status, internal note. |
@@ -39,10 +41,10 @@ To revoke an admin now, set `active = false` in `lyven_admin_users` **and** remo
 
 - Bucket: `lyven-media`, public-read, 10 MB per file, JPEG/PNG/WebP/AVIF only. Upload, replace, and delete are allowed only for an active admin by Storage policies. Do not insert or delete directly in `storage.objects`; use the Storage API.
 - The SQL creates policies for this bucket but cannot neutralize unrelated, pre-existing broad policies on `storage.objects`. Review all Storage policies in the Supabase dashboard before production. If a `lyven-media` bucket already exists, the schema leaves its existing configuration unchanged; confirm it is public and has the expected MIME/size limits.
-- The dashboard uploads to a unique `uploads/<uuid>.<extension>` path and inserts a `lyven_media` row with that **relative path**. Its UUID is used in `lyven_projects.thumbnail_media_id`, `hero_media_id`, or `about_media_id`; `lyven_project_gallery` holds ordered screenshots. Blog cover uses `lyven_articles.cover_media_id`.
+- The dashboard uploads to a unique `uploads/<uuid>.<extension>` path and inserts a `lyven_media` row with that **relative path**. Its UUID is used in `lyven_projects.thumbnail_media_id`, `featured_thumbnail_media_id`, `hero_media_id`, or `about_media_id`; `lyven_project_gallery` holds ordered screenshots. Blog cover uses `lyven_articles.cover_media_id`.
 - Derive display URLs with `supabase.storage.from('lyven-media').getPublicUrl(storage_path)`. Existing bundled images can use `external_url` such as `/assets/img/post_9.jpg` instead. Browser `data:`/base64 images must be uploaded as files before migration.
-- Suggested source sizes from the dashboard: portfolio card **1350×1000**, project header **1920×725**, gallery **1480×1000**, blog cover **1600×900**, page background **2160×720**. SQL stores measured dimensions; the upload UI should check them. The public bucket makes even unpublished files accessible to anyone who knows a file URL; use a separate private bucket if draft images must be confidential.
-- Foreign keys prevent deleting a media metadata row still referenced by a project or article. When removing an unused asset, delete its `lyven_media` row and then remove the Storage object with the SDK. Deleting the metadata alone does not delete the bytes.
+- Suggested source sizes from the dashboard: portfolio card **1350×1000**, homepage featured card **1122×1402**, project header **1920×725**, gallery **1480×1000**, blog cover **1600×900**, page background **2160×720**. SQL stores measured dimensions. The public bucket makes even unpublished files accessible to anyone who knows a file URL; use a separate private bucket if draft images must be confidential.
+- Existing featured projects temporarily reuse their portfolio thumbnail until a separate homepage image is assigned. New projects selected as featured require the separate image. Removing an assigned media asset from the dashboard first clears its project/article references, then deletes its metadata and Storage object after confirmation.
 
 ## Access behavior and integration notes
 

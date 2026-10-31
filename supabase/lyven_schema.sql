@@ -90,6 +90,7 @@ create table if not exists public.lyven_projects (
   project_year text not null default '',
   website_url text check (website_url is null or website_url ~ '^https://'),
   thumbnail_media_id uuid references public.lyven_media(id) on delete restrict,
+  featured_thumbnail_media_id uuid references public.lyven_media(id) on delete restrict,
   hero_media_id uuid references public.lyven_media(id) on delete restrict,
   about_media_id uuid references public.lyven_media(id) on delete restrict,
   featured boolean not null default false,
@@ -285,7 +286,7 @@ drop policy if exists lyven_media_public_read on public.lyven_media;
 create policy lyven_media_public_read on public.lyven_media
   for select to anon, authenticated using (
     exists (select 1 from public.lyven_projects as p
-      where p.status = 'Published' and lyven_media.id in (p.thumbnail_media_id, p.hero_media_id, p.about_media_id))
+      where p.status = 'Published' and lyven_media.id in (p.thumbnail_media_id, p.featured_thumbnail_media_id, p.hero_media_id, p.about_media_id))
     or exists (select 1 from public.lyven_project_gallery as g
       join public.lyven_projects as p on p.id = g.project_id
       where p.status = 'Published' and g.media_id = lyven_media.id)
