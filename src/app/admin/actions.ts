@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { createAdminAuthClient, isAllowedAdmin, isAdminAuthConfigured } from "../../lib/admin-auth";
+import { createAdminAuthClient, isActiveAdminMember, isAdminAuthConfigured } from "../../lib/admin-auth";
 
 export type LoginState = { error: string };
 
@@ -20,7 +20,7 @@ export async function loginAdmin(_state: LoginState, formData: FormData): Promis
 
   try {
     const { data, error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
-    if (error || !data.user || !isAllowedAdmin(data.user)) {
+    if (error || !data.user || !(await isActiveAdminMember(supabase, data.user))) {
       if (data.user) await supabase.auth.signOut();
       return { error: "Invalid credentials or account access." };
     }

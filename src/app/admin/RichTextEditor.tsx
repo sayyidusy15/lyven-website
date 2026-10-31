@@ -13,7 +13,7 @@ export default function RichTextEditor({ value, onChange }: { value: string; onC
 
   useEffect(() => {
     const editor = editorRef.current;
-    if (editor) editor.innerHTML = value;
+    if (editor) editor.innerHTML = sanitizeArticleHtml(value);
     // The editor is remounted for each article. Do not rewrite its DOM while typing.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -57,7 +57,7 @@ export default function RichTextEditor({ value, onChange }: { value: string; onC
       <span className={styles.toolbarDivider} />
       {([ ["insertUnorderedList", "bi-list-ul", "Bulleted list"], ["insertOrderedList", "bi-list-ol", "Numbered list"], ["undo", "bi-arrow-counterclockwise", "Undo"], ["redo", "bi-arrow-clockwise", "Redo"] ] as const).map(([command, icon, label]) => <button key={command} type="button" title={label} aria-label={label} onMouseDown={(event) => event.preventDefault()} onClick={() => run(command)}><i className={`bi ${icon}`} /></button>)}
     </div>
-    <div ref={editorRef} className={styles.richCanvas} contentEditable suppressContentEditableWarning role="textbox" aria-label="Article body" aria-multiline="true" data-placeholder="Write your article here. Select text to format it..." onInput={() => { sync(); rememberSelection(); }} onBlur={sync} onMouseUp={rememberSelection} onKeyUp={rememberSelection} />
+    <div ref={editorRef} className={styles.richCanvas} contentEditable suppressContentEditableWarning role="textbox" aria-label="Article body" aria-multiline="true" data-placeholder="Write your article here. Select text to format it..." onPaste={(event) => { event.preventDefault(); document.execCommand("insertText", false, event.clipboardData.getData("text/plain")); sync(); }} onInput={() => { sync(); rememberSelection(); }} onBlur={sync} onMouseUp={rememberSelection} onKeyUp={rememberSelection} />
     <div className={styles.richHint}>The article title is the page H1. The toolbar headings become H2 and H3 in the article.</div>
   </div>;
 }
