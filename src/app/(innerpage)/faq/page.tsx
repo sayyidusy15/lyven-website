@@ -1,5 +1,4 @@
 import React from 'react';
-import BreadCumb from '../../Components/Common/BreadCumb';
 import FaqPage from '../../Components/Faq/FaqPage';
 import type { Metadata } from 'next';
 import { canonicalUrl } from '../../../lib/site-url';

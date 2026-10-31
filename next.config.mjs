@@ -24,11 +24,7 @@ const csp = [
 const nextConfig = {
   poweredByHeader: false,
   async headers() {
-    const noIndexPaths = [
-      '/admin/:path*', '/home3/:path*', '/about-agency', '/blog-sidebar',
-      '/project/:path*', '/team/:path*', '/pricing',
-      '/service/service-details', '/service/web-development',
-    ];
+    const noIndexPaths = ['/admin/:path*'];
     return [{
       source: '/:path*',
       headers: [
