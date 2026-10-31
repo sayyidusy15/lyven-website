@@ -1,6 +1,6 @@
 import { createBrowserClient } from "@supabase/ssr";
 import type { CmsArticle, CmsMedia, CmsProject } from "./local-cms";
-import { formatPublishDate } from "./local-cms";
+import { formatPublishDate, sanitizeArticleHtml } from "./local-cms";
 import type { BlogPost } from "./blog-posts";
 
 const BUCKET = "lyven-media";
@@ -65,6 +65,7 @@ export async function loadProjects() {
     description: String(row.description ?? ""), industry: String(row.industry ?? ""),
     duration: String(row.duration ?? ""), year: String(row.project_year ?? ""), website: String(row.website_url ?? ""),
     thumbnail: mediaById.get(String(row.thumbnail_media_id)) ?? "",
+    featuredThumbnail: mediaById.get(String(row.featured_thumbnail_media_id)) ?? "",
     heroImage: mediaById.get(String(row.hero_media_id)) ?? "",
     aboutImage: mediaById.get(String(row.about_media_id)) ?? "",
     gallery: (must(gallery) as { project_id: string; media_id: string }[]).filter((entry) => entry.project_id === row.id).map((entry) => mediaById.get(entry.media_id) ?? "").filter(Boolean),
@@ -142,8 +143,9 @@ async function mediaIdFor(src: string, media: CmsMedia[], placement: string): Pr
 }
 
 export async function saveProject(project: CmsProject, media: CmsMedia[]) {
-  const [thumbnail, hero, about] = await Promise.all([
+  const [thumbnail, featuredThumbnail, hero, about] = await Promise.all([
     mediaIdFor(project.thumbnail, media, "Portfolio thumbnail"),
+    mediaIdFor(project.featuredThumbnail, media, "Homepage featured thumbnail"),
     mediaIdFor(project.heroImage, media, "Project header"),
     mediaIdFor(project.aboutImage, media, "Project overview"),
   ]);
@@ -151,12 +153,16 @@ export async function saveProject(project: CmsProject, media: CmsMedia[]) {
     slug: project.slug, title: project.title, category: project.category, summary: project.summary,
     description: project.description, industry: project.industry, duration: project.duration,
     project_year: project.year, website_url: project.website || null,
-    thumbnail_media_id: thumbnail, hero_media_id: hero, about_media_id: about,
+    thumbnail_media_id: thumbnail, featured_thumbnail_media_id: featuredThumbnail,
+    hero_media_id: hero, about_media_id: about,
     featured: project.featured, status: project.status,
   };
   const result = project.id
     ? await cmsClient().from("lyven_projects").update(payload).eq("id", project.id).select("id").single()
     : await cmsClient().from("lyven_projects").insert(payload).select("id").single();
+  if (result.error?.message.includes("featured_thumbnail_media_id")) {
+    throw new Error("Run supabase/lyven_featured_thumbnail_migration.sql in Supabase SQL Editor before saving projects.");
+  }
   const id = (must(result) as { id: string }).id;
   const galleryIds = await Promise.all(project.gallery.filter(Boolean).map((src) => mediaIdFor(src, media, "Project gallery")));
   must(await cmsClient().from("lyven_project_gallery").delete().eq("project_id", id).select("id"));
@@ -168,7 +174,7 @@ export async function saveArticle(article: CmsArticle, media: CmsMedia[]) {
   const cover = await mediaIdFor(article.image, media, "Blog cover");
   const payload = {
     slug: article.slug, title: article.title, category: article.category, excerpt: article.excerpt,
-    body_html: article.bodyHtml, cover_media_id: cover, cover_alt_text: article.imageAlt,
+    body_html: sanitizeArticleHtml(article.bodyHtml), cover_media_id: cover, cover_alt_text: article.imageAlt,
     author_name: article.author, author_role: article.authorRole, author_description: article.authorDescription,
     tags: article.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
     publish_date: article.publishDate || null, featured: Boolean(article.featured), status: article.status,
@@ -244,8 +250,10 @@ export async function deleteMedia(item: CmsMedia) {
   // These foreign keys use ON DELETE RESTRICT. Detach the asset everywhere first,
   // including draft records that may not be visible in a public project list.
   must(await db.from("lyven_project_gallery").delete().eq("media_id", item.id).select("id"));
-  for (const column of ["thumbnail_media_id", "hero_media_id", "about_media_id"] as const) {
-    must(await db.from("lyven_projects").update({ [column]: null }).eq(column, item.id).select("id"));
+  for (const column of ["thumbnail_media_id", "featured_thumbnail_media_id", "hero_media_id", "about_media_id"] as const) {
+    const result = await db.from("lyven_projects").update({ [column]: null }).eq(column, item.id).select("id");
+    if (result.error && column === "featured_thumbnail_media_id" && ["42703", "PGRST204"].includes(result.error.code)) continue;
+    must(result);
   }
   must(await db.from("lyven_articles").update({ cover_media_id: null }).eq("cover_media_id", item.id).select("id"));
   await deleteRecord("lyven_media", item.id);

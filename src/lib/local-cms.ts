@@ -1,4 +1,5 @@
 import type { ProjectCategory } from "./projects";
+import sanitizeHtml from "sanitize-html";
 
 export type PublishStatus = "Draft" | "Published" | "Takedown";
 export const MAX_HOMEPAGE_PROJECTS = 5;
@@ -16,6 +17,7 @@ export type CmsProject = {
   year: string;
   website: string;
   thumbnail: string;
+  featuredThumbnail: string;
   heroImage: string;
   aboutImage: string;
   gallery: string[];
@@ -37,6 +39,7 @@ export type CmsArticle = {
   authorDescription: string;
   tags: string;
   publishDate: string;
+  readMinutes?: number;
   featured?: boolean;
   status: PublishStatus;
 };
@@ -103,29 +106,11 @@ export async function writeLocalCms<T>(key: string, value: T): Promise<void> {
 }
 
 export function sanitizeArticleHtml(html: string): string {
-  if (typeof window === "undefined" || !html) return "";
-  const input = new DOMParser().parseFromString(html, "text/html");
-  const output = document.createElement("div");
-  const allowed = new Set(["P", "H2", "H3", "BLOCKQUOTE", "STRONG", "B", "EM", "I", "U", "BR", "UL", "OL", "LI"]);
-
-  function copyNode(node: Node, parent: Node) {
-    if (node.nodeType === Node.TEXT_NODE) {
-      parent.appendChild(document.createTextNode(node.textContent ?? ""));
-      return;
-    }
-    if (node.nodeType !== Node.ELEMENT_NODE) return;
-    const element = node as HTMLElement;
-    if (["SCRIPT", "STYLE", "IFRAME", "SVG", "MATH", "FORM"].includes(element.tagName)) return;
-    const tag = element.tagName === "DIV" ? "P" : element.tagName;
-    const destination = allowed.has(tag) ? document.createElement(tag.toLowerCase()) : parent;
-    if (destination !== parent) {
-      const align = element.style.textAlign;
-      if (["left", "center", "right", "justify"].includes(align)) (destination as HTMLElement).style.textAlign = align;
-      parent.appendChild(destination);
-    }
-    Array.from(element.childNodes).forEach((child) => copyNode(child, destination));
-  }
-
-  Array.from(input.body.childNodes).forEach((node) => copyNode(node, output));
-  return output.innerHTML;
+  if (!html) return "";
+  return sanitizeHtml(html, {
+    allowedTags: ["p", "h2", "h3", "blockquote", "strong", "b", "em", "i", "u", "br", "ul", "ol", "li"],
+    allowedAttributes: { p: ["style"], h2: ["style"], h3: ["style"], blockquote: ["style"] },
+    allowedStyles: { "*": { "text-align": [/^(?:left|center|right|justify)$/] } },
+    disallowedTagsMode: "discard",
+  });
 }
